@@ -2,7 +2,7 @@
 
 A theoretical essay on value, interaction fields, and the mathematics of orientation across nine domains.
 
-By Jake Turner and Manus AI, 2025.
+By Glenn Brockman and Manus AI, 2025.
 
 ## Files
 
