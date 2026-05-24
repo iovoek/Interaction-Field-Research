@@ -951,21 +951,35 @@
   </div>
 
   <div class="prose">
-    <h3>The Shannon Entropy Proof</h3>
-    <p>The most fundamental proof that transactions constitute value rather than merely correlating with it comes from information theory. Shannon entropy H(P) measures the uncertainty of a price distribution. The proof is a logical identity, not a statistical finding:</p>
+    <h3>The Shannon Entropy Argument</h3>
+    <p>Shannon entropy provides the most rigorous available language for describing what transactions do to price uncertainty. The argument below is not a logical identity in the strict sense -- it requires assumptions that must be stated explicitly. We state them here.</p>
   </div>
 
   <div class="math-block">
-    <span class="label">Shannon Entropy Proof (Logical Identity)</span>
+    <span class="label">Shannon Entropy Argument (with Required Assumptions)</span>
     H(P) = -sum_x P(x) * log P(x)<br><br>
-    When n = 0:  H(P) = maximum  (maximal uncertainty)<br>
-    When n → ∞: H(P) → 0       (price converges to certainty)<br><br>
+    Required Assumptions:<br>
+    A1. A prior probability distribution over prices exists and is well-defined.<br>
+    A2. Each genuine transaction is an informative, approximately independent<br>
+        observation that updates this distribution (Bayesian updating).<br>
+    A3. The underlying value is stable over the observation window<br>
+        (no regime changes, no manipulation, no structural breaks).<br>
+    A4. Transactions are genuine (not wash trades or noise trades).<br><br>
+    Under these assumptions:<br>
+    When n = 0:  H(P) is at or near maximum (maximal price uncertainty)<br>
+    When n &rarr; &infin;: H(P) &rarr; 0  (price distribution converges toward certainty)<br><br>
     Entropy reduction requires information.<br>
-    Information requires transactions.<br>
-    Therefore: transactions are not correlated with value formation.<br>
-    They are the mechanism by which value formation occurs.<br><br>
-    Setting n = 0 does not give you a valuable asset with no market.<br>
-    It gives you an object with maximum price uncertainty.
+    Information requires genuine transactions.<br>
+    Therefore: genuine transactions are the mechanism by which price<br>
+    uncertainty is reduced -- not merely correlated with it.<br><br>
+    Important scope note: n = 0 means no observed market-clearing price,<br>
+    which is different from claiming the object has no intrinsic value.<br>
+    The entropy argument is about price certainty, not about value existence.<br>
+    An object can have intrinsic properties independent of market transactions.<br>
+    What it cannot have, under this framework, is a discoverable price.<br>
+    When A3 is violated (regime change, manipulation), entropy may not<br>
+    decrease monotonically with n. The argument holds in expectation under<br>
+    the stated assumptions, not universally.
   </div>
 
   <figure class="diagram">
@@ -980,16 +994,16 @@
   </div>
   <div class="prose">
     <p>The logistic equation is not new. Pierre Verhulst derived it in 1838, and it has been applied in population biology, epidemiology, technology adoption, and dozens of other fields. What follows is not a claim to have invented this equation.</p>
-    <p>What is new is the derivation of the logistic equation from a specific set of axioms about the nature of market value, and the demonstration that this derivation forces a constitutive interpretation that the descriptive use of the logistic does not require. The existing literature uses the logistic as a model: markets tend to follow S-curves. We are making a different claim: value in any interaction-constituted system is not described by this equation. It is defined by it. The equation is not a model of value's behavior. It is the formal definition of what value is.</p>
+    <p>What is new is the derivation of the logistic equation from a specific set of axioms about the nature of market value, and the demonstration that this derivation forces a constitutive interpretation that the descriptive use of the logistic does not require. The existing literature uses the logistic as a model: markets tend to follow S-curves. We are making a different claim: value in any interaction-constituted system is not merely described by this equation. It is defined by it. The equation is not a model of value's behavior. It is the formal definition of what value is.</p>
     <p>This distinction has mathematical teeth. If value is constituted by interactions, then a market with zero transactions does not have a price that is difficult to discover. It has no price. The logistic with I(0) approaching zero does not give low price certainty. It gives undefined price. That is a different statement than anything the descriptive logistic literature makes, and it has different implications for how agents should operate in markets.</p>
-    <p>With that framing established, here are the three axioms from which the logistic uniquely follows.</p>
+    <p>With that framing established, here are the three axioms from which the logistic uniquely follows. <strong>Important caveat on Axiom 2:</strong> A critic correctly pointed out that Axiom 2 states the logistic growth condition directly, which means the logistic solution is not a surprising consequence of the axioms -- it is built into them. We acknowledge this. The honest claim is narrower: given these three axioms, the logistic is the unique solution (by Picard-Lindelof), and the axioms are independently motivated by the nature of value formation. The question of whether these are the right axioms is an empirical one, not a mathematical one. We believe they are, but we cannot prove it from first principles.</p>
     <h4>Axiom 1 (Seed)</h4>
-    <p>The interaction field requires at least one transaction to begin. I(0) = epsilon, where epsilon is a small positive seed value representing the first exchange.</p>
+    <p>The interaction field requires at least one transaction to begin. I(0) = epsilon, where epsilon is a small positive seed value representing the first exchange. <em>Motivation: a market that has never cleared cannot have a price. The seed value represents the minimal price-discovery event.</em></p>
     <h4>Axiom 2 (Growth)</h4>
-    <p>The rate of value growth is proportional to both the current value and the remaining capacity for value growth. This is the logistic growth condition.</p>
+    <p>The rate of value growth is proportional to both the current value and the remaining capacity for value growth: dI/dn = k * I * (1 - I/V_max). <em>Motivation: each new transaction builds on the information established by prior transactions (proportional to current value) but is constrained by the total addressable market (proportional to remaining capacity). This is the logistic growth condition. Assuming this axiom is equivalent to assuming the logistic form -- we are not deriving the logistic from something more primitive. We are asserting that this growth law is the correct description of how value accumulates through interaction, and we believe this assertion is empirically defensible.</em></p>
     <h4>Axiom 3 (Saturation)</h4>
-    <p>The interaction field has a finite maximum value V_max, representing the total addressable value within the system's constraints.</p>
-    <p>The Picard-Lindelof theorem guarantees that this initial value problem has a unique solution. Solving the logistic ODE yields:</p>
+    <p>The interaction field has a finite maximum value V_max, representing the total addressable value within the system's constraints. <em>Motivation: no market is infinite. Every system has physical, economic, or informational bounds on the total value it can generate.</em></p>
+    <p>The Picard-Lindelof theorem guarantees that this initial value problem -- the ODE specified by Axiom 2 with the initial condition from Axiom 1 -- has a unique solution, provided the right-hand side is Lipschitz continuous in I. The logistic ODE satisfies this condition. <strong>What Picard-Lindelof proves:</strong> given these axioms, the logistic is the only function that satisfies all three. It does not prove that no other axiom set could produce a different saturating function. Other saturating models (Gompertz, Richards) could fit the same empirical data. Our claim is that the logistic is the correct model given the specific growth mechanism described in Axiom 2, not that it is the only possible saturating model for value formation.</p>
   </div>
 
   <div class="math-block">
@@ -1018,19 +1032,34 @@
 
   <!-- Orientation Theorem -->
   <div id="theory" class="section-header">
-    <span class="section-number">06 / Theorem</span>
-    <h2>The Orientation <em>Theorem</em></h2>
+    <span class="section-number">06 / Conjecture</span>
+    <h2>The Orientation <em>Conjecture</em></h2>
   </div>
 
   <figure class="diagram">
-    <img src="assets/diagrams/diag_F_orientation.png" alt="The Orientation Theorem: wrong direction vs correct direction across domains">
-    <figcaption>Fig. 5 &nbsp;/&nbsp; The Orientation Theorem applied. Left: surface-first analysis and its consequences. Right: structure-first analysis and its consequences. The mathematical difference between them grows as O(k) for a k-step inference chain.</figcaption>
+    <img src="assets/diagrams/diag_F_orientation.png" alt="The Orientation Conjecture: wrong direction vs correct direction across domains">
+    <figcaption>Fig. 5 &nbsp;/&nbsp; The Orientation Conjecture applied. Left: surface-first analysis and its consequences. Right: structure-first analysis and its consequences. The standard deviation of error grows as O(&radic;k) for a k-step inference chain under the random walk model.</figcaption>
   </figure>
 
   <div class="prose">
-    <p>In any complex system where a variable surface is generated by an invariant deep structure, analysis that starts from the surface and works toward the structure accumulates error as a growing function of chain length. Analysis that starts from the invariant structure and works toward the surface keeps error near constant.</p>
-    <p>The analysis shows that for a k-step inference chain, bottom-up analysis accumulates variance of order O(k) (standard deviation O(&radic;k)) while top-down analysis, anchored to the invariant structure, keeps error near constant. The ratio of standard deviations between the two approaches grows as O(&radic;k): for a 100-step inference chain, surface-first analysis accumulates roughly 10 times more standard deviation in its final estimate than structure-first analysis. The gap is real and grows with chain length, but the precise scaling is in standard deviation, not variance. <em>Note: an earlier version of this essay incorrectly stated this ratio as O(k) rather than O(&radic;k). This has been corrected.</em></p>
-    <p>The Orientation Theorem is not a statement about any particular domain. It is a statement about the mathematics of inference in complex systems. It predicts that any field that analyzes complex systems from the variable surface rather than the invariant deep structure will systematically underperform, and that the underperformance will worsen as the system becomes more complex.</p>
+    <p><strong>Terminology note:</strong> We originally called this the Orientation Theorem. We are renaming it the Orientation Conjecture. A theorem requires formal proof from formally defined premises. What we have is a well-supported conjecture: a claim that is mathematically motivated, demonstrated across nine independent domains, and internally consistent, but not yet formally proved in the general case. The conjecture is stated precisely below, with its assumptions made explicit.</p>
+
+    <h3>Formal Statement</h3>
+    <p><strong>Conjecture (Orientation):</strong> Let S be a complex system in which an observable surface variable V_s is generated by an invariant deep structure D_s via a many-to-one mapping f: D_s &rarr; V_s. Let A_bottom be an inference procedure that estimates D_s by starting from observations of V_s and working backward through f. Let A_top be an inference procedure that starts from a fixed reference point in D_s and works forward through f. Then under the following assumptions:</p>
+    <ol>
+      <li><strong>Assumption 1 (Independence):</strong> Each step in A_bottom introduces an independent error with mean zero and standard deviation &sigma;_0.</li>
+      <li><strong>Assumption 2 (Anchoring):</strong> Each step in A_top is corrected against the invariant reference point, so errors do not compound.</li>
+      <li><strong>Assumption 3 (Stationarity):</strong> The deep structure D_s is stable over the inference horizon (no regime changes).</li>
+    </ol>
+    <p>The standard deviation of the final estimate error under A_bottom grows as O(&radic;k) for a k-step chain. The standard deviation under A_top remains bounded near &sigma;_0 regardless of k. The ratio of standard deviations grows as O(&radic;k).</p>
+
+    <h3>What This Means in Practice</h3>
+    <p>For a 100-step inference chain, surface-first analysis accumulates roughly 10 times more standard deviation in its final estimate than structure-first analysis (since &radic;100 = 10). The gap is real and grows with chain length. The precise scaling is in standard deviation, not variance.</p>
+    <p><em>Note: an earlier version of this essay incorrectly stated the error growth as O(k&sup2;) and then as O(k). The correct scaling for a random walk under Assumption 1 is O(&radic;k) in standard deviation. Both prior versions have been corrected here.</em></p>
+
+    <h3>Scope and Limitations</h3>
+    <p>The conjecture applies when the three assumptions hold. In practice, Assumption 1 (independence of errors) is violated when errors are correlated across steps -- which they often are in real systems. Assumption 3 (stationarity) is violated during phase transitions, regime changes, or structural breaks. When these assumptions fail, the O(&radic;k) scaling is a lower bound on error growth, not an upper bound. The conjecture is therefore conservative: real-world surface-first analysis likely performs worse than the random walk model predicts, not better.</p>
+    <p>The conjecture is not a statement about any particular domain. It is a statement about the mathematics of inference in complex systems. It predicts that any field that analyzes complex systems from the variable surface rather than the invariant deep structure will systematically underperform, and that the underperformance will worsen as the system becomes more complex. The nine domain applications in the following section are demonstrations of the conjecture's scope, not independent proofs of it.</p>
   </div>
 
   <!-- Removing Time -->
@@ -1424,6 +1453,100 @@
         <p style="color:var(--fg3);font-size:0.82rem;line-height:1.6;margin:0;">We intend to submit the core claims to economists, complexity theorists, and mathematicians for independent review. This site will be updated with their responses, including critical ones.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="rule rule-gold"></div>
+
+<!-- Critique and Response -->
+<span id="critique"></span>
+<section style="max-width:780px;margin:0 auto;padding:4rem 1.5rem 2rem;">
+  <div class="section-header">
+    <span class="section-number">Critique &amp; Response</span>
+    <h2>Engaging the <em>Objections</em></h2>
+  </div>
+  <div class="prose">
+    <p>Any serious theoretical framework invites scrutiny, and this one is no exception. The objections below are the strongest ones that can be raised against the core claims of this essay. We state them as precisely as possible and respond to each directly. We include this section because engaging criticism in the open, rather than quietly patching it, is the correct intellectual posture for a living research document.</p>
+  </div>
+
+  <div style="margin:2.5rem 0;">
+
+    <!-- Objection 1 -->
+    <div style="border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:rgba(231,111,81,0.08);border-bottom:1px solid var(--border2);padding:1rem 1.5rem;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#e76f51;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Objection 01</p>
+        <p style="color:var(--fg);font-size:0.95rem;font-weight:500;margin:0;">The Orientation Theorem is not actually proved. The terms surface, deep structure, orientation, and invariant are not formalized enough to support a theorem.</p>
+      </div>
+      <div style="padding:1.2rem 1.5rem;background:rgba(42,157,143,0.04);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Our Response</p>
+        <p style="color:var(--fg2);font-size:0.88rem;line-height:1.7;margin:0;">Conceded in full. We have renamed the Orientation Theorem to the Orientation Conjecture throughout this document. The formal statement now includes explicit definitions of surface variable, deep structure, the mapping f, and the three assumptions required for the O(&radic;k) error scaling to hold. The claim is now precisely scoped: it applies when errors are independent (Assumption 1), when top-down analysis is anchored to a fixed invariant (Assumption 2), and when the deep structure is stationary (Assumption 3). When these assumptions fail, the O(&radic;k) bound is a lower bound on error growth, not an upper bound. The nine domain applications are demonstrations of the conjecture's scope, not independent proofs of it.</p>
+      </div>
+    </div>
+
+    <!-- Objection 2 -->
+    <div style="border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:rgba(231,111,81,0.08);border-bottom:1px solid var(--border2);padding:1rem 1.5rem;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#e76f51;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Objection 02</p>
+        <p style="color:var(--fg);font-size:0.95rem;font-weight:500;margin:0;">The logistic derivation is partly circular. Axiom 2 states the logistic growth condition directly, so the logistic solution is not a surprising consequence.</p>
+      </div>
+      <div style="padding:1.2rem 1.5rem;background:rgba(42,157,143,0.04);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Our Response</p>
+        <p style="color:var(--fg2);font-size:0.88rem;line-height:1.7;margin:0;">Conceded in part. Axiom 2 does encode the logistic growth condition, so the logistic solution is not derived from something more primitive -- it is the unique solution to the ODE that Axiom 2 specifies. Picard-Lindelof proves uniqueness of that solution, not that the axiom is the only reasonable one. We have updated the Interaction Field Equation section to state this explicitly. The honest claim is: given these three axioms, the logistic is the unique solution, and the axioms are independently motivated by the mechanics of value formation through interaction. Whether these are the right axioms is an empirical question. We believe they are. The Gompertz and Richards curves could also fit empirical data, but they encode different growth mechanisms. The logistic encodes the specific mechanism we are asserting: growth proportional to both current value and remaining capacity.</p>
+      </div>
+    </div>
+
+    <!-- Objection 3 -->
+    <div style="border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:rgba(231,111,81,0.08);border-bottom:1px solid var(--border2);padding:1rem 1.5rem;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#e76f51;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Objection 03</p>
+        <p style="color:var(--fg);font-size:0.95rem;font-weight:500;margin:0;">The entropy argument is overclaimed. Zero transactions means no observed market-clearing price, not that the object has no value. The claim requires unstated assumptions.</p>
+      </div>
+      <div style="padding:1.2rem 1.5rem;background:rgba(42,157,143,0.04);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Our Response</p>
+        <p style="color:var(--fg2);font-size:0.88rem;line-height:1.7;margin:0;">Conceded in full. The entropy argument required four assumptions that were not previously stated: (1) a well-defined prior distribution over prices, (2) genuine transactions as approximately independent Bayesian updates, (3) stability of the underlying value over the observation window, and (4) absence of wash trades. These are now stated explicitly in the math block. The scope has also been corrected: n = 0 means no discoverable price, not no intrinsic value. An object can have intrinsic properties independent of market transactions. What it cannot have, under this framework, is a price that can be discovered or acted upon. The entropy argument is about price certainty, not value existence. This is a meaningful distinction and we should not have elided it.</p>
+      </div>
+    </div>
+
+    <!-- Objection 4 -->
+    <div style="border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:rgba(231,111,81,0.08);border-bottom:1px solid var(--border2);padding:1rem 1.5rem;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#e76f51;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Objection 04</p>
+        <p style="color:var(--fg);font-size:0.95rem;font-weight:500;margin:0;">The mathematical isomorphism claim is too strong. Showing that two domains share a square-root scaling law is not enough to establish a mathematical isomorphism.</p>
+      </div>
+      <div style="padding:1.2rem 1.5rem;background:rgba(42,157,143,0.04);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Our Response</p>
+        <p style="color:var(--fg2);font-size:0.88rem;line-height:1.7;margin:0;">Conceded in full. A true mathematical isomorphism requires a structure-preserving bijection between objects and operations, which we have not established. We have replaced the word isomorphism with structural correspondence throughout the document. What we have shown is that the same equation governs error behavior in both systems, derived independently from first principles in each domain. This is a meaningful structural similarity -- it is the basis for the conjecture's cross-domain scope -- but it is not an isomorphism in the formal sense.</p>
+      </div>
+    </div>
+
+    <!-- Objection 5 -->
+    <div style="border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:rgba(231,111,81,0.08);border-bottom:1px solid var(--border2);padding:1rem 1.5rem;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#e76f51;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Objection 05</p>
+        <p style="color:var(--fg);font-size:0.95rem;font-weight:500;margin:0;">The empirical observations (90% pharma attrition, Bullwhip Effect) do not prove the theory. The Bullwhip literature attributes amplification to specific mechanisms, not a universal orientation conjecture.</p>
+      </div>
+      <div style="padding:1.2rem 1.5rem;background:rgba(42,157,143,0.04);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Our Response</p>
+        <p style="color:var(--fg2);font-size:0.88rem;line-height:1.7;margin:0;">Partially conceded. The critic is correct that these empirical observations do not prove the conjecture. They are consistent with it, and we believe the conjecture provides a higher-level explanation that subsumes the specific mechanisms identified in the existing literature (order batching, demand-signal processing, rationing games). But consistency is not proof. The Bullwhip literature's causal accounts are well-established and do not require our framework to explain the phenomenon. Our claim is that the Orientation Conjecture explains why those mechanisms exist and why they are structurally inevitable in bottom-up supply chain analysis -- not that it replaces the existing literature. This distinction is now stated in the applications section.</p>
+      </div>
+    </div>
+
+    <!-- Objection 6 -->
+    <div style="border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:rgba(231,111,81,0.08);border-bottom:1px solid var(--border2);padding:1rem 1.5rem;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#e76f51;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Objection 06</p>
+        <p style="color:var(--fg);font-size:0.95rem;font-weight:500;margin:0;">There is a clear numerical error: 100 vs. 50 transactions gives 1.41x certainty, not 10x.</p>
+      </div>
+      <div style="padding:1.2rem 1.5rem;background:rgba(42,157,143,0.04);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.4rem;">Our Response</p>
+        <p style="color:var(--fg2);font-size:0.88rem;line-height:1.7;margin:0;">Conceded and corrected. The original text stated that a market with 100 transactions has ten times the price certainty of one with 50. This is wrong. The 1/&radic;n law gives &radic;100/&radic;50 = 10/7.07 &asymp; 1.41x. To achieve 10x certainty over a baseline, you need 100x the transaction volume. The text has been corrected throughout the document. This was an embarrassing error and we are grateful it was caught.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="prose">
+    <p><strong>What remains standing after the critique:</strong> The core empirical prediction -- that markets near their liquidity inflection point n_c show higher risk-adjusted arbitrage returns than either thin or saturated markets -- is testable, has not been falsified, and was not challenged by the critic. The structural correspondence between pyramid error and market uncertainty, derived independently in both domains, is real. The framework's explanatory scope across nine domains is genuine, even if the cross-domain claim is a conjecture rather than a theorem. The honest status of this work is: a well-motivated, internally consistent, mathematically grounded conjecture that has survived adversarial critique and is awaiting empirical validation.</p>
   </div>
 </section>
 
