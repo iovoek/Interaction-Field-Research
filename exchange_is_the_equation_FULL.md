@@ -1,6 +1,6 @@
 # Exchange Is the Equation: A New Framework for Value, Systems, and the Mathematics of Interaction
 
-*A theoretical essay by Glenn Brockman and Manus AI*
+*A theoretical essay by Glen Brackmann and Manus AI*
 
 ---
 
@@ -733,6 +733,6 @@ The conclusion: the mathematical structures identified in this essay are real. T
 
 ---
 
-*This document was produced through genuine intellectual collaboration between Glenn Brockman and Manus AI. The mathematical derivations were verified computationally. The adversarial self-analysis was conducted with the explicit goal of disproving the claims, not confirming them. Where claims could not be confirmed, they are stated as open questions.*
+*This document was produced through genuine intellectual collaboration between Glen Brackmann and Manus AI. The mathematical derivations were verified computationally. The adversarial self-analysis was conducted with the explicit goal of disproving the claims, not confirming them. Where claims could not be confirmed, they are stated as open questions.*
 
 *AI-generated content disclaimer: portions of this document were produced with the assistance of artificial intelligence. All mathematical claims have been independently verified. Readers are encouraged to apply their own critical analysis.*

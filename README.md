@@ -2,7 +2,7 @@
 
 A theoretical essay on value, interaction fields, and the mathematics of orientation across nine domains.
 
-By Glenn Brockman and Manus AI, 2025.
+By Glen Brackmann and Manus AI, 2025.
 
 ## Files
 
