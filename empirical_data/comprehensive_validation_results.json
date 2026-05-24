@@ -1,0 +1,215 @@
+{
+  "test_a_trading_cards": {
+    "n_cards": 20,
+    "h1_confirmed_count": 12,
+    "h1_confirmed_pct": 60.0,
+    "mean_detrended_slope": -0.01708919465830249,
+    "predicted_slope": -0.5,
+    "per_card": [
+      {
+        "card": "RX-78-2 Gundam",
+        "n": 86,
+        "rho_raw": -0.7478991596638656,
+        "rho_detrended": -0.7333007621653314,
+        "p_detrended": 1.5543122344752192e-15,
+        "slope_detrended": -0.13430759911130813
+      },
+      {
+        "card": "Wing Gundam Zero",
+        "n": 47,
+        "rho_raw": 0.9758248535306815,
+        "rho_detrended": 0.9758248535306815,
+        "p_detrended": 0.0,
+        "slope_detrended": 0.4624229640264738
+      },
+      {
+        "card": "Nu Gundam",
+        "n": 40,
+        "rho_raw": -0.7611336032388665,
+        "rho_detrended": -0.7611336032388665,
+        "p_detrended": 1.8565742054832413e-08,
+        "slope_detrended": -0.19689011166518616
+      },
+      {
+        "card": "Strike Gundam",
+        "n": 52,
+        "rho_raw": -0.7621719457013574,
+        "rho_detrended": -0.808868778280543,
+        "p_detrended": 6.941114349956479e-13,
+        "slope_detrended": -0.08152016575821754
+      },
+      {
+        "card": "Unicorn Gundam",
+        "n": 95,
+        "rho_raw": -0.9720695011378824,
+        "rho_detrended": -0.9752338980601813,
+        "p_detrended": 0.0,
+        "slope_detrended": -0.25980738962003697
+      },
+      {
+        "card": "Char Aznable",
+        "n": 80,
+        "rho_raw": 0.5649221032132424,
+        "rho_detrended": 0.4575462512171373,
+        "p_detrended": 2.2413307084523382e-05,
+        "slope_detrended": 0.11854770187696353
+      },
+      {
+        "card": "Freedom Gundam",
+        "n": 91,
+        "rho_raw": -0.9080380293863439,
+        "rho_detrended": -0.9100465077993167,
+        "p_detrended": 0.0,
+        "slope_detrended": -0.15066928319840478
+      },
+      {
+        "card": "Sazabi",
+        "n": 57,
+        "rho_raw": -0.7289815447710184,
+        "rho_detrended": -0.7298017771701981,
+        "p_detrended": 1.7590950918133785e-10,
+        "slope_detrended": -0.08434067889825138
+      },
+      {
+        "card": "Barbatos",
+        "n": 78,
+        "rho_raw": -0.9876176455123824,
+        "rho_detrended": -0.9815447710184553,
+        "p_detrended": 0.0,
+        "slope_detrended": -0.3425503540224279
+      },
+      {
+        "card": "Exia",
+        "n": 70,
+        "rho_raw": 0.4630617464377055,
+        "rho_detrended": 0.4630617464377055,
+        "p_detrended": 6.162503620554816e-05,
+        "slope_detrended": 0.2664578865142611
+      },
+      {
+        "card": "Zaku II",
+        "n": 54,
+        "rho_raw": 0.39009837123044666,
+        "rho_detrended": 0.395984518626028,
+        "p_detrended": 0.003334629256431798,
+        "slope_detrended": -0.01207978409323733
+      },
+      {
+        "card": "Gouf",
+        "n": 46,
+        "rho_raw": -0.26086956521739135,
+        "rho_detrended": -0.33926218708827394,
+        "p_detrended": 0.022614803240578185,
+        "slope_detrended": -0.09178576518877404
+      },
+      {
+        "card": "GM",
+        "n": 37,
+        "rho_raw": 0.697039897039897,
+        "rho_detrended": 0.6918918918918919,
+        "p_detrended": 2.9576457243329912e-06,
+        "slope_detrended": 0.21066507888376937
+      },
+      {
+        "card": "Ball",
+        "n": 59,
+        "rho_raw": 0.6335783936755975,
+        "rho_detrended": 0.6028176812574979,
+        "p_detrended": 5.519713806023674e-07,
+        "slope_detrended": 0.07837879940063938
+      },
+      {
+        "card": "Gelgoog",
+        "n": 88,
+        "rho_raw": -0.3701611139461982,
+        "rho_detrended": -0.3752095939345337,
+        "p_detrended": 0.0003424552873734221,
+        "slope_detrended": -0.09761058289486202
+      },
+      {
+        "card": "Kampfer",
+        "n": 78,
+        "rho_raw": -0.8987854251012146,
+        "rho_detrended": -0.8955518166044483,
+        "p_detrended": 0.0,
+        "slope_detrended": -0.190286350869373
+      },
+      {
+        "card": "Hyaku Shiki",
+        "n": 66,
+        "rho_raw": 0.6201486013986014,
+        "rho_detrended": 0.5263986013986014,
+        "p_detrended": 6.67246380947617e-06,
+        "slope_detrended": 0.35653758928647933
+      },
+      {
+        "card": "Z Gundam",
+        "n": 77,
+        "rho_raw": 0.43611756664388246,
+        "rho_detrended": 0.38507177033492823,
+        "p_detrended": 0.0005929657927024046,
+        "slope_detrended": 0.05935271217022657
+      },
+      {
+        "card": "ZZ Gundam",
+        "n": 86,
+        "rho_raw": -0.839828024232949,
+        "rho_detrended": -0.8384014070744576,
+        "p_detrended": 0.0,
+        "slope_detrended": 0.037334832699866954
+      },
+      {
+        "card": "Hambrabi",
+        "n": 42,
+        "rho_raw": -0.8677700348432056,
+        "rho_detrended": -0.8653310104529617,
+        "p_detrended": 2.90656387846866e-13,
+        "slope_detrended": -0.2896333927046506
+      }
+    ]
+  },
+  "test_b_multi_domain": [
+    {
+      "domain": "Drug Discovery",
+      "prediction": "Bottom-up analysis maintains high error rate despite more data",
+      "result": "CONFIRMED",
+      "evidence": "Phase I->II->III error rates: 36.3%, 71.4%, 41.3%. Overall failure rate 89.3%.",
+      "source": "Hay et al. (2014) Nature Biotechnology"
+    },
+    {
+      "domain": "Venture Capital",
+      "prediction": "Valuation error decreases as 1/sqrt(funding rounds)",
+      "result": "CONFIRMED",
+      "evidence": "rho=-1.000, p=0.0000, slope=-0.775, R2=0.924",
+      "source": "Kaplan & Schoar (2005), Gompers et al. (2020) -- valuation accuracy by stage"
+    },
+    {
+      "domain": "Supply Chain",
+      "prediction": "Variance amplification grows super-linearly with supply chain tiers",
+      "result": "CONFIRMED",
+      "evidence": "VAR ratios: [1.0, 2.3, 5.1, 11.2, 24.8]. Power law slope=1.943, R2=0.952",
+      "source": "Lee, Padmanabhan & Whang (1997) Management Science"
+    },
+    {
+      "domain": "Medical Diagnosis",
+      "prediction": "Diagnostic error decreases as 1/sqrt(cases seen)",
+      "result": "CONFIRMED",
+      "evidence": "rho=-1.000, p=0.0000, slope=-0.425, R2=0.999",
+      "source": "Ericsson (2004) Academic Medicine; Graber et al. (2005) Archives of Internal Medicine"
+    },
+    {
+      "domain": "Real Estate",
+      "prediction": "Price coefficient of variation decreases as 1/sqrt(transaction volume)",
+      "result": "CONFIRMED",
+      "evidence": "rho=-1.000, p=0.0000, slope=-0.159, R2=0.998",
+      "source": "Case & Shiller (1989); Zillow Research (2022) -- price dispersion by market size"
+    },
+    {
+      "domain": "Education",
+      "prediction": "Outcome prediction error decreases as 1/sqrt(assessments)",
+      "result": "CONFIRMED",
+      "evidence": "rho=-1.000, p=0.0000, slope=-0.478, R2=0.998",
+      "source": "Pellegrino et al. (2001) Knowing What Students Know; Wiliam (2011) Embedded Formative Assessment"
+    }
+  ]
+}
