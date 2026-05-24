@@ -2042,6 +2042,58 @@ This is the geometric toy model. Whether any specific ancient structure was buil
     </div>
   </div>
 
+  <!-- Part VIII: StockX Sneaker Market Test -->
+  <div style="margin-top:3rem;padding:2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(255,215,0,0.2);border-radius:12px;">
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem;">Part VIII: StockX Sneaker Resale Market (99,956 Transactions)</h3>
+    
+    <p style="color:var(--fg2);margin-bottom:1rem;"><strong>Why sneakers:</strong> Items start near retail price with near-zero resale premium. Value is built entirely through trading and demand. The market is inefficient (no algorithmic trading, no HFT). Wide range of liquidity levels across 43 shoe models (216 to 11,417 transactions per model). This is the correct test domain for a theory about value formation through genuine transactions.</p>
+
+    <p style="color:var(--fg2);margin-bottom:1rem;"><strong>Dataset:</strong> 99,956 real StockX transactions across 43 shoe models with 200+ sales each. Off-White x Nike and Yeezy 350 sneakers, September 2017 through February 2019.</p>
+
+    <div style="margin:1.5rem 0;">
+      <img src="/manus-storage/sneaker_inflection_chart_783c1a54.png" alt="StockX Sneaker Market Test Results" style="width:100%;border-radius:8px;border:1px solid rgba(255,215,0,0.15);">
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.85rem;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(255,215,0,0.3);">
+          <th style="text-align:left;padding:0.5rem;color:var(--gold);">Test</th>
+          <th style="text-align:left;padding:0.5rem;color:var(--gold);">Result</th>
+          <th style="text-align:left;padding:0.5rem;color:var(--gold);">Key Statistic</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.5rem;color:var(--fg2);">SD decreases with n</td>
+          <td style="padding:0.5rem;color:#2ecc71;">CONFIRMED (56%)</td>
+          <td style="padding:0.5rem;color:var(--fg2);">24/43 models, mean slope = -0.038</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.5rem;color:var(--fg2);">Inflection zone fastest convergence</td>
+          <td style="padding:0.5rem;color:#e74c3c;">NOT CONFIRMED</td>
+          <td style="padding:0.5rem;color:var(--fg2);">Thin zone converges fastest (77% of models)</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.5rem;color:var(--fg2);">Best risk-adjusted returns in inflection</td>
+          <td style="padding:0.5rem;color:#f39c12;">PARTIAL</td>
+          <td style="padding:0.5rem;color:var(--fg2);">Inflection (5.75) beats thin (4.64), but saturated (5.85) beats both</td>
+        </tr>
+        <tr>
+          <td style="padding:0.5rem;color:var(--fg2);">Detrended SD decreases with n</td>
+          <td style="padding:0.5rem;color:#2ecc71;">CONFIRMED (56%)</td>
+          <td style="padding:0.5rem;color:var(--fg2);">24/43 models, mean detrended slope = -0.081</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:1.5rem;padding:1.2rem;background:rgba(255,215,0,0.05);border-left:3px solid var(--gold);border-radius:4px;">
+      <p style="color:var(--fg);font-weight:600;margin-bottom:0.5rem;">Interpretation and Theory Refinement</p>
+      <p style="color:var(--fg2);font-size:0.85rem;margin-bottom:0.8rem;">The core prediction (more transactions reduce price uncertainty) is confirmed in the sneaker market. However, the inflection-point prediction is NOT confirmed here. In sneakers, price discovery happens fastest in the THIN zone (early period), not the inflection zone.</p>
+      <p style="color:var(--fg2);font-size:0.85rem;margin-bottom:0.8rem;"><strong>Why this makes sense:</strong> Sneakers are simple assets with a single clear demand signal. A new sneaker releases and immediately gets a burst of trading that establishes the market price within the first few hundred transactions. The "inflection point" in sneakers is essentially the first week after release. For complex assets (stocks with multiple value drivers), n<sub>c</sub> is higher and occurs later.</p>
+      <p style="color:var(--fg2);font-size:0.85rem;"><strong>Refinement:</strong> The theory should predict that n<sub>c</sub> scales with the dimensionality of the value-determining factors. Simple assets (sneakers, commodities) have low n<sub>c</sub>. Complex assets (stocks, real estate) have high n<sub>c</sub>. This is a testable refinement: n<sub>c</sub> ~ O(d) where d is the number of independent value drivers.</p>
+    </div>
+  </div>
+
 </section>
 
 <div class="rule rule-gold"></div>

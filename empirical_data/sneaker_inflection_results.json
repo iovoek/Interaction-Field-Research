@@ -1,0 +1,41 @@
+{
+  "dataset": "99,956 StockX transactions, 50 models, Sept 2017 - Feb 2019",
+  "models_tested": 43,
+  "test1": {
+    "description": "SD decreases with cumulative transactions",
+    "confirmed_count": 24,
+    "total": 43,
+    "pct": 55.81395348837209,
+    "mean_slope": -0.03776310637768962,
+    "predicted_slope": -0.5
+  },
+  "test2": {
+    "description": "Inflection zone has fastest convergence",
+    "confirmed_count": 3,
+    "total": 43,
+    "pct": 6.976744186046512,
+    "aggregate_rates": {
+      "thin": -0.2785106450026387,
+      "inflection": 0.08290706813954635,
+      "saturated": 0.06763760796007139
+    }
+  },
+  "test3": {
+    "description": "Best risk-adjusted returns in inflection zone",
+    "confirmed_count": 13,
+    "total": 43,
+    "pct": 30.232558139534884,
+    "aggregate_sharpes": {
+      "thin": 4.639405205995417,
+      "inflection": 5.753606467700837,
+      "saturated": 5.851165954396657
+    }
+  },
+  "test4": {
+    "description": "Detrended SD decreases with n",
+    "confirmed_count": 24,
+    "total": 43,
+    "pct": 55.81395348837209,
+    "mean_slope": -0.0813406900689354
+  }
+}

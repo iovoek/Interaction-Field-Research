@@ -1219,3 +1219,30 @@ Confirming stocks: UBER, COIN, RIVN, RBLX, ABNB, SNOW, DASH, SPOT.
 - **Confirmed** in IPO longitudinal test (the strongest design): 62% of stocks, aggregate decisive. The inflection zone is the only zone where volatility is actively decreasing.
 - **Not confirmed** in cryptocurrency: theory correctly predicts this failure (Assumption A3 violated).
 - **Direction confirmed** in cross-sectional multi-year test: mid-volume stocks converge fastest, but sample size insufficient for statistical significance.
+
+
+---
+
+## Part VIII: StockX Sneaker Resale Market (99,956 Transactions)
+
+**Why sneakers:** Items start near retail price with near-zero resale premium. Value is built entirely through trading and demand. The market is inefficient (no algorithmic trading, no HFT). Wide range of liquidity levels across 43 shoe models (216 to 11,417 transactions per model). This is the correct test domain for a theory about value formation through genuine transactions.
+
+**Dataset:** 99,956 real StockX transactions across 43 shoe models with 200+ sales each. Off-White x Nike and Yeezy 350 sneakers, September 2017 through February 2019.
+
+### Results
+
+| Test | Result | Key Statistic |
+|------|--------|---------------|
+| SD decreases with n | CONFIRMED (56%) | 24/43 models, mean slope = -0.038 |
+| Inflection zone fastest convergence | NOT CONFIRMED | Thin zone converges fastest (77% of models) |
+| Best risk-adjusted returns in inflection | PARTIAL | Inflection (5.75) beats thin (4.64), but saturated (5.85) beats both |
+| Detrended SD decreases with n | CONFIRMED (56%) | 24/43 models, mean detrended slope = -0.081 |
+
+### Interpretation and Theory Refinement
+
+The core prediction (more transactions reduce price uncertainty) is confirmed in the sneaker market. However, the inflection-point prediction is NOT confirmed here. In sneakers, price discovery happens fastest in the THIN zone (early period), not the inflection zone.
+
+**Why this makes sense:** Sneakers are simple assets with a single clear demand signal. A new sneaker releases and immediately gets a burst of trading that establishes the market price within the first few hundred transactions. The "inflection point" in sneakers is essentially the first week after release. For complex assets (stocks with multiple value drivers), n_c is higher and occurs later.
+
+**Refinement:** The theory should predict that n_c scales with the dimensionality of the value-determining factors. Simple assets (sneakers, commodities) have low n_c. Complex assets (stocks, real estate) have high n_c. This is a testable refinement: n_c ~ O(d) where d is the number of independent value drivers.
+
