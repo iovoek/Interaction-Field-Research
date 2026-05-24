@@ -1,0 +1,46 @@
+{
+  "stage_results": {
+    "Thin": {
+      "n": 7,
+      "mean_sharpe": -0.18560060009832963,
+      "mean_return": 13.668122089979068
+    },
+    "Pre-Inflection": {
+      "n": 12,
+      "mean_sharpe": 0.5909163483449152,
+      "mean_return": 0.1832757839088207
+    },
+    "Inflection": {
+      "n": 12,
+      "mean_sharpe": 0.549295475132344,
+      "mean_return": 0.2697319482444538
+    },
+    "Post-Inflection": {
+      "n": 9,
+      "mean_sharpe": 1.1745138282635759,
+      "mean_return": 0.4419227115374445
+    },
+    "Saturated": {
+      "n": 8,
+      "mean_sharpe": 1.4326483674600001,
+      "mean_return": 0.6548260320400556
+    }
+  },
+  "benchmarks": {
+    "random": 0.7169822723977289,
+    "volume_momentum": 1.2977285472902718,
+    "price_momentum": 1.594181079791869
+  },
+  "statistical_tests": {
+    "inflection_vs_thin": {
+      "p_value": 0.07831093085348023,
+      "confirmed": false
+    },
+    "inflection_vs_saturated": {
+      "p_value": 0.9894506768556864,
+      "confirmed": false
+    }
+  },
+  "n_c": 7682166.733067729,
+  "total_stocks": 48
+}

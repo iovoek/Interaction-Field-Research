@@ -1,0 +1,41 @@
+{
+  "dataset": {
+    "source": "PriceCharting API",
+    "market": "Gundam TCG",
+    "n_cards": 43,
+    "volume_range": [
+      62,
+      433
+    ],
+    "price_range_usd": [
+      0.24,
+      781.76
+    ]
+  },
+  "test_1_volume_reduces_uncertainty": {
+    "spearman_rho": 0.002341036123967484,
+    "p_value": 0.988112876912202,
+    "confirmed": false
+  },
+  "test_2_sqrt_n_scaling": {
+    "r2_sqrt_model": 0.01178306531584361,
+    "r2_linear_model": 0.0012096430170192018,
+    "r2_power_model": 0.007735732789032501,
+    "fitted_exponent": -0.00029721730471020136,
+    "sqrt_beats_linear": true
+  },
+  "test_3_inflection_point": {
+    "thin_cv": 0.7116229442646903,
+    "mid_cv": 0.781518440922522,
+    "saturated_cv": 0.7736911071889244,
+    "improvement_thin_to_mid": -0.0016698582819277196,
+    "improvement_mid_to_sat": 7.120690019301197e-05,
+    "steepest_in_first_transition": false
+  },
+  "test_5_logistic_fit": {
+    "r2": 0.0017511115408452849,
+    "V_max": 123.11426642819018,
+    "k": -0.0006731427735378116,
+    "n_c": -9097.519152073706
+  }
+}

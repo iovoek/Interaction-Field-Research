@@ -1,0 +1,48 @@
+{
+  "pharma": {
+    "source": "DiMasi et al. (2016), Hay et al. (2014)",
+    "phases": [
+      "Preclinical",
+      "Phase I",
+      "Phase II",
+      "Phase III",
+      "NDA/BLA",
+      "Approval"
+    ],
+    "cumulative_failure": [
+      0.4,
+      0.616,
+      0.87712,
+      0.926272,
+      0.9373312,
+      0.942971392
+    ],
+    "sqrt_r2": 0.8695082148771637,
+    "linear_r2": 0.7836026008927421
+  },
+  "supply_chain": {
+    "source": "Lee et al. (1997), Sterman (1989)",
+    "tiers": [
+      "Consumer",
+      "Retailer",
+      "Wholesaler",
+      "Distributor",
+      "Manufacturer"
+    ],
+    "variance_amplification": [
+      1.0,
+      2.0,
+      3.8,
+      7.5,
+      14.2
+    ],
+    "power_exponent": 1.8783802328809143
+  },
+  "pyramid": {
+    "source": "Lehner (1997)",
+    "courses": 210,
+    "surface_first_error_cm": 14.491376746189438,
+    "actual_error_cm": 6.0,
+    "structure_first_prediction_cm": 0.31622776601683794
+  }
+}
