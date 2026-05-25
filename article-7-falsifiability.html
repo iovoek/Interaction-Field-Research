@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How This Theory Could Be Wrong | Exchange Is the Equation</title>
+  <meta name="description" content="Every serious theory must specify the conditions under which it would be falsified. Here are ours: the specific empirical tests that could disprove the Interaction Field Theory.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0a0a0f; --bg2: #0f0f18; --bg3: #141420; --fg: #e8e4d9; --fg2: #b8b4a9; --fg3: #7a7870; --gold: #c9a84c; --gold2: #e8c96a; --teal: #2a9d8f; --accent: #7c6fcd; --border: rgba(201,168,76,0.15); --border2: rgba(255,255,255,0.06); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--fg); font-family: 'Noto Serif', Georgia, serif; font-weight: 300; line-height: 1.85; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 999; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-title { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--fg3); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); right: 0; background: rgba(10,10,15,0.97); border: 1px solid var(--border); border-radius: 4px; min-width: 260px; padding: 0.4rem 0; z-index: 1000; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.55rem 1rem; font-size: 0.63rem; color: var(--fg2); white-space: nowrap; letter-spacing: 0.07em; }
+    .nav-dropdown-menu a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+    .nav-dropdown-menu .dd-active { color: var(--gold); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+    main { max-width: 780px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
+    .article-series { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .article-number { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    h1 { font-family: 'Noto Serif', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--fg); margin-bottom: 1.2rem; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .subtitle { font-size: 1.15rem; color: var(--fg2); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
+    .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.08em; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 1.5rem; font-weight: 400; color: var(--fg); margin: 3rem 0 1rem; letter-spacing: -0.01em; }
+    h2 em { color: var(--gold); font-style: italic; }
+    p { margin-bottom: 1.4rem; color: var(--fg2); font-size: 1.02rem; }
+    p strong { color: var(--fg); font-weight: 600; }
+    blockquote { border-left: 2px solid var(--gold); padding: 1rem 1.5rem; margin: 2rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+    blockquote p { color: var(--fg2); font-style: italic; margin-bottom: 0; font-style: normal; }
+    .falsification-box { background: var(--bg2); border: 1px solid rgba(124,111,205,0.3); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0; }
+    .falsification-box .fb-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .falsification-box p { margin-bottom: 0; font-size: 0.97rem; }
+    .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .series-nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--gold2); }
+    .series-nav .next { text-align: right; }
+    .term-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+    .term-link:hover { border-bottom-color: var(--gold); }
+    .article-link { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(42,157,143,0.3); }
+    .article-link:hover { border-bottom-color: var(--teal); }
+    .rule { height: 1px; background: var(--border); margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-title" href="index.html">Exchange Is the Equation</a>
+  <ul class="nav-links">
+    <li><a href="index.html#theory">The Theory</a></li>
+    <li><a href="index.html#applications">Applications</a></li>
+    <li class="nav-dropdown">
+      <a href="#">Deep Dives &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="article-1-origin.html">1. The Backwards Problem</a>
+        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+        <a href="article-3-social-media.html">3. Social Media's Wrong Variable</a>
+        <a href="article-4-value.html">4. Value Is Not a Number</a>
+        <a href="article-5-math.html">5. Why Error Grows</a>
+        <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+        <a href="article-7-falsifiability.html" class="dd-active">7. How This Theory Could Be Wrong</a>
+        <a href="article-8-roadmap.html">8. What Comes Next</a>
+        <a href="pharma.html">Pharma Deep Dive</a>
+      </div>
+    </li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="index.html#empirical">Evidence</a></li>
+    <li><a href="index.html#references">Downloads</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="article-series">The Backwards Problem &mdash; Article Series</p>
+  <p class="article-number">Article 7 of 8</p>
+  <h1>How This Theory <em>Could Be Wrong</em></h1>
+  <p class="subtitle">Every serious theory must specify the conditions under which it would be falsified. Here are ours: the specific empirical tests that could disprove the Interaction Field Theory.</p>
+  <p class="byline">By Glen Brackmann &amp; Manus AI &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+  <p>A theory that cannot be falsified is not a scientific theory. It is a belief system. The Interaction Field Theory makes specific, quantitative predictions. Those predictions can be tested. If they fail, the theory is wrong, or at minimum, the assumptions need revision.</p>
+
+  <p>This article does not argue for the theory. It argues against it, as rigorously as possible. It presents the strongest objections, the most dangerous failure conditions, and the specific empirical tests that would disprove the core claims. If you are skeptical of the theory, this is the article to read first.</p>
+
+  <div class="rule"></div>
+
+  <h2>The Three <em>Core Assumptions</em></h2>
+
+  <p>The Orientation Theorem is proved under three assumptions. If any of these assumptions fails in a specific domain, the theorem does not apply to that domain.</p>
+
+  <p><strong>A1: Independence.</strong> Transaction errors are independent of each other. If this fails, the sqrt(k) error growth formula changes. In markets with correlated errors (herding, cascades, contagion), the error may grow faster than sqrt(k). The theory would still hold directionally, but the quantitative predictions would be wrong.</p>
+
+  <p><strong>A2: Invariance.</strong> The deep structure is stable relative to the timescale of analysis. If the deep structure itself is changing rapidly, starting from it provides no advantage over starting from the surface. In rapidly evolving markets or during structural breaks, this assumption may fail.</p>
+
+  <p><strong>A3: Finite noise.</strong> The noise in each transaction is bounded. If noise is unbounded (fat-tailed distributions, black swan events), the central limit theorem arguments in the proof do not apply. The theory may still hold in expectation, but the variance of outcomes would be much larger than predicted.</p>
+
+  <div class="rule"></div>
+
+  <h2>Specific <em>Falsification Tests</em></h2>
+
+  <div class="falsification-box">
+    <div class="fb-label">Test 1: The Forex Spread Prediction</div>
+    <p>The theory predicts that bid-ask spread scales as n^(-0.5) across currency pairs, where n is daily transaction volume. EUR/USD (billions of transactions per day) should have a spread approximately 1,000 times smaller than a currency pair with 1 million transactions per day. If the actual ratio is significantly different from sqrt(1,000,000,000 / 1,000,000) = 31.6, the quantitative prediction is wrong. This test is straightforward to run with publicly available forex data.</p>
+  </div>
+
+  <div class="falsification-box">
+    <div class="fb-label">Test 2: The Social Media Revenue Crossover</div>
+    <p>The simulation predicts that connection-based optimization surpasses engagement-based optimization in monthly revenue at approximately Month 18, under the parameter assumptions of the model. If a platform ran a controlled experiment and the crossover did not occur within the range of Month 12-24, the model parameters would need significant revision. If the crossover never occurred (engagement-based optimization remained superior indefinitely), the core business case argument would be falsified.</p>
+  </div>
+
+  <div class="falsification-box">
+    <div class="fb-label">Test 3: The Inflection Point Prediction</div>
+    <p>The theory predicts that the analytical edge of structure-first analysis is maximized near n_c, the inflection point of the logistic value formation curve. For trading cards, this means that the highest-return arbitrage opportunities should be concentrated in sets with transaction counts near n_c, not in the most liquid sets (where the edge is priced in) or the thinnest sets (where the signal is noise). If the distribution of arbitrage returns does not peak near n_c, the logistic curve model is wrong.</p>
+  </div>
+
+  <div class="falsification-box">
+    <div class="fb-label">Test 4: The Phenotypic Screening Prediction</div>
+    <p>The theory predicts that phenotypic screening (structure-first) should have a higher success rate in clinical trials than target-based screening (surface-first). Swinney and Anthony (2011) found that phenotypic approaches produced more first-in-class drugs than target-based approaches in a historical analysis. If a prospective study found no difference in success rates between the two approaches, the pharmaceutical application of the theory would be falsified.</p>
+  </div>
+
+  <div class="falsification-box">
+    <div class="fb-label">Test 5: The Dimensionality Scaling Prediction</div>
+    <p>The theory predicts that n_c scales with the number of independent value drivers d: n_c ~ O(d). Simple assets (sneakers, commodities) should reach price discovery at lower transaction counts than complex assets (stocks, real estate, drug candidates). If n_c does not scale with asset dimensionality, the logistic curve model needs revision. The StockX sneaker data already suggested this refinement is necessary: sneakers reached price discovery in the thin zone, not the inflection zone, consistent with low d.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Goodhart's Law</em> Problem</h2>
+
+  <p>The social media application faces a specific challenge that deserves its own discussion. Goodhart's Law states: when a measure becomes a target, it ceases to be a good measure. This applies directly to the proposed connection-based optimization. If platforms start optimizing for reciprocity index, conversation depth, and trust formation rate, bad actors will learn to fake these metrics. Coordinated inauthentic behavior, harassment disguised as conversation, and extremist communities that form genuine trust among members could all game connection metrics as easily as they game engagement metrics.</p>
+
+  <p>This is a real limitation. It does not falsify the theory, but it means that any implementation of connection-based optimization must be adversarially robust from the start. Single-metric optimization is always gameable. The solution is layered measurement, adversarial testing, and continuous recalibration. This is harder than optimizing for a single engagement metric, but it is the correct problem to be solving.</p>
+
+  <div class="rule"></div>
+
+  <h2>What the Theory <em>Does Not Claim</em></h2>
+
+  <p>The theory does not claim that surface variables are useless. They are downstream outputs of the interaction field and they carry real information. The claim is that they should be interpreted in the context of the deep structure, not used as the starting point for analysis.</p>
+
+  <p>The theory does not claim that structure-first analysis is always possible. In some domains, the deep structure is genuinely inaccessible. In those cases, surface-variable analysis is the best available option, and the theory's contribution is to quantify how much uncertainty that introduces.</p>
+
+  <p>The theory does not claim that the Backwards Problem is the only cause of failure in complex systems. It is one structural cause among many. Other causes (incentive misalignment, information asymmetry, coordination failures, resource constraints) operate independently and can produce similar failure patterns.</p>
+
+  <p>The final article in this series looks forward: what are the next steps in the research program, and what are the most important open questions?</p>
+
+  <div class="series-nav">
+    <a href="article-6-domains.html">&larr; Previous: The Same Mistake Everywhere</a>
+    <a href="article-8-roadmap.html" class="next">Next: What Comes Next &rarr;</a>
+  </div>
+</main>
+</body>
+</html>

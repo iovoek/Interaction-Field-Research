@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Comes Next | Exchange Is the Equation</title>
+  <meta name="description" content="The open questions, the next empirical tests, the academic pathway, and the real-world applications. Where this research goes from here.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0a0a0f; --bg2: #0f0f18; --bg3: #141420; --fg: #e8e4d9; --fg2: #b8b4a9; --fg3: #7a7870; --gold: #c9a84c; --gold2: #e8c96a; --teal: #2a9d8f; --accent: #7c6fcd; --border: rgba(201,168,76,0.15); --border2: rgba(255,255,255,0.06); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--fg); font-family: 'Noto Serif', Georgia, serif; font-weight: 300; line-height: 1.85; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 999; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-title { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--fg3); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); right: 0; background: rgba(10,10,15,0.97); border: 1px solid var(--border); border-radius: 4px; min-width: 260px; padding: 0.4rem 0; z-index: 1000; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.55rem 1rem; font-size: 0.63rem; color: var(--fg2); white-space: nowrap; letter-spacing: 0.07em; }
+    .nav-dropdown-menu a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+    .nav-dropdown-menu .dd-active { color: var(--gold); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+    main { max-width: 780px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
+    .article-series { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .article-number { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    h1 { font-family: 'Noto Serif', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--fg); margin-bottom: 1.2rem; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .subtitle { font-size: 1.15rem; color: var(--fg2); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
+    .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.08em; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 1.5rem; font-weight: 400; color: var(--fg); margin: 3rem 0 1rem; letter-spacing: -0.01em; }
+    h2 em { color: var(--gold); font-style: italic; }
+    p { margin-bottom: 1.4rem; color: var(--fg2); font-size: 1.02rem; }
+    p strong { color: var(--fg); font-weight: 600; }
+    blockquote { border-left: 2px solid var(--gold); padding: 1rem 1.5rem; margin: 2rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+    blockquote p { color: var(--fg2); margin-bottom: 0; }
+    .next-step { background: var(--bg2); border-left: 3px solid var(--teal); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .next-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .next-step p { margin-bottom: 0; font-size: 0.97rem; }
+    .series-index { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin: 2.5rem 0; }
+    .series-index .si-title { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .series-index ol { padding-left: 1.2rem; }
+    .series-index li { margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--fg2); }
+    .series-index li a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(42,157,143,0.3); }
+    .series-index li a:hover { border-bottom-color: var(--teal); }
+    .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .series-nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--gold2); }
+    .term-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+    .term-link:hover { border-bottom-color: var(--gold); }
+    .article-link { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(42,157,143,0.3); }
+    .article-link:hover { border-bottom-color: var(--teal); }
+    .rule { height: 1px; background: var(--border); margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-title" href="index.html">Exchange Is the Equation</a>
+  <ul class="nav-links">
+    <li><a href="index.html#theory">The Theory</a></li>
+    <li><a href="index.html#applications">Applications</a></li>
+    <li class="nav-dropdown">
+      <a href="#">Deep Dives &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="article-1-origin.html">1. The Backwards Problem</a>
+        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+        <a href="article-3-social-media.html">3. Social Media's Wrong Variable</a>
+        <a href="article-4-value.html">4. Value Is Not a Number</a>
+        <a href="article-5-math.html">5. Why Error Grows</a>
+        <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+        <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+        <a href="article-8-roadmap.html" class="dd-active">8. What Comes Next</a>
+        <a href="pharma.html">Pharma Deep Dive</a>
+      </div>
+    </li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="index.html#empirical">Evidence</a></li>
+    <li><a href="index.html#references">Downloads</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="article-series">The Backwards Problem &mdash; Article Series</p>
+  <p class="article-number">Article 8 of 8</p>
+  <h1>What Comes <em>Next</em></h1>
+  <p class="subtitle">The open questions, the next empirical tests, the academic pathway, and the real-world applications. Where this research goes from here.</p>
+  <p class="byline">By Glen Brackmann &amp; Manus AI &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+  <p>This series began with a text message about trading cards. It ends with a framework that applies to pharmaceutical R&D, social media algorithms, urban planning, education, supply chains, venture capital, medicine, and real estate. The theory is not finished. It is a living research program. This article describes where it goes from here.</p>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Next Empirical Tests</em></h2>
+
+  <p>The most important next step is moving from theoretical predictions to empirical tests with real data. Here are the five tests in order of feasibility and impact:</p>
+
+  <div class="next-step">
+    <div class="step-num">Test 1 &mdash; Forex Spread Scaling (Most Feasible)</div>
+    <p>EUR/USD vs. thin emerging market currencies. The prediction is that bid-ask spread scales as n^(-0.5) across currency pairs. This test requires only publicly available forex data and can be run in a weekend. It is the cleanest possible test of the 1/sqrt(n) prediction because the liquidity differential between major and minor currency pairs spans several orders of magnitude.</p>
+  </div>
+
+  <div class="next-step">
+    <div class="step-num">Test 2 &mdash; Trading Card Inflection Point (Ongoing)</div>
+    <p>The arbitrage agent being built on TCGPlayer and eBay data is designed to test whether the highest-return opportunities cluster near n_c. This is an ongoing empirical program. The prediction is specific: sets in the inflection zone should show higher arbitrage returns than either very thin sets (noise) or very liquid sets (no edge).</p>
+  </div>
+
+  <div class="next-step">
+    <div class="step-num">Test 3 &mdash; Social Media Controlled Experiment</div>
+    <p>The Month 18 revenue crossover prediction is falsifiable by any platform with the infrastructure to run a controlled experiment. The prediction is specific enough to be tested: connection-based optimization should surpass engagement-based optimization in monthly revenue between Month 12 and Month 24. This requires a platform partner willing to run the experiment. The research program is open to collaboration.</p>
+  </div>
+
+  <div class="next-step">
+    <div class="step-num">Test 4 &mdash; Phenotypic vs. Target-Based Screening (Prospective)</div>
+    <p>Swinney and Anthony (2011) provided historical evidence. A prospective study comparing phenotypic and target-based approaches in a specific therapeutic area would be more definitive. The prediction is that phenotypic approaches should show a higher Phase II success rate. This requires a pharmaceutical partner willing to run the comparison.</p>
+  </div>
+
+  <div class="next-step">
+    <div class="step-num">Test 5 &mdash; Dimensionality Scaling of n_c</div>
+    <p>The prediction that n_c scales with asset dimensionality d can be tested across asset classes. Simple commodities (low d) should reach price discovery at lower transaction counts than complex assets (high d). This requires a dataset spanning multiple asset classes with transaction count and price volatility data.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Academic Pathway</em></h2>
+
+  <p>The formal proof, the Monte Carlo validation, and the empirical tests already completed are at a level where a 10-page paper could be submitted to a complexity science or systems theory journal. The most appropriate venues are:</p>
+
+  <p><strong>Journal of Complex Systems</strong> -- The natural home for a paper that applies the same mathematical structure across multiple domains. The audience is complexity scientists who will appreciate the structural correspondence argument.</p>
+
+  <p><strong>Complexity (Wiley)</strong> -- A broad-scope journal that publishes work on complex adaptive systems. The social media and pharmaceutical applications would be of direct interest.</p>
+
+  <p><strong>PLOS ONE</strong> -- Open access, broad scope, rigorous peer review. The empirical tests would be the primary contribution here.</p>
+
+  <p>The paper would need to do three things: state the formal theorem with full proof, present the Monte Carlo validation, and present at least one empirical test with real data. The forex spread test is the most feasible first empirical contribution.</p>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Real-World Applications</em></h2>
+
+  <p>The theory is not just diagnostic. It prescribes specific, actionable corrections for each domain. The most immediately actionable applications are:</p>
+
+  <p><strong>The Trading Card Arbitrage Tool.</strong> The theory identifies a specific, actionable edge: assets near their interaction field inflection point n_c have the highest information density and the largest edge for structure-first analysts. A tool that identifies which trading card sets are currently near n_c, and what the structure-first price estimate is for specific cards, would be a direct commercial application. This is the original motivation for the research and the most immediately buildable product.</p>
+
+  <p><strong>The Social Media Algorithm Proposal.</strong> The proposed ranking function with four metrics (reciprocity index, depth index, trust index, polarization penalty) is specific enough to implement. The research program is open to collaboration with any platform willing to test it. The full technical specification is in the <a href="social-media.html" class="article-link">Social Media Deep Dive</a>.</p>
+
+  <p><strong>The Pharmaceutical Screening Audit.</strong> The theory predicts that any pharmaceutical pipeline that is predominantly target-based should show a higher failure rate than one that is predominantly phenotypic. An audit of an existing pipeline using this framework could identify compounds most at risk of late-stage failure, potentially saving hundreds of millions of dollars and years of trial participant exposure.</p>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Open Questions</em></h2>
+
+  <p>The theory is a living research program. The most important open questions are:</p>
+
+  <p><strong>What is the correct operational definition of a genuine transaction in each domain?</strong> In trading cards, it is a verified completed sale. In social media, it is a reciprocal communication. In education, it is a measurable intellectual exchange. But the operational definition needs to be precise enough to be measured and adversarially robust enough to resist gaming. This is the hardest open problem in the research program.</p>
+
+  <p><strong>Does n_c scale linearly with dimensionality d, or is the relationship more complex?</strong> The StockX sneaker data suggested a refinement, but the quantitative form of the scaling law is not yet established.</p>
+
+  <p><strong>What happens at the boundaries of the logistic curve?</strong> The theory is most precise near n_c. At very low n (thin markets) and very high n (fully liquid markets), the predictions are less specific. A more complete theory would characterize the behavior at both extremes.</p>
+
+  <p><strong>How does the theory extend to systems where the deep structure itself is changing?</strong> The invariance assumption (A2) is the weakest of the three. In rapidly evolving markets, during structural breaks, or in systems undergoing phase transitions, the deep structure may change faster than the analysis can track. A dynamic version of the theory that relaxes A2 would be more general.</p>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Full Series</em></h2>
+
+  <div class="series-index">
+    <div class="si-title">The Backwards Problem &mdash; Complete Series</div>
+    <ol>
+      <li><a href="article-1-origin.html">The Backwards Problem</a> &mdash; Origin and core concept</li>
+      <li><a href="article-2-framework.html">We're Measuring the Wrong Layer of Reality</a> &mdash; Surface vs. deep structure</li>
+      <li><a href="article-3-social-media.html">Social Media Optimized the Wrong Variable</a> &mdash; The most urgent application</li>
+      <li><a href="article-4-value.html">Value Is Not a Number. It Is a Process.</a> &mdash; How value forms through exchange</li>
+      <li><a href="article-5-math.html">Why Error Grows When You Start From the Wrong End</a> &mdash; The formal mathematics</li>
+      <li><a href="article-6-domains.html">The Same Mistake Everywhere</a> &mdash; Nine domains, one structural error</li>
+      <li><a href="article-7-falsifiability.html">How This Theory Could Be Wrong</a> &mdash; Falsification conditions</li>
+      <li><a href="article-8-roadmap.html">What Comes Next</a> &mdash; This article</li>
+    </ol>
+  </div>
+
+  <p>The full technical article, with formal proofs, Monte Carlo simulations, and all empirical tests, is available at the <a href="index.html" class="article-link">Exchange Is the Equation research site</a>. The downloadable versions (PDF, Markdown, RTF) are in the <a href="index.html#references" class="article-link">Downloads section</a>.</p>
+
+  <blockquote>
+    <p>This research began as a conversation about trading cards. It became a structural analysis of how complex systems fail and how to fix them. The mathematics is sound. The empirical tests are ongoing. The framework is living. If you have data, a domain, or a critique, we want to hear from you.</p>
+  </blockquote>
+
+  <div class="series-nav">
+    <a href="article-7-falsifiability.html">&larr; Previous: How This Theory Could Be Wrong</a>
+    <a href="index.html" class="next">Full Research Site &rarr;</a>
+  </div>
+</main>
+</body>
+</html>
