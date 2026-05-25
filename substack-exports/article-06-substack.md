@@ -3,7 +3,7 @@ title: "The Same Mistake Everywhere"
 subtitle: "Trading cards, drug discovery, urban planning, education, social media. Nine domains. One structural error."
 series: "The Backwards Problem"
 article: 6 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   Trading cards, drug discovery, venture capital, urban planning, education, supply chains, social media, medicine, real estate. Nine domains. One structural error.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   The most striking thing about the [Backwards Problem](terms.html#backwards-problem) is not that it exists. It is that it exists in the same form, with the same mathematical structure, in every complex domain we have examined. The surface variable changes. The deep structure changes. The specific failure mode changes. But the underlying error, starting from the wrong end and compounding inference mistakes, is identical.
@@ -110,7 +110,7 @@ The Backwards Problem -- Article Series
 
     Surface variable: Likes, clicks, shares, watch time, comment count
     Deep structure: Genuine connection, trust, reciprocal communication, meaningful information exchange
-    The most urgent and most publicly visible application. Platforms optimized engagement because engagement was measurable. Genuine connection is not. The result is a compounding error feedback loop that produces platforms that make users feel worse, generate low-quality advertiser data, and are destroying their own long-term revenue. The full analysis, including simulation results showing a revenue crossover at Month 18 under connection-based optimization, is in [Article 3](article-3-social-media.html) and the [Social Media Deep Dive](social-media.html).
+    The most urgent and most publicly visible application. Platforms optimized engagement because engagement was measurable. Genuine connection is not. The result is a compounding error feedback loop that produces platforms that make users feel worse, generate low-quality advertiser data, and are destroying their own long-term revenue. The full analysis, including simulation results showing a revenue crossover at Month 2 under connection-based optimization, is in [Article 3](article-3-social-media.html) and the [Social Media Deep Dive](social-media.html).
 
 
 

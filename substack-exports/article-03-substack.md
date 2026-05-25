@@ -3,7 +3,7 @@ title: "Social Media Optimized the Wrong Variable"
 subtitle: "Platforms chose engagement because it was measurable. Genuine connection was not. Here is the cost."
 series: "The Backwards Problem"
 article: 3 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   Platforms optimized engagement because engagement was measurable. But engagement is not the same as connection. This is the Backwards Problem at civilizational scale.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   You already know something is wrong with social media. You feel it when you put your phone down after an hour of scrolling and feel worse than when you picked it up. You feel it when an argument in the comments section pulls you in even though you know it is pointless. You feel it when you see a friend's perfectly curated life and feel a vague, sourceless inadequacy.
@@ -68,7 +68,7 @@ The Backwards Problem -- Article Series
   The fix is not complicated in principle. It is just backwards from where the platforms started. Instead of optimizing for engagement (the surface variable), platforms should optimize for genuine connection (the deep structure). The ranking function should reward reciprocal communication, conversation depth, trust formation, and cross-group positive interaction. It should penalize one-directional amplification, outrage loops, and polarization.
 
 
-  The business case for this is strong. Under the parameter assumptions of our computational model, platforms that shift to connection-based optimization experience a short-term decrease in raw engagement (estimated 15-25% over the first 3 months) followed by substantial long-term improvements: user retention up 30-40% at 18 months, platform trust scores up 50% at 12 months, and revenue per user up 20-35% at 24 months as advertiser willingness-to-pay increases and user lifetime value grows. The model predicts a revenue crossover at Month 18, after which connection-based optimization generates more monthly revenue than engagement-based optimization. These are model projections based on documented mechanisms, not empirical measurements from a live platform.
+  The business case for this is strong. Under the parameter assumptions of our computational model, platforms that shift to connection-based optimization experience a short-term decrease in raw engagement (estimated 15-25% over the first 3 months) followed by substantial long-term improvements: user retention up 30-40% at 18 months, platform trust scores up 50% at 12 months, and revenue per user up 20-35% at 24 months as advertiser willingness-to-pay increases and user lifetime value grows. The model predicts a revenue crossover at Month 2, after which connection-based optimization generates more monthly revenue than engagement-based optimization. These are model projections based on documented mechanisms, not empirical measurements from a live platform.
 
 
   A note on gaming: any metric can be gamed. Long conversations can be toxic. Reciprocal interaction can be harassment. Trust can form inside extremist communities. The operational definition of genuine connection must be adversarially robust. This is a known limitation and an active area of the research program. Goodhart's Law applies: once a platform optimizes for connection metrics, bad actors will learn to fake connection. The solution is layered measurement, not single-metric optimization.

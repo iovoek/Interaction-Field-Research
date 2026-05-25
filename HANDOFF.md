@@ -94,7 +94,7 @@ Three rounds of critique. Summary of current standing:
 
 ## API Keys and Credentials
 
-These are stored in the Manus project environment. When setting up on a new account, you will need:
+These are stored in the project environment. When setting up on a new account, you will need:
 
 - `PRICECHARTING_API_TOKEN` -- for PriceCharting data
 - `EBAY_APP_ID`, `EBAY_CERT_ID`, `EBAY_DEV_ID` -- for eBay completed listings data
@@ -108,7 +108,7 @@ These are stored in the Manus project environment. When setting up on a new acco
 2. The site is already live at https://iovoek.github.io/Interaction-Field-Research/ -- no redeployment needed.
 3. To edit the site: edit `index.html`, commit, and push. GitHub Pages deploys automatically.
 4. To run the analysis scripts: `pip install yfinance pandas numpy scipy matplotlib` then `python3 scripts/<script>.py`
-5. To regenerate the PDF: `manus-md-to-pdf exchange_is_the_equation_FULL.md exchange_is_the_equation_FULL.pdf`
+5. To regenerate the PDF: `md-to-pdf exchange_is_the_equation_FULL.md exchange_is_the_equation_FULL.pdf`
 6. To regenerate the RTF: `python3 scripts/gen_rtf.py`
 
 ---

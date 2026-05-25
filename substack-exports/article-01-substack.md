@@ -3,7 +3,7 @@ title: "The Backwards Problem"
 subtitle: "How a conversation about trading cards became a framework for understanding why complex systems fail."
 series: "The Backwards Problem"
 article: 1 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   What started as a conversation about trading cards became a larger question: what if most complex systems fail because we analyze them from the wrong direction?
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   This research began with a text message.

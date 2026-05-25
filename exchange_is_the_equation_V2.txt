@@ -1,7 +1,7 @@
 Exchange Is the Equation
 A Structural Theory of How Complex Systems Fail and How to Fix Them
 
-By Glen Brackmann and Manus AI    Version 2, 2026
+By Glen Brackmann | Version 2, 2026. Produced with AI research assistance.
 
 ---
 
@@ -403,7 +403,7 @@ Invariant Deep Structure: Genuine human connection: sustained reciprocal communi
 
 The Backwards Problem: Engagement-based algorithms optimize for surface metrics that are weakly or inversely correlated with genuine human connection. The error compounds: the algorithm promotes emotionally charged content (high clicks), which erodes user satisfaction, which reduces retention, which degrades data quality, which reduces advertiser targeting precision, which reduces CPM, which reduces revenue per user.
 
-Key Finding: The platforms do not need negativity to make money. They promote negativity because their algorithms are backwards. A 36-month computational simulation shows that connection-based algorithms generate 162% more monthly revenue at Month 36 than engagement-based algorithms, with a crossover at Month 18.
+Key Finding: The platforms do not need negativity to make money. They promote negativity because their algorithms are backwards. A 36-month computational simulation shows that connection-based algorithms generate 43% more cumulative revenue over 36 months than engagement-based algorithms, with a crossover at Month 2.
 
 ---
 
@@ -764,4 +764,4 @@ References
 
 This document is Version 2 of "Exchange Is the Equation." It incorporates all theoretical developments, empirical tests, simulation results, and domain applications produced through 2026. The research is ongoing. The framework is living. All mathematical claims have been independently verified through formal proof and Monte Carlo simulation. This document examines whether the conclusions are mathematically sound or the product of a shared hallucination between a human and an AI. The answer, after formal proof, Monte Carlo simulation, and empirical testing across multiple domains, is that they are mathematically sound.
 
-By Glen Brackmann and Manus AI    2026
+By Glen Brackmann | 2026. Produced with AI research assistance.

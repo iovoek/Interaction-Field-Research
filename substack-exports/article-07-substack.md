@@ -3,7 +3,7 @@ title: "How This Theory Could Be Wrong"
 subtitle: "The specific empirical tests that would disprove the Interaction Field Theory."
 series: "The Backwards Problem"
 article: 7 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   Every serious theory must specify the conditions under which it would be falsified. Here are ours: the specific empirical tests that could disprove the Interaction Field Theory.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   A theory that cannot be falsified is not a scientific theory. It is a belief system. The Interaction Field Theory makes specific, quantitative predictions. Those predictions can be tested. If they fail, the theory is wrong, or at minimum, the assumptions need revision.
@@ -60,7 +60,7 @@ The Backwards Problem -- Article Series
 
 
     Test 2: The Social Media Revenue Crossover
-    The simulation predicts that connection-based optimization surpasses engagement-based optimization in monthly revenue at approximately Month 18, under the parameter assumptions of the model. If a platform ran a controlled experiment and the crossover did not occur within the range of Month 12-24, the model parameters would need significant revision. If the crossover never occurred (engagement-based optimization remained superior indefinitely), the core business case argument would be falsified.
+    The simulation predicts that connection-based optimization surpasses engagement-based optimization in monthly revenue at approximately Month 2, under the parameter assumptions of the model. If a platform ran a controlled experiment and the crossover did not occur within the range of Month 1-4, the model parameters would need significant revision. If the crossover never occurred (engagement-based optimization remained superior indefinitely), the core business case argument would be falsified.
 
 
 

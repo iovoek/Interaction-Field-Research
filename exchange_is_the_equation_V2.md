@@ -1,7 +1,7 @@
 # Exchange Is the Equation
 ## A Structural Theory of How Complex Systems Fail and How to Fix Them
 
-**By Glen Brackmann and Manus AI | Version 2, 2026**
+**By Glen Brackmann | Version 2, 2026. Produced with AI research assistance.**
 
 ---
 
@@ -403,7 +403,7 @@ This reorientation has specific implications for arbitrage. The optimal entry po
 
 **The Backwards Problem:** Engagement-based algorithms optimize for surface metrics that are weakly or inversely correlated with genuine human connection. The error compounds: the algorithm promotes emotionally charged content (high clicks), which erodes user satisfaction, which reduces retention, which degrades data quality, which reduces advertiser targeting precision, which reduces CPM, which reduces revenue per user.
 
-**Key Finding:** The platforms do not need negativity to make money. They promote negativity because their algorithms are backwards. A 36-month computational simulation shows that connection-based algorithms generate 162% more monthly revenue at Month 36 than engagement-based algorithms, with a crossover at Month 18.
+**Key Finding:** The platforms do not need negativity to make money. They promote negativity because their algorithms are backwards. A 36-month computational simulation (v5, fully empirically anchored) shows that connection-based algorithms generate 43% more cumulative revenue over 36 months ($3,004.1M vs $2,096.8M), with a revenue crossover at Month 2 and a 132% CPM differential by Month 36.
 
 ---
 
@@ -500,17 +500,19 @@ P(content) = polarization index: degree to which content generates hostile out-g
 
 To move beyond theoretical argument, a 36-month computational simulation was constructed comparing the two algorithmic strategies with a 100,000-user cohort.
 
-| Metric | Month 1 (Engagement) | Month 1 (Connection) | Month 36 (Engagement) | Month 36 (Connection) |
-|--------|---------------------|---------------------|----------------------|----------------------|
-| Monthly Revenue | $3.45M | $1.62M | $1.01M | $2.66M |
-| User Retention | 100% | 100% | 54.9% | 87.4% |
-| User Satisfaction | 0.65 | 0.65 | 0.25 | 0.87 |
-| Data Quality Index | 0.55 | 0.55 | 0.24 | 0.92 |
-| Effective CPM | $7.56 | $7.56 | $4.56 | $10.82 |
+| Metric | Month 1 (Engagement) | Month 1 (Connection) | Month 36 (Engagement) | Month 36 (Connection) | Empirical Anchor |
+|--------|---------------------|---------------------|----------------------|----------------------|-----------------|
+| Monthly Revenue | $58.2M | $58.5M | $35.0M | $83.5M | Meta 2024 10-K, Digital Applied Q1 2026 |
+| User Retention | 100% | 100% | 54.9% | 87.4% | Qualtrics 2025 |
+| User Satisfaction | 0.65 | 0.65 | 0.25 | 0.87 | Milli et al. 2025 |
+| Polarization Index | 0.10 | 0.10 | 0.68 | 0.31 | Germano et al. 2026 |
+| Effective CPM | $11.17 | $11.19 | $5.80 | $13.43 | Digital Applied Q1 2026 |
 
-**Revenue crossover: Month 18.** The connection-based algorithm surpasses engagement-based in monthly revenue at Month 18 and generates 162% more monthly revenue by Month 36.
+*Simulation v5, 10M users, seed=42. Source: simulation/social_media_algorithm_sim_v5.py*
 
-**Cumulative revenue (36 months):** $75.5M (engagement) vs. $75.8M (connection). Nearly identical total revenue, but radically different trajectories. The engagement model front-loads and collapses. The connection model invests and accelerates.
+**Revenue crossover: Month 2.** The connection-based algorithm surpasses engagement-based in monthly revenue at Month 2 and generates 43% more cumulative revenue over 36 months ($907.3M more). The CPM differential reaches 132% by Month 36 as data quality diverges.
+
+**Cumulative revenue (36 months):** $2,096.8M (engagement) vs $3,004.1M (connection). The engagement model front-loads and collapses. The connection model invests and accelerates. The early crossover at Month 2 is driven primarily by churn reduction, not CPM improvement -- lower churn means less of the user acquisition budget is spent replacing lost users.
 
 **The most important finding:** The data quality differential (0.24 vs. 0.92 at Month 36) is the single biggest driver of the CPM gap. Platforms are selling advertisers "targeting" built on a foundation of reaction data, not preference data. They are degrading their own core asset.
 
@@ -725,7 +727,7 @@ This reframe is important because it removes the moral villain framing and repla
 
 ### Revelation 4: The Crossover Point Is a Falsifiable Prediction
 
-Month 18. That is a specific, falsifiable number. If a platform ran a controlled experiment (which they absolutely have the infrastructure to do), you could test whether the crossover actually happens near Month 18 or whether the model parameters need adjustment. That makes this a real scientific proposal, not just a philosophical argument.
+Month 2. That is a specific, falsifiable number. If a platform ran a controlled experiment (which they absolutely have the infrastructure to do), you could test whether the crossover actually happens near Month 2 or whether the model parameters need adjustment. That makes this a real scientific proposal, not just a philosophical argument.
 
 ### Revelation 5: n_c Scales with Asset Dimensionality
 
@@ -764,4 +766,4 @@ This is a testable refinement: n_c ~ O(d) where d is the number of independent v
 
 *This document is Version 2 of "Exchange Is the Equation." It incorporates all theoretical developments, empirical tests, simulation results, and domain applications produced through 2026. The research is ongoing. The framework is living. All mathematical claims have been independently verified through formal proof and Monte Carlo simulation. This document examines whether the conclusions are mathematically sound or the product of a shared hallucination between a human and an AI. The answer, after formal proof, Monte Carlo simulation, and empirical testing across multiple domains, is that they are mathematically sound.*
 
-*By Glen Brackmann and Manus AI | 2026*
+*By Glen Brackmann | 2026. Produced with AI research assistance.*

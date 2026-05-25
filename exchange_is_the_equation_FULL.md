@@ -1,6 +1,6 @@
 # Exchange Is the Equation
 
-*A theoretical essay by Glen Brackmann and Manus AI*
+*A theoretical essay by Glen Brackmann*
 
 ---
 
@@ -738,7 +738,7 @@ The conclusion: the mathematical structures identified in this essay are real. T
 
 ---
 
-*This document was produced through genuine intellectual collaboration between Glen Brackmann and Manus AI. The mathematical derivations were verified computationally. The adversarial self-analysis was conducted with the explicit goal of disproving the claims, not confirming them. Where claims could not be confirmed, they are stated as open questions.*
+*This document was produced through independent research by Glen Brackmann, with AI research assistance. The mathematical derivations were verified computationally. The adversarial self-analysis was conducted with the explicit goal of disproving the claims, not confirming them. Where claims could not be confirmed, they are stated as open questions.*
 
 *AI-generated content disclaimer: portions of this document were produced with the assistance of artificial intelligence. All mathematical claims have been independently verified. Readers are encouraged to apply their own critical analysis.*
 
@@ -921,7 +921,7 @@ The mathematics are not ambiguous. The orientation of the analysis determines th
 
 ---
 
-*This companion report was produced through collaboration between Glen Brackmann and Manus AI. It applies the theoretical framework developed in "Exchange Is the Equation" to two specific industry domains. All statistical claims are sourced from published research. Readers are encouraged to test the predictions against their own organizational data.*
+*This companion report was produced through independent research by Glen Brackmann, with AI research assistance. It applies the theoretical framework developed in "Exchange Is the Equation" to two specific industry domains. All statistical claims are sourced from published research. Readers are encouraged to test the predictions against their own organizational data.*
 
 ---
 

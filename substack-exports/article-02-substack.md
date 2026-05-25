@@ -3,7 +3,7 @@ title: "We're Measuring the Wrong Layer of Reality"
 subtitle: "The Interaction Field Theory: why surface variables are downstream outputs, not the source of value."
 series: "The Backwards Problem"
 article: 2 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   Surface variables, deep structure, genuine transactions, and the Interaction Field: the conceptual foundation for understanding why complex systems fail.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   Every complex system has two layers. The first is the observable surface: prices, symptoms, clicks, test results, comparable sales, engagement metrics. These are the things we can measure easily, the things that show up in dashboards and reports and headlines. The second is the invariant deep structure: the underlying pattern of genuine interactions that generates the surface.

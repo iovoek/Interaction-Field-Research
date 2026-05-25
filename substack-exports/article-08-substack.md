@@ -3,7 +3,7 @@ title: "What Comes Next"
 subtitle: "The open questions, the next empirical tests, the academic pathway, and the real-world applications."
 series: "The Backwards Problem"
 article: 8 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   The open questions, the next empirical tests, the academic pathway, and the real-world applications. Where this research goes from here.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   This series began with a text message about trading cards. It ends with a framework that applies to pharmaceutical R&D, social media algorithms, urban planning, education, supply chains, venture capital, medicine, and real estate. The theory is not finished. It is a living research program. This article describes where it goes from here.
@@ -50,7 +50,7 @@ The Backwards Problem -- Article Series
 
 
     Test 3 -- Social Media Controlled Experiment
-    The Month 18 revenue crossover prediction is falsifiable by any platform with the infrastructure to run a controlled experiment. The prediction is specific enough to be tested: connection-based optimization should surpass engagement-based optimization in monthly revenue between Month 12 and Month 24. This requires a platform partner willing to run the experiment. The research program is open to collaboration.
+    The Month 2 revenue crossover prediction is falsifiable by any platform with the infrastructure to run a controlled experiment. The prediction is specific enough to be tested: connection-based optimization should surpass engagement-based optimization in monthly revenue between Month 1 and Month 4. This requires a platform partner willing to run the experiment. The research program is open to collaboration.
 
 
 

@@ -3,7 +3,7 @@ title: "Value Is Not a Number. It Is a Process."
 subtitle: "The Interaction Field Equation: how value forms through genuine exchange, and why price is its shadow."
 series: "The Backwards Problem"
 article: 4 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   The difference between asking price, appraised value, and exchange-discoverable value. Why value becomes visible through genuine exchange, and what that means for every market.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   Ask someone what a house is worth. They will tell you a number. Ask them how they got that number. They will tell you about comparable sales, about what similar houses sold for recently, about what the Zestimate says, about what the appraiser concluded. Every answer is a reference to something else. No one can tell you, from first principles, what the house is worth. They can only tell you what other people have paid for similar things.

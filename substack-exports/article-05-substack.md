@@ -3,7 +3,7 @@ title: "Why Error Grows When You Start From the Wrong End"
 subtitle: "The formal mathematics: why surface-first analysis is guaranteed to compound error, and by how much."
 series: "The Backwards Problem"
 article: 5 of 8
-author: Glen Brackmann & Manus AI
+author: Glen Brackmann
 year: 2026
 site: https://iovoek.github.io/Interaction-Field-Research/
 ---
@@ -20,7 +20,7 @@ The Backwards Problem -- Article Series
   The formal mathematics behind the Backwards Problem: why surface-first analysis is guaranteed to compound error, and how structure-first analysis bounds it.
 
 
-  By Glen Brackmann & Manus AI  |  2026  |  Exchange Is the Equation
+  By Glen Brackmann  |  2026  |  Exchange Is the Equation
 
 
   The previous articles have described the Backwards Problem in conceptual terms. This article makes it precise. The claim is not that surface-first analysis is usually worse, or that structure-first analysis tends to be better. The claim is that the error differential is mathematically determined, that it grows with system complexity, and that it can be calculated exactly for any system where the assumptions hold.
