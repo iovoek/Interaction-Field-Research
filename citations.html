@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citations & Sources | Exchange Is the Equation</title>
+  <meta name="description" content="Full bibliography, dataset sources, and researcher profiles for the Interaction Field Theory research project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f; --bg2: #0f0f18; --bg3: #141420;
+      --fg: #e8e4d9; --fg2: #b8b4a9; --fg3: #7a7870;
+      --gold: #c9a84c; --gold2: #e8c96a;
+      --teal: #2a9d8f; --accent: #7c6fcd;
+      --red: #c0392b;
+      --border: rgba(201,168,76,0.15); --border2: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--fg); font-family: 'Noto Serif', Georgia, serif; font-weight: 300; line-height: 1.85; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 999; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-title { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--fg3); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); right: 0; background: rgba(10,10,15,0.97); border: 1px solid var(--border); border-radius: 4px; min-width: 260px; padding: 0.4rem 0; z-index: 1000; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.55rem 1rem; font-size: 0.63rem; color: var(--fg2); white-space: nowrap; letter-spacing: 0.07em; }
+    .nav-dropdown-menu a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+    main { max-width: 860px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
+    .page-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--fg); margin-bottom: 1rem; }
+    h1 em { color: var(--gold); font-style: italic; }
+    .subtitle { font-size: 1.05rem; color: var(--fg2); line-height: 1.7; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin: 3rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .citation-entry { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border2); }
+    .citation-entry:last-child { border-bottom: none; }
+    .cite-id { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .cite-title { font-size: 1.05rem; font-weight: 400; color: var(--fg); margin-bottom: 0.3rem; line-height: 1.4; }
+    .cite-authors { font-size: 0.88rem; color: var(--fg2); margin-bottom: 0.3rem; }
+    .cite-venue { font-size: 0.85rem; color: var(--fg3); font-style: italic; margin-bottom: 0.6rem; }
+    .cite-summary { font-size: 0.9rem; color: var(--fg2); line-height: 1.65; margin-bottom: 0.8rem; }
+    .cite-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cite-link { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--teal); text-decoration: none; letter-spacing: 0.06em; padding: 0.25rem 0.6rem; border: 1px solid rgba(42,157,143,0.3); border-radius: 3px; transition: all 0.2s; }
+    .cite-link:hover { color: var(--gold); border-color: rgba(201,168,76,0.4); }
+    .researcher-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .researcher-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px; padding: 1.4rem; }
+    .researcher-name { font-size: 1.05rem; font-weight: 400; color: var(--fg); margin-bottom: 0.2rem; }
+    .researcher-role { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+    .researcher-bio { font-size: 0.88rem; color: var(--fg2); line-height: 1.6; margin-bottom: 0.8rem; }
+    .researcher-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .researcher-link { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--fg3); text-decoration: none; letter-spacing: 0.06em; padding: 0.2rem 0.5rem; border: 1px solid var(--border2); border-radius: 3px; transition: all 0.2s; }
+    .researcher-link:hover { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+    .dataset-card { background: var(--bg3); border: 1px solid var(--border2); border-radius: 4px; padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; }
+    .dataset-name { font-size: 0.95rem; font-weight: 400; color: var(--fg); margin-bottom: 0.2rem; }
+    .dataset-source { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--teal); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .dataset-desc { font-size: 0.88rem; color: var(--fg2); line-height: 1.6; margin-bottom: 0.6rem; }
+    a { color: var(--teal); }
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; max-width: 860px; margin: 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--fg3); text-align: center; }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-title" href="index.html">Exchange Is the Equation</a>
+  <ul class="nav-links">
+    <li><a href="index.html#theory">The Theory</a></li>
+    <li><a href="index.html#applications">Applications</a></li>
+    <li class="nav-dropdown">
+      <a href="#">Deep Dives &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="article-1-origin.html">1. The Backwards Problem</a>
+        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+        <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
+        <a href="article-4-value.html">4. Value Is Not a Number</a>
+        <a href="article-5-math.html">5. Why Error Grows</a>
+        <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+        <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+        <a href="article-8-roadmap.html">8. What Comes Next</a>
+        <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+      </div>
+    </li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="index.html#empirical">Evidence</a></li>
+    <li><a href="citations.html" class="active">Citations</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="page-kicker">Exchange Is the Equation &mdash; Research Project</p>
+  <h1>Citations &amp; <em>Sources</em></h1>
+  <p class="subtitle">Full bibliography, dataset sources, and researcher profiles for the Interaction Field Theory research project. All claims in this work are grounded in cited research. Where we propose original frameworks, we distinguish them clearly from established findings.</p>
+
+  <!-- SECTION: SOCIAL MEDIA -->
+  <h2>Social Media &amp; Algorithmic Amplification</h2>
+
+  <div class="citation-entry">
+    <div class="cite-id">Milli et al., 2025</div>
+    <div class="cite-title">Engagement, user satisfaction, and the amplification of divisive content on social media</div>
+    <div class="cite-authors">Smitha Milli, Micah Carroll, Yike Wang, Sashrika Pandey, Sebastian Zhao, Anca D. Dragan</div>
+    <div class="cite-venue">PNAS Nexus, Vol. 4, Issue 3, March 2025. doi:10.1093/pnasnexus/pgaf062. Cited 238 times.</div>
+    <div class="cite-summary">A preregistered algorithmic audit of Twitter's engagement-based ranking algorithm. Key finding: relative to a reverse-chronological baseline, Twitter's algorithm amplifies emotionally charged, out-group hostile content that users say makes them feel worse about their political out-group. Critically, users do <em>not</em> prefer the political tweets selected by the algorithm, demonstrating a measurable divergence between revealed preferences (engagement) and stated preferences (what users actually want). This is the most direct empirical support for the central claim of Article 3: that social media platforms are optimizing for the wrong variable.</div>
+    <div class="cite-links">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11894805/" class="cite-link" target="_blank" rel="noopener">PMC Full Text</a>
+      <a href="https://academic.oup.com/pnasnexus/article/4/3/pgaf062/8052060" class="cite-link" target="_blank" rel="noopener">PNAS Nexus</a>
+      <a href="https://github.com/smilli/twitter" class="cite-link" target="_blank" rel="noopener">Code (GitHub)</a>
+      <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/1QMLOV" class="cite-link" target="_blank" rel="noopener">Data (Harvard Dataverse)</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">Germano, G&oacute;mez &amp; Sobbrio, 2026</div>
+    <div class="cite-title">Ranking for engagement: How social media algorithms fuel misinformation and polarization</div>
+    <div class="cite-authors">Fabrizio Germano, Vicen&ccedil; G&oacute;mez, Francesco Sobbrio</div>
+    <div class="cite-venue">Journal of Public Economics, 2026. doi:10.1016/j.jpubeco.2026.105589</div>
+    <div class="cite-summary">Develops a theoretical model of the dynamic feedback loop between recommendation algorithms and user behavior. The model uncovers a structural trade-off: increasing the weight on social interactions (likes, shares) increases user engagement but also misinformation and polarization. Empirical evidence from Italy and the United States shows that Facebook's 2018 "Meaningful Social Interactions" update contributed to increased ideological extremism and affective polarization. This provides direct empirical evidence for the error feedback loop described in Article 3.</div>
+    <div class="cite-links">
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4238756" class="cite-link" target="_blank" rel="noopener">SSRN Preprint</a>
+      <a href="https://doi.org/10.1016/j.jpubeco.2026.105589" class="cite-link" target="_blank" rel="noopener">Journal DOI</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">Pew Research Center, 2025</div>
+    <div class="cite-title">Americans' Social Media Use 2025</div>
+    <div class="cite-authors">Pew Research Center</div>
+    <div class="cite-venue">Pew Research Center Internet &amp; Technology, November 2025. Survey of 5,022 U.S. adults.</div>
+    <div class="cite-summary">Comprehensive survey data on social media platform usage, user satisfaction, and attitudes toward social media. Provides baseline data on platform adoption rates and user sentiment that contextualizes the algorithmic effects described in Milli et al. and Germano et al.</div>
+    <div class="cite-links">
+      <a href="https://www.pewresearch.org/internet/fact-sheet/social-media/" class="cite-link" target="_blank" rel="noopener">Pew Fact Sheet</a>
+      <a href="https://www.pewresearch.org/internet/2025/11/20/americans-social-media-use-2025/" class="cite-link" target="_blank" rel="noopener">Full Report</a>
+    </div>
+  </div>
+
+  <!-- SECTION: PHARMACEUTICAL -->
+  <h2>Pharmaceutical R&amp;D &amp; Clinical Trial Failure</h2>
+
+  <div class="citation-entry">
+    <div class="cite-id">Sun et al., 2022</div>
+    <div class="cite-title">Why 90% of clinical drug development fails and how to improve it</div>
+    <div class="cite-authors">Duxin Sun, Wei Gao, Hongxiang Hu, Simon Zhou</div>
+    <div class="cite-venue">Acta Pharmaceutica Sinica B, Vol. 12, Issue 7, July 2022, pp. 3049-3062.</div>
+    <div class="cite-summary">Comprehensive analysis of the structural causes of the 90% clinical trial failure rate. Identifies poor target selection and inadequate disease model translation as primary drivers. Supports the Interaction Field framework's diagnosis that target-based drug discovery is oriented from the surface inward, producing compounding error across development phases.</div>
+    <div class="cite-links">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9293739/" class="cite-link" target="_blank" rel="noopener">PMC Full Text</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">BIO / Informa, 2021</div>
+    <div class="cite-title">Clinical Development Success Rates and Contributing Factors 2011&ndash;2020</div>
+    <div class="cite-authors">Biotechnology Innovation Organization (BIO) / Informa Pharma Intelligence / QLS Advisors</div>
+    <div class="cite-venue">BIO Industry Analysis, 2021. Analysis of 13,000+ clinical and regulatory transitions across 1,779 companies.</div>
+    <div class="cite-summary">The definitive industry dataset on clinical trial success rates. Key statistics: overall likelihood of approval from Phase I = 7.9% (not the commonly cited 10%). Phase II is the single biggest bottleneck with only 28.9% success rate. Phase III success rate = 57.8%. NDA/BLA to approval = 90.6%. These numbers are the empirical foundation for the pharmaceutical section of this research.</div>
+    <div class="cite-links">
+      <a href="https://www.bio.org/clinical-development-success-rates-and-contributing-factors-2011-2020" class="cite-link" target="_blank" rel="noopener">BIO Report Page</a>
+      <a href="https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf" class="cite-link" target="_blank" rel="noopener">Full PDF</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">Sadri, 2023</div>
+    <div class="cite-title">Is Target-Based Drug Discovery Efficient? Discovery and Off-Target Effects</div>
+    <div class="cite-authors">Amir Sadri</div>
+    <div class="cite-venue">Journal of Medicinal Chemistry, 2023. doi:10.1021/acs.jmedchem.2c01737</div>
+    <div class="cite-summary">Systematic analysis of whether target-based drug discovery is an efficient approach. Finds fundamental efficiency problems that are not solvable by better target selection, because the problem is the direction of analysis, not the quality of individual targets. Directly supports the Backwards Problem diagnosis applied to pharmaceutical R&D.</div>
+    <div class="cite-links">
+      <a href="https://pubs.acs.org/doi/abs/10.1021/acs.jmedchem.2c01737" class="cite-link" target="_blank" rel="noopener">ACS Publication</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">Vincent et al., 2022</div>
+    <div class="cite-title">Phenotypic Drug Discovery: Recent successes, lessons learned and new directions</div>
+    <div class="cite-authors">Fabien Vincent et al.</div>
+    <div class="cite-venue">Nature Reviews Drug Discovery, 2022. PMC9708951.</div>
+    <div class="cite-summary">Comprehensive review of phenotypic screening approaches in drug discovery. Finds that phenotypic approaches have higher clinical success rates than target-based approaches across multiple disease areas. Provides the empirical basis for the claim that starting from the deep structure (complex biological function) produces better outcomes than starting from the surface (isolated molecular targets).</div>
+    <div class="cite-links">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9708951/" class="cite-link" target="_blank" rel="noopener">PMC Full Text</a>
+    </div>
+  </div>
+
+  <!-- SECTION: COMPLEXITY ECONOMICS -->
+  <h2>Complexity Economics &amp; Increasing Returns</h2>
+
+  <div class="citation-entry">
+    <div class="cite-id">Arthur, 1994</div>
+    <div class="cite-title">Increasing Returns and Path Dependence in the Economy</div>
+    <div class="cite-authors">W. Brian Arthur</div>
+    <div class="cite-venue">University of Michigan Press, 1994.</div>
+    <div class="cite-summary">Foundational work establishing that economic systems exhibit increasing returns and path dependence, meaning that small early advantages can lock in outcomes that are not necessarily optimal. This is the economic complexity framework that the Interaction Field Theory extends and formalizes. Arthur's work establishes that the surface of economic outcomes (prices, market shares) is generated by deep structural dynamics (increasing returns, network effects) that cannot be inferred from surface analysis alone.</div>
+    <div class="cite-links">
+      <a href="https://www.santafe.edu/people/profile/w-brian-arthur" class="cite-link" target="_blank" rel="noopener">SFI Profile</a>
+      <a href="https://scholar.google.com/citations?user=eczJRhQAAAAJ&hl=en" class="cite-link" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://www.youtube.com/watch?v=noAn60dlk04" class="cite-link" target="_blank" rel="noopener">YouTube Talk</a>
+    </div>
+  </div>
+
+  <!-- SECTION: SYSTEMS MEDICINE -->
+  <h2>Systems Medicine &amp; Precision Biology</h2>
+
+  <div class="citation-entry">
+    <div class="cite-id">Hood &amp; Price, 2014</div>
+    <div class="cite-title">Demystifying Disease, Democratizing Health Care</div>
+    <div class="cite-authors">Leroy Hood, Nathan Price</div>
+    <div class="cite-venue">Science Translational Medicine, 2014.</div>
+    <div class="cite-summary">Articulates the P4 medicine framework (predictive, preventive, personalized, participatory) as an alternative to the current disease-centric model. Argues that medicine must shift from analyzing disease at the level of symptoms and isolated biomarkers (surface) to analyzing the whole-person biological network (deep structure). This is the systems medicine equivalent of the Orientation Conjecture.</div>
+    <div class="cite-links">
+      <a href="https://isbscience.org/people/leroy-hood-md-phd/" class="cite-link" target="_blank" rel="noopener">ISB Profile</a>
+      <a href="https://scholar.google.com/citations?user=TQ8RcVgAAAAJ&hl=en" class="cite-link" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">Robinson et al., 2008&ndash;present</div>
+    <div class="cite-title">The Human Phenotype Ontology (HPO)</div>
+    <div class="cite-authors">Peter N. Robinson et al.</div>
+    <div class="cite-venue">Ongoing project. HPO website: human-phenotype-ontology.org</div>
+    <div class="cite-summary">A standardized vocabulary for phenotypic abnormalities in human disease, enabling deep phenotyping for precision medicine. The HPO represents an attempt to characterize the deep structure of disease presentation rather than relying on surface-level diagnostic categories. Robinson's work is a direct application of structure-first analysis in clinical medicine.</div>
+    <div class="cite-links">
+      <a href="http://www.human-phenotype-ontology.org" class="cite-link" target="_blank" rel="noopener">HPO Website</a>
+      <a href="https://scholar.google.com/citations?user=TPOD_XUAAAAJ&hl=en" class="cite-link" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://twitter.com/pnrobins" class="cite-link" target="_blank" rel="noopener">Twitter/X</a>
+    </div>
+  </div>
+
+  <!-- SECTION: PYRAMID RESEARCH -->
+  <h2>Pyramid Construction &amp; Archaeological Research</h2>
+
+  <div class="citation-entry">
+    <div class="cite-id">Huni Choi, 2025&ndash;2026</div>
+    <div class="cite-title">Top-Down Pyramid Construction Theory</div>
+    <div class="cite-authors">Huni Choi (independent researcher)</div>
+    <div class="cite-venue">YouTube / Instagram (@hunichoipyramid). Covered by Open Culture, February 2026.</div>
+    <div class="cite-summary">Proposes that the Egyptian pyramids were constructed from the top down rather than the bottom up, based on analysis of the keying stone evidence and construction logistics. This theory is the origin of the Backwards Problem concept in this research: the realization that the direction of construction, and by analogy the direction of analysis, fundamentally changes the error accumulation properties of the process.</div>
+    <div class="cite-links">
+      <a href="https://www.instagram.com/hunichoipyramid/" class="cite-link" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/watch?v=h5kWDOuY2Uo" class="cite-link" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.openculture.com/2026/02/were-the-egyptian-pyramids-not-built-up-but-carved-down.html" class="cite-link" target="_blank" rel="noopener">Open Culture Coverage</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">History for GRANITE, ongoing</div>
+    <div class="cite-title">Egyptian Pyramid Construction Research</div>
+    <div class="cite-authors">History for GRANITE (YouTube channel)</div>
+    <div class="cite-venue">YouTube (@HistoryforGRANITE). 331K subscribers.</div>
+    <div class="cite-summary">YouTube channel presenting new evidence and analysis challenging conventional Egyptology, including detailed examination of pyramid construction methods, tool marks, and archaeological evidence. Provided key visual and analytical context for the pyramid construction arguments in this research.</div>
+    <div class="cite-links">
+      <a href="https://www.youtube.com/@HistoryforGRANITE" class="cite-link" target="_blank" rel="noopener">YouTube Channel</a>
+      <a href="https://www.facebook.com/profile.php?id=100087258871624" class="cite-link" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+
+  <div class="citation-entry">
+    <div class="cite-id">Dami Lee / Nollistudio, ongoing</div>
+    <div class="cite-title">Architecture Analysis and Urban Design Content</div>
+    <div class="cite-authors">Dami Lee (licensed architect, YouTube creator)</div>
+    <div class="cite-venue">YouTube (@DamiLeeArch). 2.35M subscribers. Nollistudio.</div>
+    <div class="cite-summary">Architecture and design content that provided analytical context for the urban planning and structural analysis sections of this research. Dami Lee is a licensed architect and founder of Nollistudio, a multidisciplinary team focused on making architecture accessible through storytelling and filmmaking.</div>
+    <div class="cite-links">
+      <a href="https://www.youtube.com/@DamiLeeArch" class="cite-link" target="_blank" rel="noopener">YouTube Channel</a>
+      <a href="https://www.instagram.com/damileearch/" class="cite-link" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://damilee.com/" class="cite-link" target="_blank" rel="noopener">Website</a>
+    </div>
+  </div>
+
+  <!-- SECTION: DATASETS -->
+  <h2>Public Datasets Used or Referenced</h2>
+
+  <div class="dataset-card">
+    <div class="dataset-name">Milli et al. Twitter Algorithmic Audit Dataset</div>
+    <div class="dataset-source">Harvard Dataverse &mdash; doi:10.7910/DVN/1QMLOV</div>
+    <div class="dataset-desc">The dataset and code from the Milli et al. 2025 preregistered algorithmic audit of Twitter's ranking algorithm. Includes the survey instrument, engagement data, and stated preference data used to demonstrate the divergence between revealed and stated preferences.</div>
+    <div class="cite-links">
+      <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/1QMLOV" class="cite-link" target="_blank" rel="noopener">Harvard Dataverse</a>
+      <a href="https://github.com/smilli/twitter" class="cite-link" target="_blank" rel="noopener">GitHub Code</a>
+    </div>
+  </div>
+
+  <div class="dataset-card">
+    <div class="dataset-name">BIO Clinical Development Success Rates 2011&ndash;2020</div>
+    <div class="dataset-source">Biotechnology Innovation Organization (BIO) / Informa Pharma Intelligence</div>
+    <div class="dataset-desc">Analysis of 13,000+ clinical and regulatory transitions across 1,779 companies from 2011 to 2020. The definitive industry dataset for pharmaceutical attrition rates by phase. Overall Phase I to approval: 7.9%. Phase II success rate: 28.9%. Used to calibrate the pharmaceutical section of this research.</div>
+    <div class="cite-links">
+      <a href="https://www.bio.org/clinical-development-success-rates-and-contributing-factors-2011-2020" class="cite-link" target="_blank" rel="noopener">BIO Report</a>
+      <a href="https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf" class="cite-link" target="_blank" rel="noopener">PDF Download</a>
+    </div>
+  </div>
+
+  <div class="dataset-card">
+    <div class="dataset-name">Stanford Large Network Dataset Collection (SNAP)</div>
+    <div class="dataset-source">Stanford University &mdash; snap.stanford.edu</div>
+    <div class="dataset-desc">Collection of 50+ large network datasets including social networks, communication networks, and web graphs. Includes Facebook ego-network data, Twitter social graph data, and Reddit post networks. Free for academic and research use.</div>
+    <div class="cite-links">
+      <a href="https://snap.stanford.edu/data/" class="cite-link" target="_blank" rel="noopener">SNAP Datasets</a>
+    </div>
+  </div>
+
+  <div class="dataset-card">
+    <div class="dataset-name">ClinicalTrials.gov Aggregate Statistics</div>
+    <div class="dataset-source">U.S. National Library of Medicine</div>
+    <div class="dataset-desc">Public registry of 586,282+ clinical studies with aggregate statistics on study outcomes, phases, and results. 78,248 studies have posted results. Free public access.</div>
+    <div class="cite-links">
+      <a href="https://clinicaltrials.gov/about-site/trends-charts" class="cite-link" target="_blank" rel="noopener">Trends &amp; Charts</a>
+    </div>
+  </div>
+
+  <!-- SECTION: RESEARCHER PROFILES -->
+  <h2>Researcher Profiles</h2>
+
+  <div class="researcher-grid">
+
+    <div class="researcher-card">
+      <div class="researcher-name">Smitha Milli</div>
+      <div class="researcher-role">Research Scientist, Meta FAIR &mdash; PhD, UC Berkeley (EECS)</div>
+      <div class="researcher-bio">Lead author of the 2025 PNAS Nexus paper demonstrating that Twitter's engagement algorithm amplifies divisive content users do not actually prefer. Her work on pluralistic alignment and collective AI governance is directly relevant to the social media reorientation proposal in this research.</div>
+      <div class="researcher-links">
+        <a href="http://smithamilli.com/" class="researcher-link" target="_blank" rel="noopener">Website</a>
+        <a href="https://x.com/SmithaMilli" class="researcher-link" target="_blank" rel="noopener">Twitter/X</a>
+        <a href="https://scholar.google.com/citations?user=tsXh_hwAAAAJ&hl=en" class="researcher-link" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">W. Brian Arthur</div>
+      <div class="researcher-role">External Faculty, Santa Fe Institute &mdash; Complexity Economics Pioneer</div>
+      <div class="researcher-bio">Pioneered the economics of increasing returns and path dependence. His work on complexity and the economy provides the theoretical foundation for understanding why surface-level economic analysis produces compounding error. Author of "The Nature of Technology" and "Complexity and the Economy."</div>
+      <div class="researcher-links">
+        <a href="https://www.santafe.edu/people/profile/w-brian-arthur" class="researcher-link" target="_blank" rel="noopener">SFI Profile</a>
+        <a href="https://www.linkedin.com/in/w-brian-arthur-71b9065" class="researcher-link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=eczJRhQAAAAJ&hl=en" class="researcher-link" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.youtube.com/watch?v=noAn60dlk04" class="researcher-link" target="_blank" rel="noopener">YouTube Talk</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">Leroy Hood MD PhD</div>
+      <div class="researcher-role">Co-Founder, Institute for Systems Biology &mdash; P4 Medicine Pioneer</div>
+      <div class="researcher-bio">Co-founded the Institute for Systems Biology and pioneered P4 medicine (predictive, preventive, personalized, participatory). His systems approach to biology is the medical equivalent of the Orientation Conjecture: begin from the deep structure of biological networks rather than isolated surface biomarkers.</div>
+      <div class="researcher-links">
+        <a href="https://isbscience.org/people/leroy-hood-md-phd/" class="researcher-link" target="_blank" rel="noopener">ISB Profile</a>
+        <a href="https://x.com/ISBLeeHood" class="researcher-link" target="_blank" rel="noopener">Twitter/X</a>
+        <a href="https://www.linkedin.com/in/leehood111" class="researcher-link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=TQ8RcVgAAAAJ&hl=en" class="researcher-link" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">Peter N. Robinson MD PhD</div>
+      <div class="researcher-role">Professor, Berlin Institute of Health &mdash; Developer, Human Phenotype Ontology</div>
+      <div class="researcher-bio">Developer of the Human Phenotype Ontology (HPO), a standardized vocabulary for deep phenotyping in human disease. His work represents a direct application of structure-first analysis in clinical medicine: characterize the deep structure of disease presentation rather than relying on surface-level diagnostic categories. Over 41,000 citations, h-index 104.</div>
+      <div class="researcher-links">
+        <a href="http://www.human-phenotype-ontology.org" class="researcher-link" target="_blank" rel="noopener">HPO Website</a>
+        <a href="https://twitter.com/pnrobins" class="researcher-link" target="_blank" rel="noopener">Twitter/X</a>
+        <a href="https://www.linkedin.com/in/peter-n-robinson-b7833811" class="researcher-link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=TPOD_XUAAAAJ&hl=en" class="researcher-link" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">Fabrizio Germano, Vicen&ccedil; G&oacute;mez &amp; Francesco Sobbrio</div>
+      <div class="researcher-role">Economists &mdash; Social Media Algorithm Modeling</div>
+      <div class="researcher-bio">Co-authors of "Ranking for engagement: How social media algorithms fuel misinformation and polarization." Their formal model shows that the trade-off between engagement and social harm is structural, not incidental, and that Facebook's 2018 MSI update empirically increased polarization. This is the formal economic model that supports the claims in Article 3.</div>
+      <div class="researcher-links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4238756" class="researcher-link" target="_blank" rel="noopener">SSRN Paper</a>
+        <a href="https://x.com/vicen__gomez" class="researcher-link" target="_blank" rel="noopener">G&oacute;mez Twitter/X</a>
+        <a href="https://scholar.google.com/citations?user=BETtBGEAAAAJ&hl=en" class="researcher-link" target="_blank" rel="noopener">Germano Scholar</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">Dami Lee</div>
+      <div class="researcher-role">Licensed Architect, YouTube Creator &mdash; Founder, Nollistudio</div>
+      <div class="researcher-bio">Licensed architect and founder of Nollistudio. Her YouTube channel (@DamiLeeArch, 2.35M subscribers) makes architecture accessible through storytelling and analysis. Her content on architectural structure and urban design informed the urban planning sections of this research.</div>
+      <div class="researcher-links">
+        <a href="https://www.youtube.com/@DamiLeeArch" class="researcher-link" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/damileearch/" class="researcher-link" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://damilee.com/" class="researcher-link" target="_blank" rel="noopener">Website</a>
+        <a href="https://ca.linkedin.com/in/damilee" class="researcher-link" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">Huni Choi</div>
+      <div class="researcher-role">Independent Researcher &mdash; Pyramid Construction Theory</div>
+      <div class="researcher-bio">Independent researcher proposing that the Egyptian pyramids were constructed from the top down rather than the bottom up. This theory, based on keying stone analysis and construction logistics, was the direct origin of the Backwards Problem concept in this research. Covered by Open Culture in February 2026.</div>
+      <div class="researcher-links">
+        <a href="https://www.instagram.com/hunichoipyramid/" class="researcher-link" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/watch?v=h5kWDOuY2Uo" class="researcher-link" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+
+    <div class="researcher-card">
+      <div class="researcher-name">History for GRANITE</div>
+      <div class="researcher-role">YouTube Channel &mdash; Egyptian Pyramid Research</div>
+      <div class="researcher-bio">YouTube channel (331K subscribers) presenting new evidence and analysis on Egyptian pyramid construction, challenging conventional Egyptology with detailed archaeological examination. Provided key research context for the pyramid construction arguments in this work.</div>
+      <div class="researcher-links">
+        <a href="https://www.youtube.com/@HistoryforGRANITE" class="researcher-link" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.facebook.com/profile.php?id=100087258871624" class="researcher-link" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+<footer>
+  Exchange Is the Equation &nbsp;|&nbsp; Glen Brackmann &amp; Manus AI &nbsp;|&nbsp; 2026
+</footer>
+</body>
+</html>
