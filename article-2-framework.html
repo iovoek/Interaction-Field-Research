@@ -13,19 +13,79 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body { background: var(--bg); color: var(--fg); font-family: 'Noto Serif', Georgia, serif; font-weight: 300; line-height: 1.85; overflow-x: hidden; }
-    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 999; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 52px; }
-    .nav-title { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
-    .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
-    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--fg3); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown > a { cursor: pointer; }
-    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); right: 0; background: rgba(10,10,15,0.97); border: 1px solid var(--border); border-radius: 4px; min-width: 260px; padding: 0.4rem 0; z-index: 1000; }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-dropdown-menu a { display: block; padding: 0.55rem 1rem; font-size: 0.63rem; color: var(--fg2); white-space: nowrap; letter-spacing: 0.07em; }
-    .nav-dropdown-menu a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
-    .nav-dropdown-menu .dd-active { color: var(--gold); }
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    /* === NAV === */
+    .site-nav {
+      position: sticky; top: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-nav .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; color: var(--gold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      white-space: nowrap; text-decoration: none;
+    }
+    .site-nav .nav-menu {
+      display: flex; align-items: center; gap: 2.2rem; list-style: none;
+    }
+    .site-nav .nav-menu > li > a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--fg3);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s; text-decoration: none;
+    }
+    .site-nav .nav-menu > li > a:hover { color: var(--gold); }
+    .dropdown { position: relative; }
+    .dropdown-trigger { cursor: pointer; }
+    .dropdown-content {
+      display: none; position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+      background: rgba(16,16,24,0.98); border: 1px solid var(--border); border-radius: 6px;
+      min-width: 290px; padding: 0.5rem 0; z-index: 1001;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a {
+      display: block; padding: 0.6rem 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem; color: var(--fg2);
+      letter-spacing: 0.06em; text-decoration: none;
+    }
+    .dropdown-content a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+    .dropdown-content .dd-divider { height: 1px; background: var(--border); margin: 0.4rem 0; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 0.5rem; }
+    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg3); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,15,0.98); z-index: 2000;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem;
+      overflow-y: auto; padding: 3rem 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; color: var(--fg2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.6rem 2rem; text-decoration: none;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mm-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem; color: var(--fg3);
+      letter-spacing: 0.15em; margin-top: 1rem;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+      text-transform: uppercase;
+    }
+    .mobile-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.5rem; color: var(--fg3); cursor: pointer; padding: 0.5rem; }
+    @media (max-width: 768px) {
+      .site-nav .nav-menu { display: none; }
+      .hamburger { display: flex; }
+      .site-nav { padding: 1rem 1.5rem; }
+    }
+      .site-nav { padding: 1rem 1.5rem; }
+    }
     main { max-width: 780px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
     .article-series { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
     .article-number { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
@@ -58,17 +118,16 @@
   </style>
 </head>
 <body>
-<nav>
-  <a class="nav-title" href="index.html">Exchange Is the Equation</a>
-  <ul class="nav-links">
-    <li><a href="index.html#theory">The Theory</a></li>
-    <li><a href="index.html#applications">Applications</a></li>
-    <li class="nav-dropdown">
-      <a href="#">Deep Dives &#9662;</a>
-      <div class="nav-dropdown-menu">
+<nav class="site-nav">
+  <a href="index.html" class="logo">Exchange Is the Equation</a>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Articles &#9662;</a>
+      <div class="dropdown-content">
         <a href="article-0-introduction.html">0. What This Is</a>
         <a href="article-1-origin.html">1. The Backwards Problem</a>
-        <a href="article-2-framework.html" class="dd-active">2. Measuring the Wrong Layer</a>
+        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
         <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
         <a href="article-4-value.html">4. Value Is Not a Number</a>
         <a href="article-5-math.html">5. Why Error Grows</a>
@@ -76,14 +135,65 @@
         <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
         <a href="article-8-roadmap.html">8. What Comes Next</a>
         <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+        <div class="dd-divider"></div>
+        <a href="social-media.html">Social Media (Standalone)</a>
+        <a href="pharma.html">Pharma (Standalone)</a>
       </div>
     </li>
-    <li><a href="terms.html">Terms</a></li>
-    <li><a href="index.html#empirical">Evidence</a></li>
-    <li><a href="index.html#references">Downloads</a></li>
-    <li><a href="citations.html">Citations</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Resources &#9662;</a>
+      <div class="dropdown-content">
+        <a href="terms.html">Glossary of Terms</a>
+        <a href="citations.html">Citations</a>
+        <a href="full-paper.html">Full Paper (Long Form)</a>
+        <a href="strategic-report.html">Strategic Report</a>
+      </div>
+    </li>
   </ul>
+  <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
+  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
+  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
+  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
+  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
+  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
+  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
+  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
+  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
+</div>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
+  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
+  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
+  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
+  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
+  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
+  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
+  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
+  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
+</div>
 <main>
   <p class="article-series">The Backwards Problem &mdash; Article Series</p>
   <p class="article-number">Article 2 of 8</p>

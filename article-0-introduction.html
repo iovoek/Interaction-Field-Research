@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Article 0: What This Is | Exchange Is the Equation</title>
-  <meta name="description" content="An introduction to the Exchange Is the Equation research series. What this project is, who is behind it, what it claims, and what it does not claim.">
+  <meta name="description" content="An introduction to the Exchange Is the Equation research series. A structural insight about complex systems, applied across many domains. What it is, how it started, and where it goes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -13,19 +13,78 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--fg2); line-height: 1.75; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(10,10,15,0.95); backdrop-filter: blur(10px); z-index: 100; }
-    .nav-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--fg3); letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown > a { cursor: pointer; }
-    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); right: 0; background: rgba(10,10,15,0.97); border: 1px solid var(--border); border-radius: 4px; min-width: 260px; padding: 0.4rem 0; z-index: 1000; }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-dropdown-menu a { display: block; padding: 0.55rem 1rem; font-size: 0.63rem; color: var(--fg2); white-space: nowrap; letter-spacing: 0.07em; }
-    .nav-dropdown-menu a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
-    .nav-dropdown-menu .dd-active { color: var(--gold); }
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    /* === NAV === */
+    .site-nav {
+      position: sticky; top: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-nav .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; color: var(--gold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      white-space: nowrap; text-decoration: none;
+    }
+    .site-nav .nav-menu {
+      display: flex; align-items: center; gap: 2.2rem; list-style: none;
+    }
+    .site-nav .nav-menu > li > a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--fg3);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s; text-decoration: none;
+    }
+    .site-nav .nav-menu > li > a:hover { color: var(--gold); }
+    .dropdown { position: relative; }
+    .dropdown-trigger { cursor: pointer; }
+    .dropdown-content {
+      display: none; position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+      background: rgba(16,16,24,0.98); border: 1px solid var(--border); border-radius: 6px;
+      min-width: 290px; padding: 0.5rem 0; z-index: 1001;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a {
+      display: block; padding: 0.6rem 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem; color: var(--fg2);
+      letter-spacing: 0.06em; text-decoration: none;
+    }
+    .dropdown-content a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+    .dropdown-content .dd-divider { height: 1px; background: var(--border); margin: 0.4rem 0; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 0.5rem; }
+    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg3); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,15,0.98); z-index: 2000;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem;
+      overflow-y: auto; padding: 3rem 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; color: var(--fg2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.6rem 2rem; text-decoration: none;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mm-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem; color: var(--fg3);
+      letter-spacing: 0.15em; margin-top: 1rem;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+      text-transform: uppercase;
+    }
+    .mobile-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.5rem; color: var(--fg3); cursor: pointer; padding: 0.5rem; }
+    @media (max-width: 768px) {
+      .site-nav .nav-menu { display: none; }
+      .hamburger { display: flex; }
+      .site-nav { padding: 1rem 1.5rem; }
+    }
+    @media (min-width: 601px) { }
     main { max-width: 780px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
     .article-series { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
     .article-number { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
@@ -65,15 +124,14 @@
   </style>
 </head>
 <body>
-<nav>
-  <a class="nav-title" href="index.html">Exchange Is the Equation</a>
-  <ul class="nav-links">
-    <li><a href="index.html#theory">The Theory</a></li>
-    <li><a href="index.html#applications">Applications</a></li>
-    <li class="nav-dropdown">
-      <a href="#">Deep Dives &#9662;</a>
-      <div class="nav-dropdown-menu">
-        <a href="article-0-introduction.html" class="dd-active">0. What This Is</a>
+<nav class="site-nav">
+  <a href="index.html" class="logo">Exchange Is the Equation</a>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Articles &#9662;</a>
+      <div class="dropdown-content">
+        <a href="article-0-introduction.html">0. What This Is</a>
         <a href="article-1-origin.html">1. The Backwards Problem</a>
         <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
         <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
@@ -83,92 +141,157 @@
         <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
         <a href="article-8-roadmap.html">8. What Comes Next</a>
         <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+        <div class="dd-divider"></div>
+        <a href="social-media.html">Social Media (Standalone)</a>
+        <a href="pharma.html">Pharma (Standalone)</a>
       </div>
     </li>
-    <li><a href="terms.html">Terms</a></li>
-    <li><a href="index.html#empirical">Evidence</a></li>
-    <li><a href="index.html#references">Downloads</a></li>
-    <li><a href="citations.html">Citations</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Resources &#9662;</a>
+      <div class="dropdown-content">
+        <a href="terms.html">Glossary of Terms</a>
+        <a href="citations.html">Citations</a>
+        <a href="full-paper.html">Full Paper (Long Form)</a>
+        <a href="strategic-report.html">Strategic Report</a>
+      </div>
+    </li>
   </ul>
+  <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
+  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
+  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
+  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
+  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
+  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
+  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
+  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
+  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
+</div>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
+  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
+  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
+  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
+  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
+  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
+  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
+  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
+  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
+</div>
 <main>
-  <p class="article-series">Exchange Is the Equation &mdash; Article Series</p>
-  <p class="article-number">Article 0 &mdash; Introduction</p>
+  <p class="article-series">Exchange Is the Equation</p>
+  <p class="article-number">Article 0 &middot; Introduction</p>
   <h1>What <em>This</em> Is</h1>
-  <p class="subtitle">A publicly visible, ongoing research project exploring whether a single structural insight about complex systems can be applied across many different domains. This page explains the project, its limitations, and what to expect from the series.</p>
+  <p class="subtitle">An ongoing, publicly visible research project exploring a single structural insight: that most complex systems are being analyzed from the wrong direction, and that the pieces needed to correct this are already scattered across dozens of fields, waiting to be connected.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
 
-  <h2>Before <em>Anything Else</em></h2>
+  <p>This is a passion project. It is not a peer-reviewed journal. It is not backed by an institution. I am not a research scientist. I am someone who noticed a pattern, followed it further than expected, and decided to build it in public rather than in private.</p>
 
-  <p>This is a passion project. It is not a peer-reviewed journal. It is not backed by an institution. I am not a research scientist, a mathematician, or an academic. I am someone who noticed a pattern, followed it further than I expected to go, and decided to build it in public rather than in private.</p>
+  <p>The work here is ongoing. It gets revised, extended, and sometimes corrected in real time. When we find errors, we fix them and document the fix. When we find limitations, we say so. The site is a living document.</p>
 
-  <p>The theories on this site are ongoing. They are being developed, tested, revised, and sometimes discarded in real time. The math is always being rechecked. The simulation parameters are always being revalidated against new empirical data. When we find errors, we correct them and document the correction. When we find limitations, we state them plainly.</p>
-
-  <p>Nothing on this site claims to be a finished, universal law. What it claims to be is a structured attempt to apply a specific analytical reorientation to complex problems across multiple domains, and to do that work transparently, with citations, with falsifiable predictions, and with an honest accounting of where the analysis is strong and where it is speculative.</p>
+  <p>What follows is an explanation of the project: what it claims, where it came from, and what to expect from the series.</p>
 
   <div class="rule"></div>
 
-  <h2>The <em>Core Idea</em></h2>
+  <h2>The <em>Observation</em></h2>
 
-  <p>The central observation is simple. In most complex systems that human beings try to understand and optimize, we start from what is easy to measure (the surface) and try to work backward toward what actually matters (the deep structure). This seems intuitive. It is also, in many cases, structurally backwards.</p>
+  <p>In most complex systems that human beings try to understand and optimize, we start from what is easy to measure and try to work backward toward what actually matters. Stock prices instead of the trading activity that constitutes them. Engagement metrics instead of the quality of human connection they are supposed to represent. Molecular targets instead of the phenotypic behavior of living cells. Zoning maps instead of the patterns of human movement that make neighborhoods alive. Standardized test scores instead of the learning processes they are supposed to reflect.</p>
 
-  <p>The claim is that starting from the surface and working inward causes errors that compound with system complexity. The more complex the system, the worse this approach performs relative to the alternative: starting from the deep structure and letting the surface be an output rather than an input.</p>
+  <p>This seems intuitive. Measure what you can see, then infer what you cannot. But in complex systems, this approach does not merely underperform. It actively degrades the thing it is trying to measure. The errors compound. And the more complex the system, the worse it gets.</p>
 
-  <p>We call this error pattern <a href="terms.html#backwards-problem" class="term-link">the Backwards Problem</a>. We call the deep structure of genuine interactions within a system <a href="terms.html#interaction-field" class="term-link">the Interaction Field</a>. And we call the overall framework <a href="terms.html#orientation-conjecture" class="term-link">the Orientation Conjecture</a>, because while the mathematical proof is complete under its assumptions, the empirical question of whether those assumptions hold universally remains open.</p>
+  <p>The alternative is to start from the deep structure, the actual pattern of genuine interactions within a system, and let the surface metrics be an output rather than an input. This is not a new idea in any single field. Complexity economists have been saying it for decades. So have systems biologists, urban theorists, and market microstructure researchers. What none of them have done, as far as we can find, is connect these observations into a single formal framework and show that the same mathematical structure governs all of them.</p>
 
-  <p>That is it. That is the entire theory in three sentences. Everything else on this site is the attempt to formalize it, test it, and apply it to real problems.</p>
+  <p>That is what this project attempts.</p>
+
+  <div class="pull-quote">The pieces are already here. They are scattered across trading theory, drug discovery, information theory, urban planning, ecology, AI architecture, and half a dozen other fields. The only thing missing is the connection between them. <em>That connection is what we are building.</em></div>
 
   <div class="rule"></div>
 
-  <h2>What We Are <em>Trying to Do</em></h2>
+  <h2>Why <em>Connections</em>, Not Data Points</h2>
 
-  <p>The goal of this series is to take that one structural insight and see how far it goes. Can the same reorientation that explains why trading card markets form value the way they do also explain why 90% of drug candidates fail in clinical trials? Can it explain why social media algorithms destroy their own revenue? Can it explain why cities designed from zoning maps feel dead while cities that grew organically feel alive?</p>
+  <p>There is a reason this framework is called the <a href="terms.html#interaction-field" class="term-link">Interaction Field</a> and not the "Data Field" or the "Measurement Framework." The central claim is that value, meaning, and structural health in complex systems emerge not from individual components but from the connective tissue between them.</p>
 
-  <p>We do not know the answer to all of these questions yet. Some of the applications are strong and well-supported by existing empirical research. Some are speculative and need more work. Some may turn out to be wrong. The point of building this in public is that the reader can see which is which, and can push back where the reasoning is weak.</p>
+  <p>This is visible everywhere once you start looking for it. In trading card markets, value is not stored in any single card. It is constituted by the density and velocity of genuine transactions flowing through the market. In neural networks, intelligence does not reside in any single node. It emerges from the pattern of weighted connections between nodes. In cities, vitality does not come from any single building. It comes from the density and diversity of human interactions that the built environment enables or prevents.</p>
 
-  <p>This is not a claim that we have discovered a grand unified theory of everything. It is a claim that a specific analytical switch, starting from deep structure rather than surface metrics, produces better results in a surprisingly wide range of domains. The series explores where that switch works, where it does not, and why.</p>
+  <p>In modern AI systems, the most powerful architectures are not the ones with the best individual models. They are the ones that connect multiple models, multiple data sources, and multiple reasoning processes together and study the flow between them rather than the static content of any single source. The creativity, the novel outputs, the things that did not exist before, emerge from the interaction between systems, not from any one system alone.</p>
+
+  <p>This insight is self-referential. This very research project is a product of interaction fields. When a human and an AI collaborate on analysis, the output is not the human's ideas plus the AI's processing. It is not additive. Something genuinely new emerges from the interaction itself, something that neither party would have produced alone and that cannot be cleanly attributed to either one. The interaction is generative. The connective tissue between different modes of thinking produces things that did not previously exist in either mode.</p>
+
+  <p>This is not mysticism. It is observable and measurable. The mathematical framework in <a href="article-5-math.html" class="article-link">Article 5</a> formalizes exactly how and why interaction density produces compounding returns that isolated optimization cannot replicate. The social media simulation in <a href="article-3-social-media.html" class="article-link">Article 3</a> demonstrates it with empirically anchored numbers. The trading card analysis in <a href="article-1-origin.html" class="article-link">Article 1</a> shows it in the simplest possible domain. But the principle is the same everywhere: the field of interactions is where value lives, not in the individual points that the field connects.</p>
+
+  <div class="rule"></div>
+
+  <h2>The <em>Orientation Conjecture</em></h2>
+
+  <p>We call the formal version of this the <a href="terms.html#orientation-conjecture" class="term-link">Orientation Conjecture</a>: that in any complex system, starting your analysis from the deep structure (the interaction field) and letting surface metrics be outputs will always outperform starting from surface metrics and trying to infer deep structure, and that the performance gap grows with system complexity.</p>
+
+  <p>The mathematical proof is complete under its stated assumptions. The empirical question of whether those assumptions hold universally remains open. That is why it is called a conjecture and not a law. We are honest about the difference between what the math proves and what the real world confirms.</p>
+
+  <p>What we can say is that across every domain we have tested so far, the pattern holds. Trading cards, social media platforms, pharmaceutical drug discovery, semiconductor manufacturing, urban development, real estate markets, education systems, supply chain logistics, venture capital allocation. In each case, the systems that orient from deep structure outward outperform the systems that orient from surface metrics inward. And in each case, the systems that orient backwards do not merely underperform. They actively degrade their own foundations over time.</p>
+
+  <p>We call that degradation pattern <a href="terms.html#backwards-problem" class="term-link">the Backwards Problem</a>.</p>
 
   <div class="rule"></div>
 
   <h2>How <em>This Started</em></h2>
 
-  <p>The project has two origin points.</p>
+  <p>The project has multiple origin points, not a single moment of discovery.</p>
 
-  <p>The first is a text message. I was building a trading card arbitrage system and my father suggested it could be applied to other markets. In explaining why trading cards are structurally unique, I articulated something I had not previously put into words: that the volume of genuine transactions does not merely correlate with value, it constitutes value. That observation, once formalized, turned out to have implications far beyond trading cards.</p>
+  <p>The first was a text message. I was building a trading card analysis system and my father suggested it could be applied to other markets. In explaining why trading cards are structurally unique, I articulated something I had not previously put into words: that the volume of genuine transactions does not merely correlate with value, it constitutes value. That observation, once formalized, turned out to have implications far beyond trading cards.</p>
 
-  <p>The second is a YouTube video. Dami Lee, an architect and creator who runs the channel <a href="https://www.youtube.com/@DamiLeeArch" target="_blank" rel="noopener" class="article-link">DamiLee</a>, published a video in January 2026 called <a href="https://youtu.be/h5kWDOuY2Uo" target="_blank" rel="noopener" class="article-link">"This New Pyramid Theory Explains the Missing Evidence"</a> (now at 10 million views). In it, she presents Huni Choi's "unbuilding theory" of pyramid construction, which proposes that the pyramids were carved from the top down rather than built from the bottom up. The structural logic of that proposal, that the correct direction of construction is the opposite of what everyone assumed, became the central metaphor and inspiration for this entire project. The idea that you can look at a finished structure and completely misread the direction in which it was made is, in a very real sense, the same insight that drives the Backwards Problem.</p>
+  <p>The second was a YouTube video. Dami Lee, an architect and creator who runs the channel <a href="https://www.youtube.com/@DamiLeeArch" target="_blank" rel="noopener" class="article-link">DamiLee</a>, published a video in January 2026 called <a href="https://youtu.be/h5kWDOuY2Uo" target="_blank" rel="noopener" class="article-link">"This New Pyramid Theory Explains the Missing Evidence"</a>. In it, she presents Huni Choi's "unbuilding theory" of pyramid construction, which proposes that the pyramids were carved from the top down rather than built from the bottom up. The structural logic of that proposal became the central metaphor for this project: the idea that you can look at a finished structure and completely misread the direction in which it was made.</p>
 
-  <p>Without that video, this project would not exist in its current form. The pyramid comparison is not decorative. It is the conceptual foundation.</p>
+  <p>The third was an instinct about how modern technology actually works. Working with AI systems, connecting multiple data sources, building pipelines that link different tools together, it became clear that the interesting outputs never come from any single input or any single model. They come from the connections. They come from studying how data flows between systems, not from studying the data points in isolation. The interaction between fields is where new things get created. That observation kept appearing in every domain I looked at, and eventually it became impossible to ignore the pattern.</p>
+
+  <p>None of these origin points alone would have produced this project. Together, interacting with each other, they produced something none of them contained individually. Which is, in a way, the theory demonstrating itself.</p>
 
   <div class="rule"></div>
 
   <h2>What This <em>Does Not Claim</em></h2>
 
-  <p>We do not claim that everything on this site is correct. We claim that it is our best current attempt, built with the best data we can find, and subject to revision.</p>
+  <p>This is not a grand unified theory of everything. It is a specific analytical reorientation, a switch in the direction from which you approach complex problems, that appears to produce better results across a wide range of domains. The pieces were already here. Researchers across many fields have been saying versions of this for decades. What we are doing is connecting those observations formally and testing whether the connection holds.</p>
 
-  <p>We do not claim that the Interaction Field framework is a universal law that applies identically everywhere. Every domain has its own limiters, variables, and structural features that require the framework to be adjusted and calibrated. The social media simulation uses different parameters than the pharmaceutical analysis, because they are different systems. The math provides a general structure. The application requires domain-specific work.</p>
+  <p>We do not claim originality for the underlying ideas. W. Brian Arthur's complexity economics. Albert Kyle's market microstructure theory. David Swinney's phenotypic drug discovery research. Jane Jacobs' urban theory. Smitha Milli's work on algorithmic amplification. The building blocks belong to the researchers who came before us. What we claim is original is the synthesis: the formal connection between orientation direction and error accumulation, and the application of that single framework across multiple independent domains.</p>
 
-  <p>We do not claim originality for the underlying ideas. The framework builds on decades of work by researchers across many fields. W. Brian Arthur's complexity economics and increasing returns theory. Albert Kyle's market microstructure work on how trading reveals information. Smitha Milli and colleagues' empirical research on algorithmic amplification. David Swinney's phenotypic drug discovery research. Jane Jacobs' urban theory. The list is long, and the <a href="citations.html" class="article-link">full citations page</a> documents every source we draw from.</p>
-
-  <p>What we claim is original is the specific synthesis: the formal connection between orientation direction and error accumulation, the mathematical proof that structure-first analysis dominates surface-first analysis as complexity increases, and the application of that single framework across nine independent domains. The synthesis is ours. The building blocks belong to the researchers who came before us.</p>
+  <p>We do not claim that everything on this site is correct. We claim that it is our best current attempt, built with the best data we can find, and subject to revision. The simulation parameters are always provisional. When better empirical data becomes available, the parameters change, the simulation is rerun, and the results are updated. That is how research is supposed to work.</p>
 
   <div class="rule"></div>
 
   <h2>How We <em>Work</em></h2>
 
-  <p>The research process is iterative and transparent. We identify a domain. We research the existing literature. We identify where the Backwards Problem might be operating. We build a formal model or simulation with empirically anchored parameters. We run the simulation. We check the results against real-world data. We document what matches and what does not. We publish.</p>
-
-  <p>Then we go back and recheck. We update simulation parameters when better empirical data becomes available. We correct errors when we find them. We state limitations when we discover them. The site is a living document, not a static publication.</p>
-
-  <p>The research is conducted with AI assistance. The AI helps with literature review, mathematical verification, simulation coding, and fact-checking. The conceptual direction, the creative leaps, and the editorial judgment are human. This is stated plainly because transparency about methods matters.</p>
+  <p>The research is conducted with AI assistance. The AI helps with literature review, mathematical verification, simulation coding, and fact-checking. The conceptual direction, the creative leaps, and the editorial judgment are human. This collaboration is itself an expression of the theory: the output of the interaction is not reducible to either party's contribution alone.</p>
 
   <p>We backlink to all data sources. We run simulations with documented seed values so they can be reproduced. We publish the simulation source code. We state our assumptions explicitly so they can be challenged. We include a <a href="article-7-falsifiability.html" class="article-link">full article on how this theory could be wrong</a> because a theory that cannot be falsified is not a theory.</p>
+
+  <p>The site is a living document. When we find errors, we correct them publicly. When we find new domains where the framework applies, we add them. When we discover limitations, we document them. The work is never finished.</p>
 
   <div class="rule"></div>
 
   <h2>The <em>Series</em></h2>
 
-  <p>The articles are designed to be read in order, but each one can stand alone. Here is what they cover:</p>
+  <p>The articles are designed to be read in order, but each one can stand alone:</p>
 
   <ul class="series-list">
     <li>
@@ -181,7 +304,7 @@
     </li>
     <li>
       <a href="article-3-social-media.html">Article 3: Burning the House Down for Kindling</a>
-      <div class="series-desc">The social media deep dive. How engagement-based algorithms destroy their own revenue, with a fully empirically anchored simulation.</div>
+      <div class="series-desc">A fully empirically anchored simulation showing how optimizing for engagement destroys long-term platform economics.</div>
     </li>
     <li>
       <a href="article-4-value.html">Article 4: Value Is Not a Number</a>
@@ -193,7 +316,7 @@
     </li>
     <li>
       <a href="article-6-domains.html">Article 6: The Same Mistake, Everywhere</a>
-      <div class="series-desc">Nine independent domains where the Backwards Problem operates, from drug discovery to urban planning to real estate.</div>
+      <div class="series-desc">Nine independent domains where the same structural pattern operates.</div>
     </li>
     <li>
       <a href="article-7-falsifiability.html">Article 7: How This Theory Could Be Wrong</a>
@@ -205,52 +328,40 @@
     </li>
     <li>
       <a href="article-9-pharma.html">Article 9: The Drug Industry's 90% Problem</a>
-      <div class="series-desc">The pharmaceutical deep dive. Why 90% of drug candidates fail, and what structure-first drug discovery looks like.</div>
+      <div class="series-desc">How orientation from molecular targets rather than phenotypic behavior may explain the pharmaceutical industry's 90% failure rate.</div>
     </li>
   </ul>
 
-  <p>More articles will follow as the research expands into new domains. The theory evolves. The series grows with it.</p>
-
-  <div class="rule"></div>
-
-  <h2>A Note on <em>Accuracy</em></h2>
-
-  <p>We take accuracy seriously, but we are also honest about the limits of what an independent research project can verify. Every statistical claim on this site is sourced. Every simulation is reproducible. Every mathematical proof is formally stated with explicit assumptions.</p>
-
-  <p>But we are not infallible. If you find an error, a misrepresentation, or a claim that does not hold up, we want to know. The point of building in public is that the work is subject to scrutiny. That scrutiny makes it better.</p>
-
-  <p>The simulation parameters, in particular, are always provisional. They represent our best interpretation of the available empirical data at the time of publication. When better data becomes available, the parameters change, the simulation is rerun, and the results are updated. Version 5 of the social media simulation, for example, uses completely different parameters than version 1, because we found better empirical anchors. That is how research is supposed to work.</p>
+  <p>More articles will follow as the research expands. The framework applies to more domains than we have written about so far, and each new application tests whether the pattern holds or breaks.</p>
 
   <div class="rule"></div>
 
   <h2>Where <em>This Goes</em></h2>
 
-  <p>This site will continue to expand. New domains will be added as the research progresses. The existing articles will be updated as better data becomes available. The framework itself may change as we discover its limitations.</p>
+  <p>The project will continue to expand into new domains. It will also continue to deepen the domains already covered. The existing articles will be updated as better data becomes available. The framework itself may change as we discover its limitations.</p>
 
-  <p>The project may also expand beyond the Interaction Field framework itself. There are adjacent questions, about how systems transition from one orientation to another, about the political economy of why backwards optimization persists even when the correct direction is known, about the role of measurement infrastructure in enabling or preventing reorientation, that deserve their own treatment.</p>
-
-  <p>For now, this is the starting point. If you are new here, start with <a href="article-1-origin.html" class="article-link">Article 1</a>. If you want the formal mathematics, go to <a href="article-5-math.html" class="article-link">Article 5</a>. If you want the most developed application, read the <a href="article-3-social-media.html" class="article-link">social media deep dive</a> or the <a href="article-9-pharma.html" class="article-link">pharmaceutical analysis</a>. If you want to see how the theory could be wrong, that is <a href="article-7-falsifiability.html" class="article-link">Article 7</a>.</p>
+  <p>If you are new here, start with <a href="article-1-origin.html" class="article-link">Article 1</a>. If you want the formal mathematics, go to <a href="article-5-math.html" class="article-link">Article 5</a>. If you want to see how the theory could be wrong, that is <a href="article-7-falsifiability.html" class="article-link">Article 7</a>. If you want the most developed applications, read <a href="article-3-social-media.html" class="article-link">Article 3</a> or <a href="article-9-pharma.html" class="article-link">Article 9</a>.</p>
 
   <p>Thank you for reading. The work continues.</p>
 
   <div class="credit-section">
-    <h3>Acknowledgments and Inspirations</h3>
-    <p><strong>Dami Lee / DamiLee</strong> (<a href="https://www.youtube.com/@DamiLeeArch" target="_blank" rel="noopener" class="article-link">YouTube</a>) for the pyramid construction video that inspired the central metaphor and the project itself. <strong>Huni Choi</strong> for the unbuilding theory that Dami Lee presented.</p>
+    <h3>Acknowledgments</h3>
+    <p><strong>Dami Lee / DamiLee</strong> (<a href="https://www.youtube.com/@DamiLeeArch" target="_blank" rel="noopener" class="article-link">YouTube</a>) for the pyramid construction video that inspired the central metaphor. <strong>Huni Choi</strong> for the unbuilding theory that Dami Lee presented.</p>
     <p><strong>History for GRANITE</strong> (YouTube) for the keying stone analysis that informed the structural correspondence between pyramid construction and value formation.</p>
-    <p><strong>W. Brian Arthur</strong> (Santa Fe Institute) for complexity economics and increasing returns theory, which provides the mathematical foundation for the Interaction Field equation.</p>
-    <p><strong>Albert S. Kyle</strong> for the 1985 market microstructure model demonstrating how trading volume reveals information, the empirical basis for the trading card domain.</p>
-    <p><strong>Smitha Milli et al.</strong> (UC Berkeley, 2025) for the empirical demonstration that engagement-based algorithms amplify content users report makes them feel worse.</p>
-    <p><strong>David Swinney</strong> for the phenotypic drug discovery research showing that structure-first approaches produce more first-in-class drugs despite receiving less funding.</p>
-    <p><strong>Jane Jacobs</strong> for the urban theory demonstrating that cities function through the density and diversity of genuine human interactions, not through top-down planning from surface metrics.</p>
-    <p>Full citations for all sources used across the series are available on the <a href="citations.html" class="article-link">Citations page</a>.</p>
+    <p><strong>W. Brian Arthur</strong> (Santa Fe Institute) for complexity economics and increasing returns theory.</p>
+    <p><strong>Albert S. Kyle</strong> for the 1985 market microstructure model demonstrating how trading volume reveals information.</p>
+    <p><strong>Smitha Milli et al.</strong> (UC Berkeley) for empirical research on algorithmic amplification and user well-being.</p>
+    <p><strong>David Swinney</strong> for phenotypic drug discovery research showing that structure-first approaches produce more first-in-class drugs.</p>
+    <p><strong>Jane Jacobs</strong> for urban theory demonstrating that cities function through the density and diversity of genuine human interactions.</p>
+    <p>Full citations for all sources are available on the <a href="citations.html" class="article-link">Citations page</a>.</p>
   </div>
 
   <div class="footnote">
-    <strong>About the author:</strong> Glen Brackmann is an independent researcher and builder based in the United States. This project began as a trading card market analysis system and evolved into a cross-domain theoretical framework. The research is conducted with AI assistance for literature review, mathematical verification, simulation development, and fact-checking. All conceptual direction and editorial judgment is human. Contact and collaboration inquiries can be directed through the project's GitHub repository.
+    <strong>About the author:</strong> Glen Brackmann is an independent researcher and builder. This project began as a trading card market analysis system and evolved into a cross-domain theoretical framework. The research is conducted with AI assistance for literature review, mathematical verification, simulation development, and fact-checking. All conceptual direction and editorial judgment is human.
   </div>
 
   <div class="series-nav">
-    <span></span>
+    <a href="index.html">&larr; Home</a>
     <a href="article-1-origin.html" class="next">Next: The Backwards Problem &rarr;</a>
   </div>
 </main>

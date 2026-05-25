@@ -295,14 +295,13 @@
   </style>
 </head>
 <body>
-<nav>
-  <a class="nav-title" href="index.html" style="text-decoration:none;">Exchange Is the Equation</a>
-  <ul class="nav-links">
-    <li><a href="index.html#theory">The Theory</a></li>
-    <li><a href="index.html#applications">Applications</a></li>
-    <li class="nav-dropdown">
-      <a href="#">Deep Dives &#9662;</a>
-                  <div class="nav-dropdown-menu">
+<nav class="site-nav">
+  <a href="index.html" class="logo">Exchange Is the Equation</a>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Articles &#9662;</a>
+      <div class="dropdown-content">
         <a href="article-0-introduction.html">0. What This Is</a>
         <a href="article-1-origin.html">1. The Backwards Problem</a>
         <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
@@ -313,14 +312,65 @@
         <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
         <a href="article-8-roadmap.html">8. What Comes Next</a>
         <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+        <div class="dd-divider"></div>
+        <a href="social-media.html">Social Media (Standalone)</a>
+        <a href="pharma.html">Pharma (Standalone)</a>
       </div>
     </li>
-    <li><a href="terms.html">Terms</a></li>
-    <li><a href="index.html#empirical">Evidence</a></li>
-    <li><a href="index.html#references">Downloads</a></li>
-    <li><a href="citations.html">Citations</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Resources &#9662;</a>
+      <div class="dropdown-content">
+        <a href="terms.html">Glossary of Terms</a>
+        <a href="citations.html">Citations</a>
+        <a href="full-paper.html">Full Paper (Long Form)</a>
+        <a href="strategic-report.html">Strategic Report</a>
+      </div>
+    </li>
   </ul>
+  <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
+  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
+  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
+  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
+  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
+  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
+  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
+  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
+  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
+</div>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
+  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
+  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
+  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
+  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
+  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
+  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
+  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
+  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
+</div>
 <main>
   <div class="page-header">
     <p class="page-kicker">Application Domain / Social Media Algorithms</p>
@@ -589,7 +639,7 @@
     <p>The Interaction Field framework provides both the diagnosis and the prescription. The diagnosis is the Backwards Problem: compounding error from surface-first optimization. The prescription is reorientation: optimize for the deep structure (genuine connection), and the model predicts that surface metrics (engagement, revenue, growth) should follow. This is not a hoped-for side effect but a structural prediction: under the logistic value formation curve and the retention/data-quality mechanisms described above, the surface should improve as the deep structure improves. This is a testable hypothesis, not yet an empirical proof.</p>
     <p><strong>A note on gaming:</strong> Any metric can be gamed. Long conversations can be toxic. Reciprocal interaction can be harassment. Trust can form inside extremist communities. The operational definition of "genuine transaction" in social media must be adversarially robust, not just structurally sound. This is a known limitation of the framework and an active area of the research program. Goodhart's Law applies: once a platform optimizes for connection metrics, bad actors will learn to fake connection. The solution is layered measurement, not single-metric optimization.</p>
 
-    <a href="index.html#applications" class="back-link">&larr; Back to all application domains</a>
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
   </div>
 </main>
 <footer>
