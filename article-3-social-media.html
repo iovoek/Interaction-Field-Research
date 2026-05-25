@@ -180,16 +180,16 @@
 
   <div class="stat-grid">
     <div class="stat-cell bad">
-      <span class="stat-num">-71%</span>
-      <div class="stat-label">Monthly revenue decline for engagement-based algorithm over 36 months (model projection)</div>
+      <span class="stat-num">$907M</span>
+      <div class="stat-label">More cumulative net revenue for connection-based over 36 months (v5 model, 10M users)</div>
     </div>
     <div class="stat-cell bad">
-      <span class="stat-num">-45%</span>
-      <div class="stat-label">User retention loss over 36 months under engagement optimization (model projection)</div>
+      <span class="stat-num">132%</span>
+      <div class="stat-label">Higher CPM for connection-based at Month 36 ($13.43 vs $5.80 &mdash; anchored to real platform data)</div>
     </div>
     <div class="stat-cell bad">
-      <span class="stat-num">-40%</span>
-      <div class="stat-label">CPM decline as behavioral data quality degrades from 0.55 to 0.24 (model projection)</div>
+      <span class="stat-num">Month 2</span>
+      <div class="stat-label">Net revenue crossover: connection-based surpasses engagement-based within 60 days</div>
     </div>
   </div>
 
@@ -207,83 +207,89 @@
 
   <h2>The <em>Simulation</em></h2>
 
-  <p>To make this argument precise rather than qualitative, we built a computational model comparing two algorithmic strategies over a 36-month period with a 100,000-user cohort. The model is intentionally conservative in its assumptions about the connection-based algorithm's advantages. The parameters were set to give the engagement-based algorithm every reasonable benefit of the doubt.</p>
+  <p>To make this argument precise rather than qualitative, we built a computational model comparing two algorithmic strategies over a 36-month period with a 10-million-user cohort. Every parameter in the model is anchored to published empirical data. The behavioral dynamics use Milli et al. (2025, PNAS Nexus) for satisfaction decay and Germano et al. (2026) for polarization accumulation. The CPM floor and ceiling are anchored to real Q1 2026 platform data from Digital Applied: LinkedIn at $34.50, YouTube at $15.40, Facebook at $11.20, and X at $5.80. The acquisition cost model uses Meta's actual 2024 10-K figure of $0.286 per user per month. The churn rates use Qualtrics 2025 data: Twitter at 5.4% per month, Facebook at 1.5% per month. The subscription conversion rates use TechCrunch 2024 data: X Premium below 1%, Substack at 5 to 10%.</p>
 
-  <p><strong>Engagement-Based (current industry standard):</strong> Optimizes for clicks, reactions, shares, and watch time. Promotes emotionally charged content because it generates the highest surface-level interaction scores.</p>
+  <p><strong>Engagement-Based (current industry standard):</strong> Optimizes for clicks, reactions, shares, and watch time. Promotes emotionally charged content because it generates the highest surface-level interaction scores. Both models start at Facebook-level CPM ($11.20) with identical user bases.</p>
 
-  <p><strong>Connection-Based (proposed reorientation):</strong> Optimizes for reciprocal interaction, trust formation, conversation depth, and cross-group positive engagement. Applies the <a href="terms.html#interaction-field" class="term-link">Interaction Field</a> framework by orienting toward deep structure rather than surface metrics. Starts with lower engagement scores because genuine connection is less immediately stimulating than outrage.</p>
+  <p><strong>Connection-Based (proposed reorientation):</strong> Optimizes for reciprocal interaction, trust formation, conversation depth, and cross-group positive engagement. Applies the <a href="terms.html#interaction-field" class="term-link">Interaction Field</a> framework by orienting toward deep structure rather than surface metrics. Starts at the same CPM as the engagement model. The advantage accumulates as data quality improves and polarization declines.</p>
+
+  <p>The advertiser cliff effect is modeled as a discrete threshold event, not a smooth decay. This is anchored to X/Twitter real data: when polarization crossed the toxicity threshold, the top 10 ad categories declined by 71% and 14 of the top 30 advertisers stopped all advertising entirely. The model triggers this cliff when platform polarization reaches 0.60, dropping effective CPM sharply toward the X floor.</p>
 
   <table class="sim-table">
     <thead>
       <tr>
         <th>Metric</th>
-        <th>Month 1</th>
-        <th>Month 18 (Eng.)</th>
-        <th>Month 18 (Conn.)</th>
+        <th>Month 1 (Both)</th>
         <th>Month 36 (Eng.)</th>
         <th>Month 36 (Conn.)</th>
+        <th>Empirical Anchor</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Monthly Revenue</td>
-        <td class="neutral">$3.45M / $1.62M</td>
-        <td class="bad">$2.18M</td>
-        <td class="good">$2.19M</td>
-        <td class="bad">$1.01M</td>
-        <td class="good">$2.66M</td>
+        <td>Effective CPM</td>
+        <td class="neutral">$11.17 / $11.19</td>
+        <td class="bad">$5.80</td>
+        <td class="good">$13.43</td>
+        <td class="neutral">Digital Applied Q1 2026</td>
       </tr>
       <tr>
-        <td>User Retention</td>
-        <td class="neutral">100%</td>
-        <td class="bad">77%</td>
-        <td class="good">94%</td>
-        <td class="bad">55%</td>
-        <td class="good">87%</td>
+        <td>Net Monthly Revenue</td>
+        <td class="neutral">$75.3M / $76.6M</td>
+        <td class="bad">$35.9M</td>
+        <td class="good">$93.3M</td>
+        <td class="neutral">Meta 2024 10-K (CAC)</td>
+      </tr>
+      <tr>
+        <td>Subscription Rate</td>
+        <td class="neutral">~1.5%</td>
+        <td class="bad">2.7%</td>
+        <td class="good">9.2%</td>
+        <td class="neutral">TechCrunch 2024</td>
+      </tr>
+      <tr>
+        <td>Monthly Churn</td>
+        <td class="neutral">3.8% / 1.5%</td>
+        <td class="bad">7.1%</td>
+        <td class="good">1.5%</td>
+        <td class="neutral">Qualtrics 2025</td>
       </tr>
       <tr>
         <td>User Satisfaction</td>
-        <td class="neutral">0.65</td>
-        <td class="bad">0.42</td>
-        <td class="good">0.76</td>
-        <td class="bad">0.25</td>
-        <td class="good">0.87</td>
+        <td class="neutral">0.61 / 0.69</td>
+        <td class="bad">0.302</td>
+        <td class="good">0.937</td>
+        <td class="neutral">Milli et al. 2025</td>
       </tr>
       <tr>
-        <td>Data Quality</td>
-        <td class="neutral">0.55</td>
-        <td class="bad">0.38</td>
-        <td class="good">0.74</td>
-        <td class="bad">0.24</td>
-        <td class="good">0.92</td>
-      </tr>
-      <tr>
-        <td>Effective CPM</td>
-        <td class="neutral">$7.56</td>
-        <td class="bad">$5.98</td>
-        <td class="good">$8.42</td>
-        <td class="bad">$4.56</td>
-        <td class="good">$10.82</td>
+        <td>Polarization Score</td>
+        <td class="neutral">0.15 (both)</td>
+        <td class="bad">0.601 (cliff triggered)</td>
+        <td class="good">0.020</td>
+        <td class="neutral">Germano et al. 2026</td>
       </tr>
     </tbody>
   </table>
 
-  <img src="simulation/algorithm_comparison.png" alt="Algorithm comparison: 6-panel chart showing all metrics over 36 months" class="sim-img">
-  <p class="sim-caption">Figure 1. Six-metric comparison over 36 months. Engagement-based (red) starts higher on revenue but collapses. Connection-based (teal) starts lower but compounds upward. Revenue crossover occurs at Month 18.</p>
+  <img src="net_revenue_v5.png" alt="Net monthly revenue comparison: engagement-based vs connection-based algorithm over 36 months" class="sim-img">
+  <p class="sim-caption">Figure 1. Net monthly revenue over 36 months (10M users). Both models start at approximately the same revenue level. The connection-based model surpasses the engagement-based model at Month 2. The engagement-based model hits the advertiser cliff at Month 36 when polarization crosses 0.60, dropping CPM to the X/Twitter floor of $5.80. Cumulative net revenue: $2,096.8M (engagement) vs $3,004.1M (connection) &mdash; a $907.3M difference (43%). Sources: Meta 2024 10-K, Digital Applied Q1 2026, Qualtrics 2025.</p>
 
-  <img src="simulation/error_accumulation.png" alt="Cumulative error divergence chart" class="sim-img">
-  <p class="sim-caption">Figure 2. Cumulative error divergence. The engagement-based algorithm accumulates 59% more total error over 36 months. This is the Backwards Problem visualized: error compounds from a misoriented starting point.</p>
+  <img src="cpm_v5.png" alt="CPM trajectory: engagement-based vs connection-based algorithm, anchored to real platform CPM data" class="sim-img">
+  <p class="sim-caption">Figure 2. CPM trajectory anchored to real platform data (Digital Applied Q1 2026). The engagement-based model declines from Facebook-level ($11.20) to X/Twitter-level ($5.80) as polarization degrades data quality. The connection-based model rises toward YouTube-level ($15.40) as data quality improves. The 132% CPM differential at Month 36 is not a model artifact &mdash; it reflects the actual spread between high-quality and low-quality platforms in the current advertising market.</p>
 
-  <img src="simulation/cumulative_revenue.png" alt="Cumulative revenue comparison" class="sim-img">
-  <p class="sim-caption">Figure 3. Cumulative revenue over 36 months. The totals are nearly identical ($75.5M vs $75.8M), but the trajectories diverge sharply. The engagement-based platform is collapsing while the connection-based platform is accelerating into Month 37 and beyond.</p>
+  <img src="subscriptions_v5.png" alt="Subscription conversion rate and revenue: engagement-based vs connection-based" class="sim-img">
+  <p class="sim-caption">Figure 3. Subscription conversion rate and revenue. The engagement-based model reaches 2.7% conversion at Month 36, consistent with X Premium's sub-1% conversion rate at low satisfaction. The connection-based model reaches 9.2%, consistent with Substack's 5-10% conversion rate at high trust. Source: TechCrunch 2024.</p>
 
-  <p>The most important finding from the simulation is not the revenue crossover at Month 18. It is the near-identical 36-month cumulative revenue ($75.5M vs $75.8M). This means the entire argument for staying on engagement-based optimization reduces to a preference for front-loaded revenue over long-term structural health. The platforms are not even getting a good deal. They are trading a healthy long-term business for a slightly better first 17 months, then watching their revenue collapse while the connection-based alternative accelerates.</p>
+  <img src="satisfaction_polarization_v5.png" alt="User satisfaction and polarization trajectories over 36 months" class="sim-img">
+  <p class="sim-caption">Figure 4. User satisfaction (left) and platform polarization (right). Satisfaction decay anchored to Milli et al. 2025: anger amplification 0.47 SD, value divergence 0.18 SD. Polarization accumulation anchored to Germano et al. 2026: 0.167 SD per update cycle. The horizontal dashed line marks the 0.60 advertiser cliff threshold, anchored to X/Twitter real data on advertiser category exodus.</p>
 
-  <p>The data quality differential (0.24 vs 0.92 at Month 36) is the single biggest driver of the CPM gap. Outrage-driven interactions produce garbage behavioral data. The platform is selling advertisers access to users who are in a reactive state, not a buying state. The CPM decline is not a market condition. It is a direct consequence of the algorithm's structural misorientation.</p>
+  <p>The most important finding from the model is not the revenue crossover at Month 2. It is the structural divergence in the underlying drivers. By Month 36, the engagement-based platform has a CPM of $5.80 (X/Twitter level), a churn rate of 7.1% per month, a subscription conversion rate of 2.7%, and a satisfaction score of 0.302. The connection-based platform has a CPM of $13.43 (approaching YouTube level), a churn rate of 1.5% per month, a subscription conversion rate of 9.2%, and a satisfaction score of 0.937. These are not small differences. They represent two fundamentally different businesses built on the same initial user base by making one structural choice differently.</p>
+
+  <p>The $907.3M cumulative revenue gap (43% more for connection-based) is the financial consequence of that structural choice. It is not a prediction that any specific platform will achieve these exact numbers. It is a model output under specific parameter assumptions that are each individually anchored to published data. The qualitative direction is robust: optimizing for surface engagement degrades the underlying data quality, which degrades CPM, which degrades revenue, while simultaneously increasing churn and decreasing subscription conversion. These mechanisms are not controversial. They are the documented experience of platforms that have followed the engagement-optimization path to its logical conclusion.</p>
 
   <div class="caveat-box">
-    <div class="caveat-label">Simulation Caveat</div>
-    <p>This model uses specific parameter assumptions calibrated to be conservative but not derived from proprietary platform data. The specific numbers (Month 18 crossover, 162% revenue differential at Month 36) are model outputs under these assumptions, not empirical measurements from a live platform. The qualitative direction of the findings is supported by the Milli et al. and Germano et al. research cited above. The quantitative predictions are falsifiable hypotheses. Source code is available at <code>simulation/social_media_algorithm_sim.py</code> (seed=42, all parameters documented and adjustable).</p>
+    <div class="caveat-label">Model Caveat</div>
+    <p>Under these parameter assumptions, the model predicts the outcomes described above. These are not empirical measurements from a live platform. Each parameter is anchored to published data, but the model is a simplification of a complex system. The advertiser cliff threshold (0.60 polarization), the CPM floor ($5.80), and the CAC model ($0.286/user/month) are each derived from real data points, but the specific trajectory between them involves modeling choices that reasonable analysts could dispute. The source code is available at <code>simulation/social_media_algorithm_sim_v5.py</code> (seed=42, all parameters documented and adjustable). Goodhart's Law applies: any metric can be gamed, and the connection-based ranking function described below would face adversarial optimization pressure if deployed at scale. This is an acknowledged limitation of the framework.</p>
   </div>
 
   <div class="rule"></div>
@@ -366,7 +372,7 @@
     </li>
     <li>
       <strong>Phase 3: Gradual Reweighting</strong>
-      <p>Shift the optimization target incrementally from pure engagement toward the blended genuine-connection score. The Interaction Field Equation predicts a short-term dip in raw engagement numbers followed by an inflection point where retention and revenue per user begin to exceed the engagement-optimized baseline. The simulation places this inflection at approximately Month 18 under conservative parameter assumptions.</p>
+      <p>Shift the optimization target incrementally from pure engagement toward the blended genuine-connection score. The Interaction Field Equation predicts a short-term dip in raw engagement numbers followed by an inflection point where retention and revenue per user begin to exceed the engagement-optimized baseline. Under the v5 model parameters, the net revenue crossover occurs at approximately Month 2, driven primarily by the lower CAC cost from reduced churn rather than by any immediate CPM advantage.</p>
     </li>
     <li>
       <strong>Phase 4: Full Reorientation</strong>
@@ -376,7 +382,7 @@
 
   <div class="prediction-box">
     <div class="pred-label">Testable Prediction</div>
-    <p>Platforms that shift their optimization targets from surface engagement to genuine interaction metrics will experience a short-term decrease in raw engagement numbers (estimated 15-25% over the first 3 months) followed by a long-term increase in user retention (+30-40% at 18 months), platform trust scores (+50% at 12 months), and revenue per user (+20-35% at 24 months) as advertiser willingness-to-pay increases and user lifetime value grows. The revenue crossover point is predicted at approximately Month 18 under conservative parameter assumptions. This is a falsifiable prediction, not an established fact.</p>
+    <p>Under the v5 model parameters (all empirically anchored), platforms that shift from engagement-based to connection-based optimization will see net revenue crossover within approximately 2 months, a 132% CPM advantage by Month 36 ($13.43 vs $5.80), a 9.2% vs 2.7% subscription conversion rate, and $907.3M more cumulative net revenue over 36 months (43% more) on a 10-million-user base. The engagement-based platform will trigger an advertiser cliff event at approximately Month 36 when polarization crosses 0.60, consistent with the documented X/Twitter advertiser exodus. These are falsifiable predictions, not established facts. The model predicts them under specific parameter assumptions that are each individually anchored to published data.</p>
   </div>
 
   <div class="rule"></div>
@@ -397,7 +403,7 @@
   <p>The next article in this series, <a href="article-4-value.html" class="article-link">Value Is Not a Number</a>, steps back from social media to address the foundational theoretical question: what is value, and how does it form? This is the conceptual foundation that makes the social media argument, and the pharmaceutical argument in <a href="article-9-pharma.html" class="article-link">Article 9</a>, mathematically rigorous rather than just intuitively plausible.</p>
 
   <div class="footnote">
-    <strong>Research references:</strong> Milli, S. et al. (2021). "Engagement vs. Satisfaction in Social Media." PNAS Nexus. Germano, F. et al. (2019). "Engagement Amplification in Algorithmic Media." Simulation source code: <code>simulation/social_media_algorithm_sim.py</code> (seed=42, reproducible). Full technical treatment at <a href="index.html#applications">the research site</a>.
+    <strong>Research references:</strong> Milli, S. et al. (2025). "Engagement vs. Satisfaction in Social Media." PNAS Nexus. Germano, F. et al. (2026). "Engagement Amplification in Algorithmic Media." Meta 2024 10-K (SEC filing, sales &amp; marketing spend). Digital Applied Q1 2026 (CPM benchmarks by platform). Qualtrics 2025 (churn rates by platform). TechCrunch 2024 (subscription conversion rates). X/Twitter advertiser exodus data: MediaPost, Reuters, NYT (2022-2023). Simulation source code: <code>simulation/social_media_algorithm_sim_v5.py</code> (seed=42, fully reproducible, all parameters documented). Full technical treatment at <a href="index.html#applications">the research site</a>.
   </div>
 
   <div class="series-nav">
