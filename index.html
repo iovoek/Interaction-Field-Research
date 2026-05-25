@@ -75,6 +75,7 @@
       display: flex;
       gap: 1.2rem;
       list-style: none;
+      align-items: center;
     }
     .nav-links a {
       font-family: 'JetBrains Mono', monospace;
@@ -86,6 +87,30 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { cursor: pointer; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      background: rgba(10,10,15,0.97);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      min-width: 200px;
+      padding: 0.4rem 0;
+      z-index: 1000;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 0.55rem 1rem;
+      font-size: 0.63rem;
+      color: var(--fg2);
+      white-space: nowrap;
+      letter-spacing: 0.07em;
+    }
+    .nav-dropdown-menu a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .nav-title { max-width: 100%; }
@@ -603,17 +628,18 @@
 <nav>
   <div class="nav-title">Exchange Is the Equation</div>
   <ul class="nav-links">
-    <li><a href="#glossary">Glossary</a></li>
-    <li><a href="#theory">Theory</a></li>
-    <li><a href="#equation">Equation</a></li>
+    <li><a href="#theory">The Theory</a></li>
     <li><a href="#applications">Applications</a></li>
-    <li><a href="#conclusions">Conclusions</a></li>
-    <li><a href="#self-analysis">Self-Analysis</a></li>
-    <li><a href="#empirical" style="color:var(--teal)">Empirical</a></li>
-    <li><a href="#living-research">Living Research</a></li>
-    <li><a href="#strategic-report" style="color:var(--teal)">Report</a></li>
-    <li><a href="#references">References</a></li>
-    <li><a href="terms.html" style="color:var(--teal)">Terms</a></li>
+    <li class="nav-dropdown">
+      <a href="#">Deep Dives &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="social-media.html">Social Media Algorithms</a>
+        <a href="pharma.html">Pharmaceutical R&amp;D</a>
+      </div>
+    </li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="#empirical">Evidence</a></li>
+    <li><a href="#references">Downloads</a></li>
   </ul>
 </nav>
 
