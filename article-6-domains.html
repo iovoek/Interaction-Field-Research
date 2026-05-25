@@ -13,12 +13,67 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body { background: var(--bg); color: var(--fg); font-family: 'Noto Serif', Georgia, serif; font-weight: 300; line-height: 1.85; overflow-x: hidden; }
-    /* === NAV === */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .dropdown:hover 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @media (max-width: 768px) {
+      
+      
+      
+    }
+      
+    }
+    main { max-width: 780px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
+    .article-series { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .article-number { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    h1 { font-family: 'Noto Serif', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--fg); margin-bottom: 1.2rem; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .subtitle { font-size: 1.15rem; color: var(--fg2); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
+    .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.08em; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 1.5rem; font-weight: 400; color: var(--fg); margin: 3rem 0 1rem; letter-spacing: -0.01em; }
+    h2 em { color: var(--gold); font-style: italic; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: var(--fg); margin: 2rem 0 0.6rem; }
+    p { margin-bottom: 1.4rem; color: var(--fg2); font-size: 1.02rem; }
+    p strong { color: var(--fg); font-weight: 600; }
+    .domain-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0; }
+    .domain-card .domain-num { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .domain-card h3 { margin-top: 0; margin-bottom: 0.8rem; font-size: 1.05rem; }
+    .domain-card .surface { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--fg3); margin-bottom: 0.3rem; }
+    .domain-card .surface span { color: var(--gold2); }
+    .domain-card p { margin-bottom: 0; font-size: 0.97rem; }
+    .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .series-nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--gold2); }
+    .series-nav .next { text-align: right; }
+    .term-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+    .term-link:hover { border-bottom-color: var(--gold); }
+    .article-link { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(42,157,143,0.3); }
+    .article-link:hover { border-bottom-color: var(--teal); }
+    .rule { height: 1px; background: var(--border); margin: 2.5rem 0; }
+      /* === SITE NAV === */
     .site-nav {
       position: sticky; top: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 2.5rem;
-      background: rgba(10,10,15,0.92);
+      background: rgba(10,10,15,0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -30,6 +85,7 @@
     }
     .site-nav .nav-menu {
       display: flex; align-items: center; gap: 2.2rem; list-style: none;
+      margin: 0; padding: 0;
     }
     .site-nav .nav-menu > li > a {
       font-family: 'JetBrains Mono', monospace;
@@ -38,13 +94,25 @@
       transition: color 0.2s; text-decoration: none;
     }
     .site-nav .nav-menu > li > a:hover { color: var(--gold); }
+    /* Dropdown */
     .dropdown { position: relative; }
     .dropdown-trigger { cursor: pointer; }
     .dropdown-content {
-      display: none; position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
-      background: rgba(16,16,24,0.98); border: 1px solid var(--border); border-radius: 6px;
-      min-width: 290px; padding: 0.5rem 0; z-index: 1001;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 12px; /* hover bridge -- prevents gap from closing dropdown */
+      z-index: 1001;
+    }
+    .dropdown-content-inner {
+      background: rgba(14,14,22,0.98);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      min-width: 290px;
+      padding: 0.5rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
     }
     .dropdown:hover .dropdown-content { display: block; }
     .dropdown-content a {
@@ -52,9 +120,11 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.63rem; color: var(--fg2);
       letter-spacing: 0.06em; text-decoration: none;
+      white-space: nowrap;
     }
     .dropdown-content a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
     .dropdown-content .dd-divider { height: 1px; background: var(--border); margin: 0.4rem 0; }
+    /* Hamburger / Mobile */
     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 0.5rem; }
     .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg3); }
     .mobile-menu {
@@ -84,35 +154,6 @@
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
     }
-      .site-nav { padding: 1rem 1.5rem; }
-    }
-    main { max-width: 780px; margin: 0 auto; padding: 6rem 1.5rem 6rem; }
-    .article-series { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
-    .article-number { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
-    h1 { font-family: 'Noto Serif', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--fg); margin-bottom: 1.2rem; }
-    h1 em { font-style: italic; color: var(--gold); }
-    .subtitle { font-size: 1.15rem; color: var(--fg2); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
-    .byline { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--fg3); letter-spacing: 0.08em; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-    h2 { font-size: 1.5rem; font-weight: 400; color: var(--fg); margin: 3rem 0 1rem; letter-spacing: -0.01em; }
-    h2 em { color: var(--gold); font-style: italic; }
-    h3 { font-size: 1.1rem; font-weight: 600; color: var(--fg); margin: 2rem 0 0.6rem; }
-    p { margin-bottom: 1.4rem; color: var(--fg2); font-size: 1.02rem; }
-    p strong { color: var(--fg); font-weight: 600; }
-    .domain-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0; }
-    .domain-card .domain-num { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
-    .domain-card h3 { margin-top: 0; margin-bottom: 0.8rem; font-size: 1.05rem; }
-    .domain-card .surface { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--fg3); margin-bottom: 0.3rem; }
-    .domain-card .surface span { color: var(--gold2); }
-    .domain-card p { margin-bottom: 0; font-size: 0.97rem; }
-    .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
-    .series-nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .series-nav a:hover { color: var(--gold2); }
-    .series-nav .next { text-align: right; }
-    .term-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
-    .term-link:hover { border-bottom-color: var(--gold); }
-    .article-link { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(42,157,143,0.3); }
-    .article-link:hover { border-bottom-color: var(--teal); }
-    .rule { height: 1px; background: var(--border); margin: 2.5rem 0; }
   </style>
 </head>
 <body>
@@ -123,28 +164,32 @@
     <li class="dropdown">
       <a href="#" class="dropdown-trigger">Articles &#9662;</a>
       <div class="dropdown-content">
-        <a href="article-0-introduction.html">0. What This Is</a>
-        <a href="article-1-origin.html">1. The Backwards Problem</a>
-        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
-        <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
-        <a href="article-4-value.html">4. Value Is Not a Number</a>
-        <a href="article-5-math.html">5. Why Error Grows</a>
-        <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
-        <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
-        <a href="article-8-roadmap.html">8. What Comes Next</a>
-        <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
-        <div class="dd-divider"></div>
-        <a href="social-media.html">Social Media (Standalone)</a>
-        <a href="pharma.html">Pharma (Standalone)</a>
+        <div class="dropdown-content-inner">
+          <a href="article-0-introduction.html">0. What This Is</a>
+          <a href="article-1-origin.html">1. The Backwards Problem</a>
+          <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+          <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
+          <a href="article-4-value.html">4. Value Is Not a Number</a>
+          <a href="article-5-math.html">5. Why Error Grows</a>
+          <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+          <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+          <a href="article-8-roadmap.html">8. What Comes Next</a>
+          <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+          <div class="dd-divider"></div>
+          <a href="social-media.html">Social Media (Standalone)</a>
+          <a href="pharma.html">Pharma (Standalone)</a>
+        </div>
       </div>
     </li>
     <li class="dropdown">
       <a href="#" class="dropdown-trigger">Resources &#9662;</a>
       <div class="dropdown-content">
-        <a href="terms.html">Glossary of Terms</a>
-        <a href="citations.html">Citations</a>
-        <a href="full-paper.html">Full Paper (Long Form)</a>
-        <a href="strategic-report.html">Strategic Report</a>
+        <div class="dropdown-content-inner">
+          <a href="terms.html">Glossary of Terms</a>
+          <a href="citations.html">Citations</a>
+          <a href="full-paper.html">Full Paper (Long Form)</a>
+          <a href="strategic-report.html">Strategic Report</a>
+        </div>
       </div>
     </li>
   </ul>

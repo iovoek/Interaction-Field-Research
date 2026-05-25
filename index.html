@@ -64,9 +64,13 @@
     .dropdown { position: relative; }
     .dropdown-trigger { cursor: pointer; }
     .dropdown-content {
-      display: none; position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      padding-top: 12px; /* hover bridge -- prevents gap from closing dropdown */
+      z-index: 1001;
+    }
+    .dropdown-content-inner {
       background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
-      min-width: 290px; padding: 0.5rem 0; z-index: 1001;
+      min-width: 290px; padding: 0.5rem 0;
       box-shadow: 0 12px 40px rgba(0,0,0,0.5);
     }
     .dropdown:hover .dropdown-content { display: block; }
