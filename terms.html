@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defined Terms - Exchange Is the Equation</title>
+  <meta name="description" content="Clean definitions of all terms coined in the Interaction Field Theory framework: The Backwards Problem, The Orientation Conjecture, The Interaction Field, Genuine Transaction, Mathematical Negligence, The Sacrificial Mass.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #0f0f18;
+      --bg3: #141420;
+      --fg: #e8e4d9;
+      --fg2: #b8b4a9;
+      --fg3: #7a7870;
+      --gold: #c9a84c;
+      --gold2: #e8c96a;
+      --rust: #c0392b;
+      --teal: #2a9d8f;
+      --accent: #7c6fcd;
+      --border: rgba(201,168,76,0.15);
+      --border2: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Noto Serif', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.85;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--fg3);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 6rem;
+    }
+    .page-header { margin-bottom: 3rem; }
+    .page-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .page-header h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+    .page-header h1 em { color: var(--gold); font-style: italic; }
+    .page-header .subtitle {
+      font-size: 1.05rem;
+      color: var(--fg2);
+      font-style: italic;
+      max-width: 600px;
+    }
+    .term-card {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+    }
+    .term-header {
+      padding: 1.2rem 1.5rem;
+      background: rgba(201,168,76,0.06);
+      border-bottom: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .term-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .term-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0;
+      border: none;
+      padding: 0;
+    }
+    .term-body {
+      padding: 1.5rem;
+    }
+    .term-section {
+      margin-bottom: 1.5rem;
+    }
+    .term-section:last-child { margin-bottom: 0; }
+    .term-section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--teal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .term-section p {
+      color: var(--fg2);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .term-section p strong { color: var(--fg); }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      margin-top: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--gold2); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      max-width: 780px;
+      margin: 0 auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--fg3);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <span class="nav-title">Exchange Is the Equation</span>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#applications">Domains</a></li>
+    <li><a href="social-media.html">Social Media</a></li>
+    <li><a href="pharma.html">Pharma</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="page-header">
+    <p class="page-kicker">Terminology / Coined Vocabulary</p>
+    <h1>Terms <em>Defined Here</em></h1>
+    <p class="subtitle">The following terms are coined or given specific technical meanings in this work. Each entry states what the term means, what it builds on, and why it was defined this way rather than using existing vocabulary.</p>
+  </div>
+
+  <!-- Term 1 -->
+  <div class="term-card" id="orientation-conjecture">
+    <div class="term-header">
+      <span class="term-number">Term 01</span>
+      <h2>The Orientation Conjecture</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>The claim that in any complex system with an observable variable surface and an underlying invariant deep structure, analysis that begins from the deep structure and works outward to the surface will produce systematically lower cumulative error than analysis that begins from the surface and attempts to infer the deep structure. The error difference is not marginal. It scales as O(sqrt(k)) with the number of inferential steps k, meaning that surface-first analysis becomes exponentially less reliable as system complexity increases.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>The random walk theory of error accumulation (statistics), the distinction between latent and observed variables (factor analysis), and the pyramid construction analogy developed from Huni Choi's top-down construction theory as presented by Dami Lee (Nollistudio). The mathematical formalism draws on Kyle (1985) for the 1/sqrt(n) uncertainty function and Verhulst (1838) for the logistic growth model.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>It is called a "conjecture" rather than a "theorem" because, while the mathematical proof holds under stated assumptions (independence, invariance, finite noise), the claim that these assumptions apply universally across all complex systems remains to be empirically verified in every domain. The word "orientation" captures the key insight: the direction from which you approach a problem determines the error profile of your analysis, independent of the quality of your methods.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term 2 -->
+  <div class="term-card" id="backwards-problem">
+    <div class="term-header">
+      <span class="term-number">Term 02</span>
+      <h2>The Backwards Problem</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>The systemic error that occurs when analysts, institutions, or algorithms attempt to understand a complex system by starting from its observable surface manifestations and working inward toward its deep structure. The "backwards" refers to the direction of inference: from effect to cause, from symptom to mechanism, from price to value. This direction of analysis produces compounding error because each inferential step introduces uncertainty that propagates forward into all subsequent steps.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>The concept of inverse problems in mathematics and physics, where inferring causes from effects is known to be ill-posed (Hadamard, 1902). Also draws on the distinction between forward and inverse modeling in geophysics, medical imaging, and signal processing. The novelty is applying this concept as a general framework for institutional and algorithmic failure across all complex systems, not just physical ones.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>Because it names the error in a way that makes it immediately actionable. If you know you are solving the problem "backwards," the correction is obvious: turn around. The name is deliberately non-technical so that it can be communicated to decision-makers who are not mathematicians. A CEO can understand "we are analyzing this backwards" in a way they cannot understand "our inferential chain has super-linear error accumulation due to correlated noise terms."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term 3 -->
+  <div class="term-card" id="interaction-field">
+    <div class="term-header">
+      <span class="term-number">Term 03</span>
+      <h2>The Interaction Field</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>The totality of genuine transactions occurring within a system at any given time. It is the deep structure of value formation: the dynamic, self-reinforcing network of exchanges that constitutes (not merely correlates with) the value of any asset, platform, institution, or system. The interaction field is invariant in the sense that its structure (logistic growth, critical mass thresholds, network effects) persists across domains even as its surface manifestations (prices, engagement metrics, clinical outcomes) vary.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>Metcalfe's Law (network value proportional to N^2), Reed's Law (group-forming network value proportional to 2^N), W. Brian Arthur's work on increasing returns and complexity economics, George Soros's reflexivity framework, and Tobias Gasser's empirical work on value formation in trading card communities. The term "field" is borrowed from physics (electromagnetic field, gravitational field) to emphasize that value is not a property of objects but a property of the space of interactions between them.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>Because it reframes value as a field phenomenon rather than an object property. A trading card does not "have" value the way it "has" mass. Its value exists in the interaction field generated by the community that trades it. This reframing is not semantic. It changes what you measure, what you optimize, and what you predict. If value is a field, then the correct unit of analysis is the transaction, not the object.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term 4 -->
+  <div class="term-card" id="interaction-field-equation">
+    <div class="term-header">
+      <span class="term-number">Term 04</span>
+      <h2>The Interaction Field Equation</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>The logistic differential equation dV/dn = k * V(n) * (1 - V(n)/K), derived from first principles about how value forms through genuine transactions. V(n) is the value of the system after n genuine transactions, K is the carrying capacity (maximum sustainable value), and k is the growth rate constant determined by interaction quality. The equation predicts S-curve value formation with a critical inflection point at n_c = ln((K - V0)/V0) / k, where value growth accelerates most rapidly.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>Verhulst's logistic equation (1838), originally developed for population dynamics. The novelty is the derivation from axioms about market value rather than biological reproduction, and the identification of the inflection point as the critical mass threshold for value formation. The equation is recovered independently from three axioms: (1) value grows with transactions, (2) growth is self-reinforcing, (3) growth is bounded.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>Because it is the governing equation of the interaction field, analogous to Maxwell's equations for the electromagnetic field. It describes how the field evolves over time (measured in transactions, not seconds) and makes specific, falsifiable predictions about the trajectory of value formation in any system where genuine transactions occur.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term 5 -->
+  <div class="term-card" id="genuine-transaction">
+    <div class="term-header">
+      <span class="term-number">Term 05</span>
+      <h2>Genuine Transaction</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>An exchange between agents that constitutes value rather than merely transferring or measuring it. A genuine transaction is one in which both parties' information states change irreversibly, new information is generated that did not exist before the exchange, and the system's total information content increases. Wash trades, bot interactions, and manipulated engagements are not genuine transactions because they do not generate new information or constitute new value.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>Shannon's information theory (1948), specifically the concept of mutual information between sender and receiver. Also draws on the distinction between performative and constative speech acts (Austin, 1962): a genuine transaction is performative in that it creates the reality it describes, rather than merely describing a pre-existing reality.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>Because it distinguishes value-constituting exchanges from value-neutral or value-destroying ones. The word "genuine" does the critical work: it excludes manipulated, artificial, or reflexive interactions that inflate surface metrics without contributing to the interaction field. This distinction is essential for the social media application, where the algorithm must learn to distinguish genuine connection from manufactured engagement.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term 6 -->
+  <div class="term-card" id="mathematical-negligence">
+    <div class="term-header">
+      <span class="term-number">Term 06</span>
+      <h2>Mathematical Negligence</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>The institutional failure to account for mathematically predictable error accumulation when designing analytical systems, algorithms, or decision processes. An organization commits mathematical negligence when it builds systems that optimize from the variable surface despite the provable existence of compounding error, and when the O(sqrt(k)) error scaling was knowable in advance. It is negligence in the legal sense: not intentional harm, but failure to exercise the standard of care that the available mathematics demands.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>The legal concept of negligence (duty, breach, causation, damages), applied to mathematical and analytical decision-making. Also draws on the concept of "known unknowns" from risk management and the precautionary principle from environmental law. The novelty is framing backwards analysis as a breach of duty rather than merely a suboptimal choice.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>Because it creates accountability. If the Backwards Problem is merely an intellectual curiosity, institutions can ignore it. If it constitutes negligence, meaning a failure to exercise due care that results in predictable harm, then institutions have a duty to correct it. The term is designed to shift the conversation from "this is an interesting theoretical observation" to "this is a standard of care that must be met."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term 7 -->
+  <div class="term-card" id="sacrificial-mass">
+    <div class="term-header">
+      <span class="term-number">Term 07</span>
+      <h2>The Sacrificial Mass</h2>
+    </div>
+    <div class="term-body">
+      <div class="term-section">
+        <span class="term-section-label">Definition</span>
+        <p>The wasted capital, effort, time, and human wellbeing that is structurally guaranteed by bottom-up analysis of a complex system. It is not inefficiency that could be optimized away within the existing framework. It is the mathematically predicted output of the Backwards Problem: the compounding error accumulation made concrete as failed drug trials, inventory swings, misdirected R&D budgets, misread markets, degraded social trust, and preventable deaths. The Sacrificial Mass cannot be reduced by doing the same thing better. It can only be eliminated by reorienting the analysis.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Builds On</span>
+        <p>The pyramid construction analogy. In bottom-up pyramid construction, the ramp required to maintain a workable grade as the structure rises must be larger than the pyramid itself: a literal sacrificial mass of material that is built only to be dismantled. The term transfers this image to organizational and systemic waste: the mass that must be sacrificed because the analysis was oriented incorrectly from the start.</p>
+      </div>
+      <div class="term-section">
+        <span class="term-section-label">Why This Name</span>
+        <p>Because it reframes waste as structural rather than accidental. Organizations do not fail at drug development because of bad luck or insufficient funding. They produce a Sacrificial Mass because the orientation of their analysis guarantees it. Social media platforms do not degrade public discourse because of malice. They produce a Sacrificial Mass of human psychological damage because their algorithms are backwards. Naming the waste makes it visible, attributable, and correctable. You cannot fix what you have not named.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-link">&larr; Back to main article</a>
+</main>
+<footer>
+  Exchange Is the Equation &nbsp;|&nbsp; Glen Brackmann &nbsp;|&nbsp; 2026
+</footer>
+</body>
+</html>
