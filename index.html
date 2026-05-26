@@ -117,9 +117,29 @@
 
     /* === HERO === */
     .hero {
-      max-width: 900px; margin: 0 auto;
-      padding: 8rem 2rem 5rem;
+      position: relative;
+      width: 100%;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       text-align: center;
+    }
+    #hero-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: block;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 8rem 2rem 5rem;
     }
     .hero-kicker {
       font-family: 'JetBrains Mono', monospace;
@@ -341,10 +361,13 @@
 
 <!-- Hero -->
 <section class="hero">
-  <p class="hero-kicker">Independent Research / Complex Systems / 2026</p>
-  <h1>Exchange <em>Is</em> the Equation</h1>
-  <p class="hero-sub">A structural insight about complex systems: the direction from which you analyze them determines whether they thrive or degrade. One framework. Nine domains. An ongoing investigation.</p>
-  <p class="hero-meta">By Glen Brackmann with AI research assistance</p>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-kicker">Independent Research / Complex Systems / 2026</p>
+    <h1>Exchange <em>Is</em> the Equation</h1>
+    <p class="hero-sub">A structural insight about complex systems: the direction from which you analyze them determines whether they thrive or degrade. One framework. Nine domains. An ongoing investigation.</p>
+    <p class="hero-meta">By Glen Brackmann with AI research assistance</p>
+  </div>
 </section>
 
 <div class="section-divider"><hr></div>
@@ -490,5 +513,128 @@
   </div>
 </footer>
 
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+// Hero canvas: Interaction Field visualization
+// Three orbiting geometric forms with luminous connection threads
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(new THREE.Color(0x06060c), 1);
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x06060c, 0.022);
+
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
+  camera.position.set(0, 4, 20);
+  camera.lookAt(0, 0, 0);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0x0d0d1a, 2));
+  const light1 = new THREE.PointLight(0xc9a84c, 3, 25);
+  const light2 = new THREE.PointLight(0x2a9d8f, 2, 20);
+  const light3 = new THREE.PointLight(0x7c6fcd, 2, 20);
+  scene.add(light1); scene.add(light2); scene.add(light3);
+
+  // Particle field
+  const pGeo = new THREE.BufferGeometry();
+  const pCount = 1000;
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 60;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x1e1c28, size: 0.07 })));
+
+  // Three orbiting nodes
+  const nodeData = [
+    { color: 0xc9a84c, emissive: 0xc9a84c, geo: new THREE.IcosahedronGeometry(0.65, 1), orbitSpeed: 0.36, orbitPhase: 0, orbitTilt: 0.3 },
+    { color: 0x2a9d8f, emissive: 0x2a9d8f, geo: new THREE.OctahedronGeometry(0.6, 0), orbitSpeed: 0.36, orbitPhase: Math.PI * 2/3, orbitTilt: -0.25 },
+    { color: 0x9d8fcc, emissive: 0x7c6fcd, geo: new THREE.TetrahedronGeometry(0.68, 0), orbitSpeed: 0.36, orbitPhase: Math.PI * 4/3, orbitTilt: 0.15 },
+  ];
+  const nodes = nodeData.map(d => {
+    const mat = new THREE.MeshStandardMaterial({ color: d.color, emissive: d.emissive, emissiveIntensity: 0.5, roughness: 0.3, metalness: 0.6 });
+    const mesh = new THREE.Mesh(d.geo, mat);
+    scene.add(mesh);
+    return { mesh, mat, ...d };
+  });
+
+  // Connection threads
+  const pairs = [[0,1],[1,2],[0,2]];
+  const threadColors = [0xc9a84c, 0x2a9d8f, 0x9d8fcc];
+  const threadLines = pairs.map((pair, i) => {
+    const geo = new THREE.BufferGeometry();
+    const positions = new Float32Array(6);
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const mat = new THREE.LineBasicMaterial({ color: threadColors[i], transparent: true, opacity: 0 });
+    const line = new THREE.Line(geo, mat);
+    scene.add(line);
+    return { line, geo, mat, pair };
+  });
+
+  // Central core
+  const coreMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.8, roughness: 0.1 });
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.25, 32, 32), coreMat);
+  scene.add(core);
+
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function animate(ts) {
+    requestAnimationFrame(animate);
+    const t = ts * 0.001;
+    const breathe = 4.2 + 1.4 * Math.sin(t * 0.4);
+    const positions3D = [];
+    nodes.forEach((n, i) => {
+      const angle = t * n.orbitSpeed + n.orbitPhase;
+      const x = Math.cos(angle) * breathe;
+      const z = Math.sin(angle) * breathe;
+      const y = Math.sin(angle + n.orbitTilt * Math.PI) * 1.1;
+      n.mesh.position.set(x, y, z);
+      n.mesh.rotation.x += 0.008;
+      n.mesh.rotation.y += 0.012;
+      n.mat.emissiveIntensity = 0.4 + 0.3 * Math.sin(t * 1.5 + i * 2.1);
+      positions3D.push(new THREE.Vector3(x, y, z));
+    });
+    light1.position.copy(positions3D[0]);
+    light2.position.copy(positions3D[1]);
+    light3.position.copy(positions3D[2]);
+    threadLines.forEach(({ geo, mat, pair }) => {
+      const a = positions3D[pair[0]], b = positions3D[pair[1]];
+      const dist = a.distanceTo(b);
+      const proximity = Math.max(0, 1 - dist / (breathe * 2.2));
+      mat.opacity = proximity * proximity * 0.8;
+      const pos = geo.attributes.position.array;
+      pos[0]=a.x; pos[1]=a.y; pos[2]=a.z;
+      pos[3]=b.x; pos[4]=b.y; pos[5]=b.z;
+      geo.attributes.position.needsUpdate = true;
+    });
+    const cp = 0.6 + 0.4 * Math.sin(t * 2.2);
+    coreMat.emissiveIntensity = cp;
+    core.scale.setScalar(0.8 + 0.3 * cp);
+    camera.position.x = Math.sin(t * 0.07) * 3;
+    camera.position.y = 4 + Math.sin(t * 0.05) * 1.5;
+    camera.lookAt(0, 0, 0);
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+})();
+</script>
 </body>
 </html>
