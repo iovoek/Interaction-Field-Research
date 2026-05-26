@@ -95,6 +95,24 @@
     .hero h1 em { font-style: italic; color: #00e6ff; }
     .hero-sub { font-size: 1.05rem; color: rgba(200,200,210,0.85); line-height: 1.8; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; }
     .hero-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(150,148,145,0.7); letter-spacing: 0.08em; }
+
+    /* Hero entrance animations */
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-kicker { animation: hero-fade-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.1s both; }
+    .hero h1     { animation: hero-fade-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.25s both; }
+    .hero-sub    { animation: hero-fade-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.4s both; }
+    .hero-meta   { animation: hero-fade-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.55s both; }
+    .viz-frame   { animation: hero-fade-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.65s both; }
+
+    /* Animated gradient border on viz-frame */
+    @keyframes border-glow {
+      0%, 100% { box-shadow: 0 0 60px rgba(0,200,255,0.07), 0 20px 60px rgba(0,0,0,0.6); }
+      50%       { box-shadow: 0 0 80px rgba(0,200,255,0.14), 0 20px 60px rgba(0,0,0,0.6); }
+    }
+    .viz-frame-inner { animation: border-glow 6s ease-in-out infinite; }
     .viz-frame { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem; }
     .viz-frame-inner { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #050508; border: 1px solid rgba(0,200,255,0.18); border-radius: 8px; overflow: hidden; box-shadow: 0 0 60px rgba(0,200,255,0.07), 0 20px 60px rgba(0,0,0,0.6); }
     #hero-canvas { display: block; width: 100%; height: 100%; }
@@ -105,7 +123,7 @@
     .section-divider hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
     .articles-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
     .section-title { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2.5rem; }
-    .article-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .article-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border2); border: 1px solid var(--border); border-radius: var(--radius); }
     .article-card { display: flex; align-items: baseline; gap: 1.2rem; padding: 1.3rem 1.6rem; background: var(--bg); transition: background 0.2s; }
     .article-card:hover { background: var(--bg2); }
     .article-card .card-number { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--fg3); letter-spacing: 0.08em; min-width: 2rem; }
@@ -1077,5 +1095,6 @@
 })();
 </script>
 
+  <script src="scroll-fx.js"></script>
 </body>
 </html>

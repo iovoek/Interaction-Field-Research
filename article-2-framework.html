@@ -163,6 +163,25 @@
       animation: eq-drift 8s ease-in-out infinite alternate; }
     @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
                           to   { opacity: 0.28; transform: translateY(-4px); } }
+  
+    /* Hero entrance animations */
+    @keyframes art-hero-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .article-series { animation: art-hero-up 0.7s cubic-bezier(0.25,0.46,0.45,0.94) 0.05s both; }
+    .article-number  { animation: art-hero-up 0.7s cubic-bezier(0.25,0.46,0.45,0.94) 0.12s both; }
+    h1               { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both; }
+    .subtitle        { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.35s both; }
+    .byline          { animation: art-hero-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.48s both; }
+    .art-viz-frame   { animation: art-hero-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.6s both; }
+
+    /* Animated glow on art-viz-inner */
+    @keyframes art-border-glow {
+      0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+      50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
+    }
+    .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
   </style>
 </head>
 <body>
@@ -474,5 +493,6 @@
     <a href="article-3-social-media.html" class="next">Next: Social Media Optimized the Wrong Variable &rarr;</a>
   </div>
 </main>
+  <script src="scroll-fx.js"></script>
 </body>
 </html>
