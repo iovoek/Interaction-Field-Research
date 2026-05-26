@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizations | Exchange Is the Equation</title>
+  <meta name="description" content="Three-dimensional mathematical visualizations of the Interaction Field framework: the Backwards Problem, the Interaction Field, and the Bifurcation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Noto+Serif:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --fg: #e8e4d9;
+      --fg2: #b8b4a9;
+      --fg3: #7a7870;
+      --gold: #c9a84c;
+      --gold2: #e8c96a;
+      --teal: #2a9d8f;
+      --border: rgba(201,168,76,0.15);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Noto Serif', Georgia, serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-nav .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; color: var(--gold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .site-nav .nav-menu {
+      display: flex; align-items: center; gap: 2.2rem; list-style: none;
+    }
+    .site-nav .nav-menu > li > a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--fg3);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .site-nav .nav-menu > li > a:hover { color: var(--gold); }
+    .dropdown { position: relative; }
+    .dropdown-content {
+      display: none; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%); padding-top: 12px; z-index: 1001;
+    }
+    .dropdown-content-inner {
+      background: rgba(14,14,22,0.98); border: 1px solid var(--border);
+      border-radius: 6px; min-width: 290px; padding: 0.5rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a {
+      display: block; padding: 0.6rem 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem; color: var(--fg2);
+      letter-spacing: 0.06em; text-decoration: none; white-space: nowrap;
+    }
+    .dropdown-content a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+    .dropdown-content .dd-divider { height: 1px; background: var(--border); margin: 0.4rem 0; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 0.5rem; }
+    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg3); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,15,0.98); z-index: 2000;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem;
+      overflow-y: auto; padding: 3rem 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; color: var(--fg2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.6rem 2rem; text-decoration: none;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mm-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem; color: var(--fg3);
+      letter-spacing: 0.15em; margin-top: 1rem;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+      text-transform: uppercase;
+    }
+    .mobile-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.5rem; color: var(--fg3); cursor: pointer; padding: 0.5rem; }
+    @media (max-width: 768px) {
+      .site-nav .nav-menu { display: none; }
+      .hamburger { display: flex; }
+      .site-nav { padding: 1rem 1.5rem; }
+    }
+
+    /* HERO */
+    .page-header {
+      padding: 9rem 2.5rem 3rem;
+      max-width: 900px; margin: 0 auto;
+      text-align: center;
+    }
+    .page-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--teal);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300; color: var(--fg);
+      line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .page-header h1 em { color: var(--gold); font-style: italic; }
+    .page-header p {
+      color: var(--fg2); font-size: 1.05rem; line-height: 1.8;
+      max-width: 600px; margin: 0 auto;
+    }
+
+    /* SCENE SECTIONS */
+    .scene-section {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 4rem 2rem 6rem;
+      border-top: 1px solid var(--border);
+    }
+    .scene-meta {
+      max-width: 680px; width: 100%;
+      margin-bottom: 2.5rem; text-align: center;
+    }
+    .scene-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem; color: var(--fg3);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .scene-title {
+      font-size: 1.6rem; font-weight: 300; color: var(--fg);
+      margin-bottom: 0.8rem; line-height: 1.3;
+    }
+    .scene-title em { color: var(--gold); font-style: italic; }
+    .scene-desc {
+      font-size: 0.95rem; color: var(--fg2); line-height: 1.75;
+    }
+    .canvas-wrap {
+      width: 100%; max-width: 900px;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #06060c;
+      position: relative;
+    }
+    .canvas-wrap canvas {
+      display: block; width: 100% !important; height: 100% !important;
+    }
+    .scene-caption {
+      margin-top: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; color: var(--fg3);
+      letter-spacing: 0.08em; text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+    footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; color: var(--fg3);
+      letter-spacing: 0.08em;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="logo">Exchange Is the Equation</a>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Articles &#9662;</a>
+      <div class="dropdown-content">
+        <div class="dropdown-content-inner">
+          <a href="article-0-introduction.html">0. What This Is</a>
+          <a href="article-1-origin.html">1. The Backwards Problem</a>
+          <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+          <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
+          <a href="article-4-value.html">4. Value Is Not a Number</a>
+          <a href="article-5-math.html">5. Why Error Grows</a>
+          <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+          <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+          <a href="article-8-roadmap.html">8. What Comes Next</a>
+          <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+          <div class="dd-divider"></div>
+          <a href="social-media.html">Social Media (Standalone)</a>
+          <a href="pharma.html">Pharma (Standalone)</a>
+        </div>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-trigger">Resources &#9662;</a>
+      <div class="dropdown-content">
+        <div class="dropdown-content-inner">
+          <a href="terms.html">Glossary of Terms</a>
+          <a href="citations.html">Citations</a>
+          <a href="full-paper.html">Full Paper (Long Form)</a>
+          <a href="strategic-report.html">Strategic Report</a>
+        </div>
+      </div>
+    </li>
+    <li><a href="visualizations.html" style="color:var(--gold)">Visualizations</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
+  <a href="index.html">Home</a>
+  <span class="mm-label">Articles</span>
+  <a href="article-0-introduction.html">0. What This Is</a>
+  <a href="article-1-origin.html">1. The Backwards Problem</a>
+  <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+  <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
+  <a href="article-4-value.html">4. Value Is Not a Number</a>
+  <a href="article-5-math.html">5. Why Error Grows</a>
+  <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+  <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+  <a href="article-8-roadmap.html">8. What Comes Next</a>
+  <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+  <span class="mm-label">Resources</span>
+  <a href="terms.html">Glossary</a>
+  <a href="citations.html">Citations</a>
+  <a href="full-paper.html">Full Paper</a>
+  <a href="strategic-report.html">Strategic Report</a>
+  <a href="visualizations.html">Visualizations</a>
+</div>
+
+<div class="page-header">
+  <div class="page-label">Mathematical Visualizations</div>
+  <h1>Three Structures, <em>Three Orientations</em></h1>
+  <p>Each scene below is rendered in real time using WebGL mathematics. No AI generation. These are geometric and physical systems expressing the same ideas explored in the articles.</p>
+</div>
+
+<!-- SCENE 1: THE BACKWARDS PROBLEM -->
+<section class="scene-section">
+  <div class="scene-meta">
+    <div class="scene-number">Scene 01 of 03</div>
+    <h2 class="scene-title">The <em>Backwards Problem</em></h2>
+    <p class="scene-desc">A pyramid assembles itself from the apex downward. Each layer floats in from the void and locks into place above the one below it. This is how most complex systems are analyzed: from the visible surface inward, from the finished form backward to the process that built it. The structure is real. The direction of understanding is inverted.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="canvas1"></canvas>
+  </div>
+  <p class="scene-caption">Inverted construction / top-down assembly / the orientation error</p>
+</section>
+
+<!-- SCENE 2: THE INTERACTION FIELD -->
+<section class="scene-section">
+  <div class="scene-meta">
+    <div class="scene-number">Scene 02 of 03</div>
+    <h2 class="scene-title">The <em>Interaction Field</em></h2>
+    <p class="scene-desc">Three forms orbit a shared center. As they approach one another, luminous threads emerge between them. The threads are not the forms themselves. They are what the forms produce together. Value, meaning, and new structure emerge not from the nodes but from the connections between them. The field is the thing.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="canvas2"></canvas>
+  </div>
+  <p class="scene-caption">Emergent connection / multiplicative field / the connective tissue</p>
+</section>
+
+<!-- SCENE 3: THE BIFURCATION -->
+<section class="scene-section">
+  <div class="scene-meta">
+    <div class="scene-number">Scene 03 of 03</div>
+    <h2 class="scene-title">The <em>Bifurcation</em></h2>
+    <p class="scene-desc">A single path divides. One trajectory curves inward, tightening into a spiral that consumes itself. The other opens outward, tracing an expanding helix into space. Both begin from the same point. The difference is orientation: one system optimizes for what is immediately measurable at the surface. The other builds from structural depth. Over time, the gap between them becomes unbridgeable.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="canvas3"></canvas>
+  </div>
+  <p class="scene-caption">Engagement collapse vs connection growth / the orientation divergence</p>
+</section>
+
+<footer>
+  <p>Rendered with <a href="https://threejs.org" target="_blank">Three.js</a> &mdash; mathematical geometry, no AI generation &mdash; <a href="index.html">Exchange Is the Equation</a></p>
+</footer>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ─── SHARED COLORS ────────────────────────────────────────────────────────────
+const GOLD   = new THREE.Color(0xc9a84c);
+const GOLD2  = new THREE.Color(0xe8c96a);
+const TEAL   = new THREE.Color(0x2a9d8f);
+const WHITE  = new THREE.Color(0xe8e4d9);
+const BG     = new THREE.Color(0x06060c);
+const DIM    = new THREE.Color(0x1a1a28);
+
+// ─── UTILITY ──────────────────────────────────────────────────────────────────
+function makeRenderer(canvas) {
+  const r = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  r.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  r.setClearColor(BG, 1);
+  return r;
+}
+
+function fitRenderer(renderer, camera, canvas) {
+  const w = canvas.parentElement.clientWidth;
+  const h = canvas.parentElement.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+
+// ─── EASING ───────────────────────────────────────────────────────────────────
+function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SCENE 1 — THE BACKWARDS PROBLEM (Pyramid assembling top-down)
+// ═══════════════════════════════════════════════════════════════════════════════
+(function scene1() {
+  const canvas = document.getElementById('canvas1');
+  const renderer = makeRenderer(canvas);
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x06060c, 0.04);
+
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
+  camera.position.set(0, 4, 18);
+  camera.lookAt(0, 1, 0);
+
+  // Ambient + directional light
+  scene.add(new THREE.AmbientLight(0x1a1a2e, 1.5));
+  const dirLight = new THREE.DirectionalLight(0xc9a84c, 2.5);
+  dirLight.position.set(5, 10, 5);
+  scene.add(dirLight);
+  const rimLight = new THREE.DirectionalLight(0x2a9d8f, 1.2);
+  rimLight.position.set(-8, 2, -4);
+  scene.add(rimLight);
+
+  // Particle field (background stars)
+  const starGeo = new THREE.BufferGeometry();
+  const starCount = 800;
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 80;
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  const starMat = new THREE.PointsMaterial({ color: 0x4a4840, size: 0.08 });
+  scene.add(new THREE.Points(starGeo, starMat));
+
+  // Build pyramid layers (5 layers, layer 0 = apex, layer 4 = base)
+  const LAYERS = 5;
+  const layerGroups = [];
+  const layerTargetY = [];
+  const layerStartY = [];
+
+  for (let l = 0; l < LAYERS; l++) {
+    const group = new THREE.Group();
+    const size = 0.5 + l * 0.7;
+    const y = (LAYERS - 1 - l) * 0.85 - 1.5; // final Y position
+    layerTargetY.push(y);
+    layerStartY.push(y + 12 + l * 2); // start high above
+
+    // Create a flat square slab for each layer
+    const geo = new THREE.BoxGeometry(size * 2, 0.35, size * 2);
+    const mat = new THREE.MeshStandardMaterial({
+      color: l === 0 ? GOLD2 : (l === 1 ? GOLD : DIM),
+      emissive: l === 0 ? GOLD : new THREE.Color(0x0a0a14),
+      emissiveIntensity: l === 0 ? 0.4 : 0.05,
+      roughness: 0.6,
+      metalness: 0.4,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    group.add(mesh);
+
+    // Wireframe overlay
+    const wireGeo = new THREE.EdgesGeometry(geo);
+    const wireMat = new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: 0.3 });
+    group.add(new THREE.LineSegments(wireGeo, wireMat));
+
+    group.position.y = layerStartY[l];
+    scene.add(group);
+    layerGroups.push(group);
+  }
+
+  // Apex glow sphere
+  const apexGeo = new THREE.SphereGeometry(0.18, 16, 16);
+  const apexMat = new THREE.MeshStandardMaterial({ color: GOLD2, emissive: GOLD2, emissiveIntensity: 1.2, roughness: 0.2 });
+  const apex = new THREE.Mesh(apexGeo, apexMat);
+  apex.position.y = layerTargetY[0] + 0.35;
+  scene.add(apex);
+
+  // Ground plane (subtle)
+  const groundGeo = new THREE.PlaneGeometry(40, 40);
+  const groundMat = new THREE.MeshStandardMaterial({ color: 0x0a0a12, roughness: 1 });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = layerTargetY[LAYERS - 1] - 0.5;
+  scene.add(ground);
+
+  // Animation state
+  // Full cycle: 12s
+  // Phase 1 (0-0.5): layers drop in one by one, top first
+  // Phase 2 (0.5-0.75): hold, camera slow orbit
+  // Phase 3 (0.75-1.0): layers rise back up, fade out, reset
+  const CYCLE = 12000; // ms
+
+  let t0 = null;
+
+  function animate(ts) {
+    requestAnimationFrame(animate);
+    if (!t0) t0 = ts;
+    const elapsed = (ts - t0) % CYCLE;
+    const phase = elapsed / CYCLE; // 0..1
+
+    // Layer drop-in: staggered, top layer first
+    for (let l = 0; l < LAYERS; l++) {
+      const layerDelay = l / LAYERS * 0.45; // 0..0.45
+      const layerPhase = Math.max(0, Math.min(1, (phase - layerDelay) / 0.08));
+      const eased = easeOut(layerPhase);
+
+      let targetY;
+      if (phase < 0.72) {
+        targetY = layerStartY[l] + (layerTargetY[l] - layerStartY[l]) * eased;
+      } else {
+        // Rise back up
+        const risePhase = Math.min(1, (phase - 0.72) / 0.25);
+        const riseEased = easeInOut(risePhase);
+        targetY = layerTargetY[l] + (layerStartY[l] - layerTargetY[l]) * riseEased;
+      }
+      layerGroups[l].position.y = targetY;
+    }
+
+    // Apex glow pulse
+    const pulse = 0.8 + 0.4 * Math.sin(ts * 0.002);
+    apexMat.emissiveIntensity = pulse;
+
+    // Camera slow orbit
+    const camAngle = ts * 0.00015;
+    camera.position.x = Math.sin(camAngle) * 18;
+    camera.position.z = Math.cos(camAngle) * 18;
+    camera.lookAt(0, 1.5, 0);
+
+    fitRenderer(renderer, camera, canvas);
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SCENE 2 — THE INTERACTION FIELD (Three orbiting forms with connection threads)
+// ═══════════════════════════════════════════════════════════════════════════════
+(function scene2() {
+  const canvas = document.getElementById('canvas2');
+  const renderer = makeRenderer(canvas);
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x06060c, 0.025);
+
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
+  camera.position.set(0, 5, 20);
+  camera.lookAt(0, 0, 0);
+
+  scene.add(new THREE.AmbientLight(0x0d0d1a, 2));
+  const light1 = new THREE.PointLight(0xc9a84c, 3, 25);
+  scene.add(light1);
+  const light2 = new THREE.PointLight(0x2a9d8f, 2, 20);
+  scene.add(light2);
+  const light3 = new THREE.PointLight(0x7c6fcd, 2, 20);
+  scene.add(light3);
+
+  // Particle field
+  const pGeo = new THREE.BufferGeometry();
+  const pCount = 1200;
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 60;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x2a2830, size: 0.06 })));
+
+  // Three orbiting nodes
+  const nodeData = [
+    { color: 0xc9a84c, emissive: 0xc9a84c, geo: new THREE.IcosahedronGeometry(0.7, 1), orbitR: 5, orbitSpeed: 0.38, orbitPhase: 0, orbitTilt: 0.3 },
+    { color: 0x2a9d8f, emissive: 0x2a9d8f, geo: new THREE.OctahedronGeometry(0.65, 0),  orbitR: 5, orbitSpeed: 0.38, orbitPhase: Math.PI * 2/3, orbitTilt: -0.25 },
+    { color: 0x9d8fcc, emissive: 0x7c6fcd, geo: new THREE.TetrahedronGeometry(0.72, 0), orbitR: 5, orbitSpeed: 0.38, orbitPhase: Math.PI * 4/3, orbitTilt: 0.15 },
+  ];
+
+  const nodes = nodeData.map(d => {
+    const mat = new THREE.MeshStandardMaterial({
+      color: d.color, emissive: d.emissive, emissiveIntensity: 0.5,
+      roughness: 0.3, metalness: 0.6,
+    });
+    const mesh = new THREE.Mesh(d.geo, mat);
+    scene.add(mesh);
+    return { mesh, mat, ...d };
+  });
+
+  // Connection threads (lines between each pair)
+  const threadMats = [];
+  const threadLines = [];
+  const pairs = [[0,1],[1,2],[0,2]];
+  const threadColors = [0xc9a84c, 0x2a9d8f, 0x9d8fcc];
+
+  pairs.forEach((pair, i) => {
+    const geo = new THREE.BufferGeometry();
+    const positions = new Float32Array(6); // 2 points * 3 coords
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const mat = new THREE.LineBasicMaterial({
+      color: threadColors[i], transparent: true, opacity: 0, linewidth: 1
+    });
+    const line = new THREE.Line(geo, mat);
+    scene.add(line);
+    threadLines.push({ line, geo, mat, pair });
+    threadMats.push(mat);
+  });
+
+  // Central glow sphere
+  const coreGeo = new THREE.SphereGeometry(0.3, 32, 32);
+  const coreMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.8, roughness: 0.1 });
+  const core = new THREE.Mesh(coreGeo, coreMat);
+  scene.add(core);
+
+  // Orbit ring (subtle)
+  const ringGeo = new THREE.TorusGeometry(5, 0.015, 8, 100);
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0x2a2830, transparent: true, opacity: 0.4 });
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  ring.rotation.x = Math.PI / 2;
+  scene.add(ring);
+
+  function animate(ts) {
+    requestAnimationFrame(animate);
+    const t = ts * 0.001;
+
+    // Breathing orbit radius (nodes pulse closer and farther)
+    const breathe = 4.5 + 1.5 * Math.sin(t * 0.4);
+
+    // Update node positions
+    const positions3D = [];
+    nodes.forEach((n, i) => {
+      const angle = t * n.orbitSpeed + n.orbitPhase;
+      const x = Math.cos(angle) * breathe;
+      const z = Math.sin(angle) * breathe;
+      const y = Math.sin(angle + n.orbitTilt * Math.PI) * 1.2;
+      n.mesh.position.set(x, y, z);
+      n.mesh.rotation.x += 0.008;
+      n.mesh.rotation.y += 0.012;
+      positions3D.push(new THREE.Vector3(x, y, z));
+
+      // Pulse emissive
+      n.mat.emissiveIntensity = 0.4 + 0.3 * Math.sin(t * 1.5 + i * 2.1);
+    });
+
+    // Update lights to follow nodes
+    light1.position.copy(positions3D[0]);
+    light2.position.copy(positions3D[1]);
+    light3.position.copy(positions3D[2]);
+
+    // Update connection threads
+    threadLines.forEach(({ line, geo, mat, pair }) => {
+      const a = positions3D[pair[0]];
+      const b = positions3D[pair[1]];
+      const dist = a.distanceTo(b);
+      const maxDist = breathe * 2.2;
+      const proximity = Math.max(0, 1 - dist / maxDist);
+      mat.opacity = proximity * proximity * 0.85;
+
+      const pos = geo.attributes.position.array;
+      pos[0] = a.x; pos[1] = a.y; pos[2] = a.z;
+      pos[3] = b.x; pos[4] = b.y; pos[5] = b.z;
+      geo.attributes.position.needsUpdate = true;
+    });
+
+    // Core pulse
+    const corePulse = 0.6 + 0.4 * Math.sin(t * 2.2);
+    coreMat.emissiveIntensity = corePulse;
+    core.scale.setScalar(0.8 + 0.3 * corePulse);
+
+    // Camera slow drift
+    camera.position.x = Math.sin(t * 0.07) * 3;
+    camera.position.y = 4 + Math.sin(t * 0.05) * 2;
+    camera.lookAt(0, 0, 0);
+
+    fitRenderer(renderer, camera, canvas);
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SCENE 3 — THE BIFURCATION (One path splits into two diverging trajectories)
+// ═══════════════════════════════════════════════════════════════════════════════
+(function scene3() {
+  const canvas = document.getElementById('canvas3');
+  const renderer = makeRenderer(canvas);
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x06060c, 0.018);
+
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 300);
+  camera.position.set(0, 3, 22);
+  camera.lookAt(0, 0, 0);
+
+  scene.add(new THREE.AmbientLight(0x0a0a18, 2));
+  const goldLight = new THREE.PointLight(0xc9a84c, 4, 30);
+  goldLight.position.set(8, 4, 0);
+  scene.add(goldLight);
+  const redLight = new THREE.PointLight(0x8b2020, 3, 25);
+  redLight.position.set(-8, -2, 0);
+  scene.add(redLight);
+
+  // Particle field
+  const pGeo = new THREE.BufferGeometry();
+  const pCount = 1000;
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 80;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x1e1c28, size: 0.07 })));
+
+  // Generate helix path points
+  function expansionHelix(steps, turns, startR, growRate, color) {
+    const points = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const angle = t * turns * Math.PI * 2;
+      const r = startR + t * growRate;
+      const x = Math.cos(angle) * r;
+      const y = t * 6 - 3;
+      const z = Math.sin(angle) * r;
+      points.push(new THREE.Vector3(x, y, z));
+    }
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.85 });
+    return { line: new THREE.Line(geo, mat), points, mat };
+  }
+
+  function collapseSpiral(steps, turns, startR, shrinkRate, color) {
+    const points = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const angle = t * turns * Math.PI * 2;
+      const r = Math.max(0.05, startR - t * shrinkRate);
+      const x = Math.cos(angle) * r;
+      const y = t * 6 - 3;
+      const z = Math.sin(angle) * r;
+      points.push(new THREE.Vector3(x, y, z));
+    }
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.85 });
+    return { line: new THREE.Line(geo, mat), points, mat };
+  }
+
+  // Expansion path (connection-based, gold) - moves right
+  const expansion = expansionHelix(300, 4, 0.3, 3.5, 0xc9a84c);
+  expansion.line.position.x = 4;
+  scene.add(expansion.line);
+
+  // Collapse path (engagement-based, dim red) - moves left
+  const collapse = collapseSpiral(300, 6, 3.5, 3.4, 0x8b3030);
+  collapse.line.position.x = -4;
+  scene.add(collapse.line);
+
+  // Shared origin point (bright white sphere)
+  const originGeo = new THREE.SphereGeometry(0.22, 16, 16);
+  const originMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 1.5 });
+  const origin = new THREE.Mesh(originGeo, originMat);
+  origin.position.set(0, -3, 0);
+  scene.add(origin);
+
+  // Traveling particles along each path
+  function makeTracer(color, emissive) {
+    const geo = new THREE.SphereGeometry(0.12, 8, 8);
+    const mat = new THREE.MeshStandardMaterial({ color, emissive, emissiveIntensity: 1.2, roughness: 0.2 });
+    return { mesh: new THREE.Mesh(geo, mat), mat };
+  }
+
+  const tracers = [
+    makeTracer(0xe8c96a, 0xc9a84c),
+    makeTracer(0xe8c96a, 0xc9a84c),
+    makeTracer(0xcc5050, 0x8b2020),
+    makeTracer(0xcc5050, 0x8b2020),
+  ];
+  tracers.forEach(t => scene.add(t.mesh));
+
+  // Bifurcation label lines
+  const splitGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(0, -3, 0),
+    new THREE.Vector3(4, -3, 0),
+    new THREE.Vector3(0, -3, 0),
+    new THREE.Vector3(-4, -3, 0),
+  ]);
+  scene.add(new THREE.LineSegments(splitGeo, new THREE.LineBasicMaterial({ color: 0x3a3830, transparent: true, opacity: 0.5 })));
+
+  function animate(ts) {
+    requestAnimationFrame(animate);
+    const t = ts * 0.001;
+
+    // Animate tracers along paths
+    const speed = 0.18;
+    const offsets = [0, 0.5, 0.25, 0.75];
+
+    // Expansion tracers (gold, indices 0 and 1)
+    [0, 1].forEach((i, idx) => {
+      const frac = ((t * speed + offsets[idx]) % 1);
+      const ptIdx = Math.floor(frac * (expansion.points.length - 1));
+      const pt = expansion.points[ptIdx];
+      tracers[i].mesh.position.set(pt.x + 4, pt.y, pt.z);
+      tracers[i].mat.emissiveIntensity = 0.8 + 0.4 * Math.sin(t * 3 + idx);
+    });
+
+    // Collapse tracers (red, indices 2 and 3)
+    [2, 3].forEach((i, idx) => {
+      const frac = ((t * speed + offsets[idx]) % 1);
+      const ptIdx = Math.floor(frac * (collapse.points.length - 1));
+      const pt = collapse.points[ptIdx];
+      tracers[i].mesh.position.set(pt.x - 4, pt.y, pt.z);
+      tracers[i].mat.emissiveIntensity = 0.5 + 0.2 * Math.sin(t * 2 + idx);
+    });
+
+    // Origin pulse
+    originMat.emissiveIntensity = 1.2 + 0.5 * Math.sin(t * 1.8);
+
+    // Camera slow sweep
+    const camAngle = t * 0.04;
+    camera.position.x = Math.sin(camAngle) * 4;
+    camera.position.y = 3 + Math.sin(t * 0.06) * 1.5;
+    camera.lookAt(0, 0, 0);
+
+    fitRenderer(renderer, camera, canvas);
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+})();
+</script>
+
+</body>
+</html>
