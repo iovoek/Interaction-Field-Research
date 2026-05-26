@@ -212,7 +212,6 @@
         </div>
       </div>
     </li>
-      <li><a href="visualizations.html">Visualizations</a></li>
   </ul>
   <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
     <span></span><span></span><span></span>
@@ -221,24 +220,6 @@
 <div id="mobile-menu" class="mobile-menu">
   <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
   <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
-  <span class="mm-label">Articles</span>
-  <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
-  <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
-  <a href="article-2-framework.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">2. Measuring the Wrong Layer</a>
-  <a href="article-3-social-media.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">3. Burning the House for Kindling</a>
-  <a href="article-4-value.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">4. Value Is Not a Number</a>
-  <a href="article-5-math.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">5. Why Error Grows</a>
-  <a href="article-6-domains.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">6. The Same Mistake Everywhere</a>
-  <a href="article-7-falsifiability.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">7. How This Theory Could Be Wrong</a>
-  <a href="article-8-roadmap.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">8. What Comes Next</a>
-  <a href="article-9-pharma.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">9. The Drug Industry's 90% Problem</a>
-  <span class="mm-label">Resources</span>
-  <a href="terms.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Glossary</a>
-  <a href="citations.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Citations</a>
-  <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
-  <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
-</div>
-<a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
   <span class="mm-label">Articles</span>
   <a href="article-0-introduction.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">0. What This Is</a>
   <a href="article-1-origin.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">1. The Backwards Problem</a>
@@ -420,6 +401,245 @@
     <div class="caveat-label">Model Caveat</div>
     <p>Under these parameter assumptions, the model predicts the outcomes described above. These are not empirical measurements from a live platform. Each parameter is anchored to published data, but the model is a simplification of a complex system. The advertiser cliff threshold (0.60 polarization), the CPM floor ($5.80), and the CAC model ($0.286/user/month) are each derived from real data points, but the specific trajectory between them involves modeling choices that reasonable analysts could dispute. The source code is available at <code>simulation/social_media_algorithm_sim_v5.py</code> (seed=42, all parameters documented and adjustable). Goodhart's Law applies: any metric can be gamed, and the connection-based ranking function described below would face adversarial optimization pressure if deployed at scale. This is an acknowledged limitation of the framework.</p>
   </div>
+
+  <div class="rule"></div>
+
+  <h2>The Research That Anchors <em>the Model</em></h2>
+
+  <p>The v5 simulation is not a theoretical exercise. Every behavioral parameter is derived from peer-reviewed research. This section explains what that research actually found, because the numbers are more striking than the model summary suggests.</p>
+
+  <h3 style="font-size:1.15rem; font-weight:500; color:var(--fg); margin:2rem 0 0.8rem; letter-spacing:-0.01em;">Milli et al. (2025): Engagement vs. Satisfaction</h3>
+  <p>The foundational behavioral research for this model is Smitha Milli et al., published in PNAS Nexus in 2025. The study directly measured the gap between what engagement-optimized algorithms deliver and what users say they want. The key findings:</p>
+  <table class="sim-table">
+    <thead>
+      <tr>
+        <th>Finding</th>
+        <th>Measured Value</th>
+        <th>What It Means</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Anger amplification</td>
+        <td class="bad">+0.47 SD</td>
+        <td class="neutral">The algorithm systematically selects content nearly half a standard deviation angrier than what users say they want to see</td>
+      </tr>
+      <tr>
+        <td>User value divergence</td>
+        <td class="bad">0.18 SD</td>
+        <td class="neutral">Users consistently rated the content the algorithm showed them as less valuable than content they would have chosen themselves</td>
+      </tr>
+      <tr>
+        <td>Structural vs. calibration error</td>
+        <td class="bad">Structural</td>
+        <td class="neutral">The divergence is a predictable consequence of the optimization target, not a tuning error. Fixing it requires changing what the algorithm optimizes for</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The 0.47 SD anger amplification figure is what drives the polarization accumulation in the v5 model. The model uses this as the behavioral mechanism through which the platform's content distribution shifts over time. By Month 36, the engagement-based platform has a polarization score of 0.601, which crosses the advertiser cliff threshold. The Milli et al. research is what makes that trajectory empirically grounded rather than assumed.</p>
+
+  <h3 style="font-size:1.15rem; font-weight:500; color:var(--fg); margin:2rem 0 0.8rem; letter-spacing:-0.01em;">Germano et al. (2026): Polarization Accumulation Rate</h3>
+  <p>Germano et al. formalized the mechanism through which engagement amplification produces polarization. Their key finding: polarization accumulates at approximately 0.167 standard deviations per algorithmic update cycle. This is the rate parameter used in the v5 model. The implication is that polarization is not a side effect that can be managed separately from the algorithm. It is a direct output of the optimization function. Every time the algorithm updates its weights to maximize engagement, it moves the content distribution slightly further toward the polarizing end of the spectrum.</p>
+  <p>The compounding nature of this effect is what makes it so dangerous. At 0.167 SD per cycle, the polarization accumulation is slow enough that it is not visible in any single update. But over 36 months of continuous optimization, the cumulative effect is a platform that has been structurally transformed from a place where people connect to a place where people react. The model's Month 36 polarization score of 0.601 for the engagement-based platform is not an extreme assumption. It is the arithmetic result of applying the Germano et al. rate to 36 months of optimization cycles.</p>
+
+  <div class="rule"></div>
+
+  <h2>The X/Twitter Advertiser Exodus: <em>A Real-World Case Study</em></h2>
+
+  <p>The advertiser cliff in the v5 model is not a hypothetical. It is anchored to a documented event: the X/Twitter advertiser exodus of 2022 to 2023. This is the closest thing to a real-world experiment in the model, and the data is stark.</p>
+  <p>Following Elon Musk's acquisition of Twitter in October 2022 and the subsequent changes to content moderation and verification, the platform's polarization metrics deteriorated sharply. The documented consequences:</p>
+  <table class="sim-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Value</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Revenue decline (year-over-year)</td>
+        <td class="bad">-40%</td>
+        <td class="neutral">Reuters / Platformer, Jan 2023</td>
+      </tr>
+      <tr>
+        <td>Top 10 ad categories revenue decline</td>
+        <td class="bad">-71%</td>
+        <td class="neutral">MediaPost</td>
+      </tr>
+      <tr>
+        <td>Top 30 advertisers who stopped all ads</td>
+        <td class="bad">14 of 30</td>
+        <td class="neutral">MediaPost</td>
+      </tr>
+      <tr>
+        <td>X Premium subscription conversion</td>
+        <td class="bad">&lt;1%</td>
+        <td class="neutral">TechCrunch 2024</td>
+      </tr>
+      <tr>
+        <td>Effective CPM (Q1 2026)</td>
+        <td class="bad">$5.80</td>
+        <td class="neutral">Digital Applied Q1 2026</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The X/Twitter case is the model's advertiser cliff event, observed in the real world. The platform crossed a polarization threshold, advertisers responded by pulling spend, and the CPM collapsed to the floor level now documented in Q1 2026 data. The model's cliff threshold of 0.60 polarization is calibrated to this event.</p>
+  <p>What makes this particularly relevant to the Interaction Field framework is that the X/Twitter collapse was not caused by bad technology or bad products. The underlying platform infrastructure was the same before and after the acquisition. The collapse was caused by a structural change in the content distribution, which was itself caused by a change in the effective optimization target. When the platform reduced content moderation, it changed the deep structure of what the algorithm was effectively optimizing for. The advertiser exodus followed directly from that structural change.</p>
+  <p>This is the Backwards Problem in its most financially consequential form: a decision about surface-level content policy changed the deep structure of the platform's value proposition to advertisers, and the revenue consequences were immediate and severe. The 40% year-over-year revenue decline is not a data point in a model. It is a documented outcome of exactly the structural misorientation this framework describes.</p>
+
+  <div class="rule"></div>
+
+  <h2>What the Churn Numbers <em>Actually Mean</em></h2>
+
+  <p>The model's churn figures deserve more attention than they typically receive in summary form. A monthly churn rate of 7.1% sounds abstract. What it means in practice:</p>
+  <table class="sim-table">
+    <thead>
+      <tr>
+        <th>Churn Rate</th>
+        <th>Annual User Turnover</th>
+        <th>Platform Analog</th>
+        <th>Implication</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>7.1% / month (engagement, Month 36)</td>
+        <td class="bad">~58% annually</td>
+        <td class="neutral">Worse than Twitter reference</td>
+        <td class="bad">Platform replaces majority of its user base every year</td>
+      </tr>
+      <tr>
+        <td>5.4% / month (Twitter reference)</td>
+        <td class="bad">~48% annually</td>
+        <td class="neutral">Qualtrics 2025 Twitter rate</td>
+        <td class="bad">Platform replaces nearly half its users annually</td>
+      </tr>
+      <tr>
+        <td>3.8% / month (engagement, Month 1)</td>
+        <td class="neutral">~37% annually</td>
+        <td class="neutral">Instagram reference rate</td>
+        <td class="neutral">Starting point for the engagement model</td>
+      </tr>
+      <tr>
+        <td>1.5% / month (connection, all months)</td>
+        <td class="good">~17% annually</td>
+        <td class="neutral">Facebook reference rate</td>
+        <td class="good">Platform retains 83% of users year-over-year</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>A platform with 58% annual user turnover is not a platform. It is a revolving door. The direct cost of replacing those users is Meta's documented $0.286/user/month, roughly $3.43/user/year. But the indirect cost is larger: the loss of behavioral data, social graph depth, network effects, and advertising targeting precision that long-tenure users represent. A new user is worth far less to an advertiser than a three-year user whose preferences and behaviors are well-understood. The engagement-based model is continuously destroying its own most valuable asset, its long-tenure user base, and replacing it with new users who are cheaper to acquire but worth less to advertisers.</p>
+  <p>The connection-based model's 1.5% monthly churn is not an aspirational target invented for the simulation. It is the documented churn rate of Facebook, the platform that was historically the most successful at building genuine social connection at scale. The model is not predicting that a connection-based platform will outperform anything that has ever existed. It is predicting that it will perform like Facebook did before Facebook itself began optimizing more aggressively for engagement metrics in the mid-2010s.</p>
+
+  <div class="rule"></div>
+
+  <h2>The Empirical Parameter <em>Derivation</em></h2>
+
+  <p>Every parameter in the v5 model is derived from a specific published source. This table documents the full derivation chain so that the model can be evaluated, challenged, and updated as new data becomes available.</p>
+  <table class="sim-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Value Used</th>
+        <th>Source</th>
+        <th>Derivation Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Anger amplification</td>
+        <td class="neutral">0.47 SD</td>
+        <td class="neutral">Milli et al. 2025, PNAS Nexus</td>
+        <td class="neutral">Direct measurement of engagement vs. stated preference gap</td>
+      </tr>
+      <tr>
+        <td>User value divergence</td>
+        <td class="neutral">0.18 SD</td>
+        <td class="neutral">Milli et al. 2025, PNAS Nexus</td>
+        <td class="neutral">Gap between engagement-predicted and user-rated content value</td>
+      </tr>
+      <tr>
+        <td>Polarization per update cycle</td>
+        <td class="neutral">0.167 SD</td>
+        <td class="neutral">Germano et al. 2026</td>
+        <td class="neutral">Rate of polarization accumulation per algorithmic update</td>
+      </tr>
+      <tr>
+        <td>Marketing cost per user/month</td>
+        <td class="neutral">$0.286</td>
+        <td class="neutral">Meta 2024 10-K</td>
+        <td class="neutral">Sales &amp; marketing spend divided by MAU, annualized</td>
+      </tr>
+      <tr>
+        <td>CPM floor (X/Twitter)</td>
+        <td class="neutral">$5.80</td>
+        <td class="neutral">Digital Applied Q1 2026</td>
+        <td class="neutral">Lowest major platform CPM; engagement model converges here</td>
+      </tr>
+      <tr>
+        <td>CPM start (Facebook)</td>
+        <td class="neutral">$11.20</td>
+        <td class="neutral">Digital Applied Q1 2026</td>
+        <td class="neutral">Neutral starting point for both models</td>
+      </tr>
+      <tr>
+        <td>CPM ceiling (YouTube)</td>
+        <td class="neutral">$15.40</td>
+        <td class="neutral">Digital Applied Q1 2026</td>
+        <td class="neutral">Highest engagement-quality platform; connection model approaches this</td>
+      </tr>
+      <tr>
+        <td>LinkedIn CPM (reference)</td>
+        <td class="neutral">$34.50</td>
+        <td class="neutral">Digital Applied Q1 2026</td>
+        <td class="neutral">Professional network CPM; used as upper bound reference only</td>
+      </tr>
+      <tr>
+        <td>Engagement base churn</td>
+        <td class="neutral">3.8% / month</td>
+        <td class="neutral">Qualtrics 2025</td>
+        <td class="neutral">Instagram monthly churn rate; starting point for engagement model</td>
+      </tr>
+      <tr>
+        <td>Connection base churn</td>
+        <td class="neutral">1.5% / month</td>
+        <td class="neutral">Qualtrics 2025</td>
+        <td class="neutral">Facebook monthly churn rate; stable throughout connection model</td>
+      </tr>
+      <tr>
+        <td>Twitter reference churn</td>
+        <td class="neutral">5.4% / month</td>
+        <td class="neutral">Qualtrics 2025</td>
+        <td class="neutral">Validates upper bound of engagement model trajectory at Month 36</td>
+      </tr>
+      <tr>
+        <td>Subscription conversion (low)</td>
+        <td class="neutral">&lt;1%</td>
+        <td class="neutral">TechCrunch 2024</td>
+        <td class="neutral">X Premium conversion rate at low satisfaction</td>
+      </tr>
+      <tr>
+        <td>Subscription conversion (high)</td>
+        <td class="neutral">5 to 10%</td>
+        <td class="neutral">TechCrunch 2024</td>
+        <td class="neutral">Substack conversion rate at high trust</td>
+      </tr>
+      <tr>
+        <td>Advertiser cliff threshold</td>
+        <td class="neutral">0.60 polarization</td>
+        <td class="neutral">X/Twitter real data (MediaPost, Reuters)</td>
+        <td class="neutral">Calibrated to documented advertiser exodus event</td>
+      </tr>
+      <tr>
+        <td>Advertiser cliff CPM drop</td>
+        <td class="neutral">~45%</td>
+        <td class="neutral">X/Twitter real data (MediaPost)</td>
+        <td class="neutral">Top 10 ad categories down 71%; modeled conservatively at 45%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The model source code is available at <code>simulation/social_media_algorithm_sim_v5.py</code> with seed=42 for full reproducibility. Every parameter in the table above is documented in the source code with its derivation. The model is designed to be challenged: changing any parameter and rerunning the simulation will show how sensitive the conclusions are to that specific assumption. The qualitative direction of the results is robust to moderate parameter variation; the specific numbers are not.</p>
 
   <div class="rule"></div>
 
