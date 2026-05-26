@@ -65,7 +65,7 @@
     .dropdown-trigger { cursor: pointer; }
     .dropdown-content {
       display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-      padding-top: 12px; /* hover bridge -- prevents gap from closing dropdown */
+      padding-top: 12px;
       z-index: 1001;
     }
     .dropdown-content-inner {
@@ -111,7 +111,7 @@
       .site-nav .nav-menu { display: none; }
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
-      .hero { padding: 5rem 1.5rem 3rem; }
+      .hero { min-height: 420px; }
       .articles-section, .resources-section, .intro-section { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
 
@@ -119,7 +119,7 @@
     .hero {
       position: relative;
       width: 100%;
-      min-height: 520px;
+      min-height: 560px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,25 +143,27 @@
     }
     .hero-kicker {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: var(--teal);
+      font-size: 0.6rem; color: rgba(0,230,255,0.7);
       letter-spacing: 0.15em; text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
     .hero h1 {
       font-family: 'Noto Serif', Georgia, serif;
       font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 300; color: var(--fg);
+      font-weight: 300; color: #f0eee8;
       line-height: 1.1; margin-bottom: 1.5rem;
+      text-shadow: 0 0 40px rgba(0,0,0,0.8);
     }
-    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero h1 em { font-style: italic; color: #00e6ff; }
     .hero-sub {
-      font-size: 1.1rem; color: var(--fg2);
+      font-size: 1.05rem; color: rgba(200,200,210,0.85);
       line-height: 1.8; max-width: 600px; margin: 0 auto 2rem;
       font-weight: 300;
+      text-shadow: 0 0 20px rgba(0,0,0,0.9);
     }
     .hero-meta {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: var(--fg3);
+      font-size: 0.6rem; color: rgba(150,148,145,0.7);
       letter-spacing: 0.08em;
     }
 
@@ -306,31 +308,34 @@
     <li class="dropdown">
       <a href="#" class="dropdown-trigger">Articles &#9662;</a>
       <div class="dropdown-content">
-        <a href="article-0-introduction.html">0. What This Is</a>
-        <a href="article-1-origin.html">1. The Backwards Problem</a>
-        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
-        <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
-        <a href="article-4-value.html">4. Value Is Not a Number</a>
-        <a href="article-5-math.html">5. Why Error Grows</a>
-        <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
-        <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
-        <a href="article-8-roadmap.html">8. What Comes Next</a>
-        <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
-        <div class="dd-divider"></div>
-        <a href="social-media.html">Social Media (Standalone)</a>
-        <a href="pharma.html">Pharma (Standalone)</a>
+        <div class="dropdown-content-inner">
+          <a href="article-0-introduction.html">0. What This Is</a>
+          <a href="article-1-origin.html">1. The Backwards Problem</a>
+          <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+          <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
+          <a href="article-4-value.html">4. Value Is Not a Number</a>
+          <a href="article-5-math.html">5. Why Error Grows</a>
+          <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+          <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+          <a href="article-8-roadmap.html">8. What Comes Next</a>
+          <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+          <div class="dd-divider"></div>
+          <a href="social-media.html">Social Media (Standalone)</a>
+          <a href="pharma.html">Pharma (Standalone)</a>
+        </div>
       </div>
     </li>
     <li class="dropdown">
       <a href="#" class="dropdown-trigger">Resources &#9662;</a>
       <div class="dropdown-content">
-        <a href="terms.html">Glossary of Terms</a>
-        <a href="citations.html">Citations</a>
-        <a href="full-paper.html">Full Paper (Long Form)</a>
-        <a href="strategic-report.html">Strategic Report</a>
+        <div class="dropdown-content-inner">
+          <a href="terms.html">Glossary of Terms</a>
+          <a href="citations.html">Citations</a>
+          <a href="full-paper.html">Full Paper (Long Form)</a>
+          <a href="strategic-report.html">Strategic Report</a>
+        </div>
       </div>
     </li>
-      <li><a href="visualizations.html">Visualizations</a></li>
   </ul>
   <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
     <span></span><span></span><span></span>
@@ -513,128 +518,397 @@
   </div>
 </footer>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-
-// Hero canvas: Interaction Field visualization
-// Three orbiting geometric forms with luminous connection threads
+<script>
+// Hero canvas: Three-scene theory visualization
+// Geometry Wars aesthetic: electric blues, magentas, neon on deep black
+// Scene 1: The Backwards Problem (error propagation from surface vs deep structure)
+// Scene 2: The Interaction Field (two fields merging, emergent structure at intersection)
+// Scene 3: The Bifurcation (ordered path splits into order vs entropy)
 (function() {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(new THREE.Color(0x06060c), 1);
-
-  const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x06060c, 0.022);
-
-  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
-  camera.position.set(0, 4, 20);
-  camera.lookAt(0, 0, 0);
-
-  // Lights
-  scene.add(new THREE.AmbientLight(0x0d0d1a, 2));
-  const light1 = new THREE.PointLight(0xc9a84c, 3, 25);
-  const light2 = new THREE.PointLight(0x2a9d8f, 2, 20);
-  const light3 = new THREE.PointLight(0x7c6fcd, 2, 20);
-  scene.add(light1); scene.add(light2); scene.add(light3);
-
-  // Particle field
-  const pGeo = new THREE.BufferGeometry();
-  const pCount = 1000;
-  const pPos = new Float32Array(pCount * 3);
-  for (let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 60;
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x1e1c28, size: 0.07 })));
-
-  // Three orbiting nodes
-  const nodeData = [
-    { color: 0xc9a84c, emissive: 0xc9a84c, geo: new THREE.IcosahedronGeometry(0.65, 1), orbitSpeed: 0.36, orbitPhase: 0, orbitTilt: 0.3 },
-    { color: 0x2a9d8f, emissive: 0x2a9d8f, geo: new THREE.OctahedronGeometry(0.6, 0), orbitSpeed: 0.36, orbitPhase: Math.PI * 2/3, orbitTilt: -0.25 },
-    { color: 0x9d8fcc, emissive: 0x7c6fcd, geo: new THREE.TetrahedronGeometry(0.68, 0), orbitSpeed: 0.36, orbitPhase: Math.PI * 4/3, orbitTilt: 0.15 },
-  ];
-  const nodes = nodeData.map(d => {
-    const mat = new THREE.MeshStandardMaterial({ color: d.color, emissive: d.emissive, emissiveIntensity: 0.5, roughness: 0.3, metalness: 0.6 });
-    const mesh = new THREE.Mesh(d.geo, mat);
-    scene.add(mesh);
-    return { mesh, mat, ...d };
-  });
-
-  // Connection threads
-  const pairs = [[0,1],[1,2],[0,2]];
-  const threadColors = [0xc9a84c, 0x2a9d8f, 0x9d8fcc];
-  const threadLines = pairs.map((pair, i) => {
-    const geo = new THREE.BufferGeometry();
-    const positions = new Float32Array(6);
-    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const mat = new THREE.LineBasicMaterial({ color: threadColors[i], transparent: true, opacity: 0 });
-    const line = new THREE.Line(geo, mat);
-    scene.add(line);
-    return { line, geo, mat, pair };
-  });
-
-  // Central core
-  const coreMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.8, roughness: 0.1 });
-  const core = new THREE.Mesh(new THREE.SphereGeometry(0.25, 32, 32), coreMat);
-  scene.add(core);
-
+  let W, H;
   function resize() {
-    const w = canvas.parentElement.clientWidth;
-    const h = canvas.parentElement.clientHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
+    W = canvas.width = canvas.parentElement.clientWidth;
+    H = canvas.height = canvas.parentElement.clientHeight;
   }
   resize();
   window.addEventListener('resize', resize);
 
-  function animate(ts) {
-    requestAnimationFrame(animate);
-    const t = ts * 0.001;
-    const breathe = 4.2 + 1.4 * Math.sin(t * 0.4);
-    const positions3D = [];
-    nodes.forEach((n, i) => {
-      const angle = t * n.orbitSpeed + n.orbitPhase;
-      const x = Math.cos(angle) * breathe;
-      const z = Math.sin(angle) * breathe;
-      const y = Math.sin(angle + n.orbitTilt * Math.PI) * 1.1;
-      n.mesh.position.set(x, y, z);
-      n.mesh.rotation.x += 0.008;
-      n.mesh.rotation.y += 0.012;
-      n.mat.emissiveIntensity = 0.4 + 0.3 * Math.sin(t * 1.5 + i * 2.1);
-      positions3D.push(new THREE.Vector3(x, y, z));
-    });
-    light1.position.copy(positions3D[0]);
-    light2.position.copy(positions3D[1]);
-    light3.position.copy(positions3D[2]);
-    threadLines.forEach(({ geo, mat, pair }) => {
-      const a = positions3D[pair[0]], b = positions3D[pair[1]];
-      const dist = a.distanceTo(b);
-      const proximity = Math.max(0, 1 - dist / (breathe * 2.2));
-      mat.opacity = proximity * proximity * 0.8;
-      const pos = geo.attributes.position.array;
-      pos[0]=a.x; pos[1]=a.y; pos[2]=a.z;
-      pos[3]=b.x; pos[4]=b.y; pos[5]=b.z;
-      geo.attributes.position.needsUpdate = true;
-    });
-    const cp = 0.6 + 0.4 * Math.sin(t * 2.2);
-    coreMat.emissiveIntensity = cp;
-    core.scale.setScalar(0.8 + 0.3 * cp);
-    camera.position.x = Math.sin(t * 0.07) * 3;
-    camera.position.y = 4 + Math.sin(t * 0.05) * 1.5;
-    camera.lookAt(0, 0, 0);
-    renderer.render(scene, camera);
+  // Color palette: Geometry Wars inspired
+  const C = {
+    bg: '#03030a',
+    cyan: '#00e5ff',
+    magenta: '#ff00cc',
+    green: '#00ff88',
+    orange: '#ff6600',
+    red: '#ff2244',
+    white: '#ffffff',
+    gridLine: 'rgba(0,180,255,0.06)',
+    gridLineBright: 'rgba(0,180,255,0.14)',
+  };
+
+  // Scene timing: each scene lasts 10 seconds, total loop = 30s
+  const SCENE_DURATION = 10;
+  const TOTAL = 30;
+
+  // ---- SCENE 1: The Backwards Problem ----
+  // A grid of nodes. Two waves propagate: one from surface (top) inward -- red/orange corruption.
+  // Then reset, one from deep structure (center) outward -- cyan/green coherence.
+  function drawScene1(progress, alpha) {
+    const cols = 12, rows = 8;
+    const cellW = W / (cols + 1), cellH = H / (rows + 1);
+    const phase = progress * 2; // 0..2: first half = backwards, second half = forwards
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    // Background grid
+    ctx.strokeStyle = C.gridLine;
+    ctx.lineWidth = 0.5;
+    for (let x = 0; x <= W; x += cellW) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y <= H; y += cellH) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    const backwards = phase < 1;
+    const t = backwards ? phase : phase - 1; // 0..1 within each half
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = (c + 1) * cellW;
+        const y = (r + 1) * cellH;
+
+        let activation, color, glowColor;
+
+        if (backwards) {
+          // Wave from surface (top row) propagating downward -- backwards
+          const distFromTop = r / (rows - 1); // 0 at top, 1 at bottom
+          const waveFront = t * 1.4; // wave travels faster than 1 row/unit
+          const dist = distFromTop;
+          activation = Math.max(0, 1 - Math.abs(dist - waveFront) * 3);
+          // Error accumulates: nodes behind the wave are corrupted (orange/red)
+          const corrupted = dist < waveFront - 0.1 ? Math.min(1, (waveFront - 0.1 - dist) * 4) : 0;
+          const fresh = activation;
+          color = corrupted > 0.05
+            ? `rgba(${Math.round(255)},${Math.round(80 * (1-corrupted))},${Math.round(30 * (1-corrupted))},${0.5 + corrupted * 0.5})`
+            : `rgba(255,${Math.round(100 + 155 * fresh)},${Math.round(50 * fresh)},${fresh * 0.9})`;
+          glowColor = corrupted > 0.05 ? C.red : C.orange;
+        } else {
+          // Wave from deep structure (center) propagating outward -- correct orientation
+          const cx = (cols - 1) / 2, cy = (rows - 1) / 2;
+          const distFromCenter = Math.sqrt((c - cx) ** 2 + (r - cy) ** 2) / Math.sqrt(cx * cx + cy * cy);
+          const waveFront = t * 1.3;
+          activation = Math.max(0, 1 - Math.abs(distFromCenter - waveFront) * 3);
+          const coherent = distFromCenter < waveFront - 0.05 ? Math.min(1, (waveFront - 0.05 - distFromCenter) * 3) : 0;
+          color = `rgba(${Math.round(0 + 100 * activation)},${Math.round(200 + 55 * coherent)},${Math.round(200 + 55 * activation)},${0.4 + coherent * 0.6})`;
+          glowColor = C.cyan;
+        }
+
+        const r2 = 3 + activation * 5;
+        if (activation > 0.05) {
+          ctx.shadowColor = glowColor;
+          ctx.shadowBlur = 12 + activation * 20;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, r2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Connection lines to neighbors
+        if (c < cols - 1 && activation > 0.1) {
+          const nx = (c + 2) * cellW;
+          ctx.strokeStyle = backwards
+            ? `rgba(255,80,30,${activation * 0.4})`
+            : `rgba(0,230,255,${activation * 0.4})`;
+          ctx.lineWidth = activation * 1.5;
+          ctx.shadowBlur = 0;
+          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(nx, y); ctx.stroke();
+        }
+        if (r < rows - 1 && activation > 0.1) {
+          const ny = (r + 2) * cellH;
+          ctx.strokeStyle = backwards
+            ? `rgba(255,80,30,${activation * 0.4})`
+            : `rgba(0,230,255,${activation * 0.4})`;
+          ctx.lineWidth = activation * 1.5;
+          ctx.shadowBlur = 0;
+          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, ny); ctx.stroke();
+        }
+      }
+    }
+
+    ctx.shadowBlur = 0;
+    ctx.restore();
   }
-  requestAnimationFrame(animate);
+
+  // ---- SCENE 2: The Interaction Field ----
+  // Two distinct field structures (hexagonal lattices) drift toward each other.
+  // At intersection, emergent bright nodes appear that neither field had alone.
+  function drawScene2(progress, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    // Background grid
+    ctx.strokeStyle = C.gridLine;
+    ctx.lineWidth = 0.5;
+    const gs = 40;
+    for (let x = 0; x < W; x += gs) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += gs) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    // Two fields approach each other, meet, then separate
+    // progress 0..1: approach (0..0.4), overlap (0.4..0.6), separate (0.6..1)
+    const approach = Math.min(1, progress / 0.4);
+    const overlap = progress >= 0.4 && progress <= 0.6 ? (progress - 0.4) / 0.2 : (progress > 0.6 ? 1 - (progress - 0.6) / 0.4 : 0);
+    const maxSep = W * 0.28;
+    const sep = maxSep * (1 - approach * 0.85);
+
+    const cx = W / 2, cy = H / 2;
+    const fieldRadius = Math.min(W, H) * 0.28;
+    const nodeSpacing = 38;
+
+    function drawField(ox, oy, color, glowColor, emergentBoost) {
+      const rows2 = Math.ceil(fieldRadius * 2 / nodeSpacing);
+      for (let ri = -rows2; ri <= rows2; ri++) {
+        for (let ci = -rows2; ci <= rows2; ci++) {
+          const nx = ox + ci * nodeSpacing + (ri % 2 === 0 ? 0 : nodeSpacing / 2);
+          const ny = oy + ri * nodeSpacing * 0.866;
+          const dist = Math.sqrt((nx - ox) ** 2 + (ny - oy) ** 2);
+          if (dist > fieldRadius) continue;
+          const edgeFade = Math.max(0, 1 - dist / fieldRadius);
+          const boost = emergentBoost * edgeFade;
+          const r2 = 2.5 + boost * 5;
+          ctx.shadowColor = glowColor;
+          ctx.shadowBlur = 6 + boost * 18;
+          ctx.fillStyle = color;
+          ctx.globalAlpha = alpha * (0.35 + edgeFade * 0.5 + boost * 0.5);
+          ctx.beginPath();
+          ctx.arc(nx, ny, r2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    // Field A: cyan/blue, left side
+    drawField(cx - sep, cy, 'rgba(0,200,255,0.9)', C.cyan, 0);
+    // Field B: magenta/pink, right side
+    drawField(cx + sep, cy, 'rgba(255,0,200,0.9)', C.magenta, 0);
+
+    // Emergent intersection zone
+    if (overlap > 0.01) {
+      const interR = fieldRadius * 0.5 * overlap;
+      const steps = 60;
+      for (let i = 0; i < steps; i++) {
+        const angle = (i / steps) * Math.PI * 2;
+        const r3 = interR * (0.3 + Math.random() * 0.7);
+        const ex = cx + Math.cos(angle) * r3;
+        const ey = cy + Math.sin(angle) * r3;
+        const brightness = overlap * (0.6 + Math.random() * 0.4);
+        ctx.shadowColor = '#ffffff';
+        ctx.shadowBlur = 20 * brightness;
+        ctx.fillStyle = `rgba(255,255,255,${brightness * 0.9})`;
+        ctx.globalAlpha = alpha * brightness;
+        ctx.beginPath();
+        ctx.arc(ex, ey, 2 + brightness * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      // Emergent ring
+      ctx.globalAlpha = alpha * overlap * 0.6;
+      ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = '#ffffff';
+      ctx.shadowBlur = 15;
+      ctx.beginPath();
+      ctx.arc(cx, cy, interR, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
+
+  // ---- SCENE 3: The Bifurcation ----
+  // A single ordered helix path splits into two: one expands (cyan, ordered), one collapses (red, chaotic)
+  function drawScene3(progress, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    // Background grid -- perspective-style
+    ctx.strokeStyle = C.gridLine;
+    ctx.lineWidth = 0.5;
+    const vanishX = W / 2, vanishY = H * 0.38;
+    const gridLines = 14;
+    for (let i = 0; i <= gridLines; i++) {
+      const x = (i / gridLines) * W;
+      ctx.beginPath(); ctx.moveTo(x, H); ctx.lineTo(vanishX, vanishY); ctx.stroke();
+    }
+    for (let j = 1; j <= 8; j++) {
+      const t2 = j / 8;
+      const y = vanishY + (H - vanishY) * t2;
+      const xLeft = vanishX - (vanishX) * t2;
+      const xRight = vanishX + (W - vanishX) * t2;
+      ctx.beginPath(); ctx.moveTo(xLeft, y); ctx.lineTo(xRight, y); ctx.stroke();
+    }
+
+    const splitX = W * 0.42;
+    const splitY = H * 0.52;
+    const trailLen = 120;
+
+    // Pre-split: single ordered helix approaching the split point
+    const preSplitPoints = [];
+    const preSplitCount = 60;
+    for (let i = 0; i < preSplitCount; i++) {
+      const t2 = i / preSplitCount;
+      const x = W * 0.1 + t2 * (splitX - W * 0.1);
+      const y = splitY + Math.sin(t2 * Math.PI * 3 + progress * Math.PI * 2) * 18 * (1 - t2 * 0.5);
+      preSplitPoints.push({ x, y, t: t2 });
+    }
+
+    // Draw pre-split path
+    ctx.lineWidth = 2;
+    ctx.shadowColor = C.cyan;
+    ctx.shadowBlur = 8;
+    for (let i = 1; i < preSplitPoints.length; i++) {
+      const a = preSplitPoints[i - 1], b = preSplitPoints[i];
+      const fade = i / preSplitPoints.length;
+      ctx.strokeStyle = `rgba(0,220,255,${fade * 0.8})`;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    // Split point glow
+    ctx.shadowColor = '#ffffff';
+    ctx.shadowBlur = 25;
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    ctx.beginPath();
+    ctx.arc(splitX, splitY, 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Post-split branch A: ordered expansion (cyan, helix growing wider)
+    const branchAPoints = [];
+    const branchCount = 80;
+    for (let i = 0; i < branchCount; i++) {
+      const t2 = i / branchCount;
+      const x = splitX + t2 * (W * 0.5);
+      const amplitude = 15 + t2 * 60; // grows wider
+      const y = splitY - t2 * H * 0.22 + Math.sin(t2 * Math.PI * 4 + progress * Math.PI * 2) * amplitude;
+      branchAPoints.push({ x, y, t: t2 });
+    }
+
+    ctx.lineWidth = 2;
+    ctx.shadowColor = C.cyan;
+    ctx.shadowBlur = 10;
+    for (let i = 1; i < branchAPoints.length; i++) {
+      const a = branchAPoints[i - 1], b = branchAPoints[i];
+      const fade = i / branchAPoints.length;
+      ctx.strokeStyle = `rgba(0,230,255,${fade * 0.9})`;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    // Tracer on branch A
+    const tracerA = branchAPoints[Math.floor(((progress * 0.7) % 1) * (branchCount - 1))];
+    if (tracerA) {
+      ctx.shadowColor = C.cyan;
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = C.cyan;
+      ctx.beginPath();
+      ctx.arc(tracerA.x, tracerA.y, 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Post-split branch B: chaotic collapse (red/orange, amplitude shrinks, noise increases)
+    const branchBPoints = [];
+    for (let i = 0; i < branchCount; i++) {
+      const t2 = i / branchCount;
+      const x = splitX + t2 * (W * 0.5);
+      const amplitude = 15 * (1 - t2 * 0.85); // shrinks toward zero
+      const noise = t2 * 12 * (Math.sin(i * 7.3 + progress * 11) + Math.cos(i * 3.7 + progress * 7));
+      const y = splitY + t2 * H * 0.22 + Math.sin(t2 * Math.PI * 6 + progress * Math.PI * 3) * amplitude + noise;
+      branchBPoints.push({ x, y, t: t2 });
+    }
+
+    ctx.lineWidth = 1.5;
+    ctx.shadowColor = C.red;
+    ctx.shadowBlur = 8;
+    for (let i = 1; i < branchBPoints.length; i++) {
+      const a = branchBPoints[i - 1], b = branchBPoints[i];
+      const fade = (1 - i / branchBPoints.length) * 0.8 + 0.2;
+      ctx.strokeStyle = `rgba(255,${Math.round(40 + 60 * (1 - i/branchBPoints.length))},30,${fade * 0.85})`;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    // Tracer on branch B
+    const tracerB = branchBPoints[Math.floor(((progress * 0.7 + 0.5) % 1) * (branchCount - 1))];
+    if (tracerB) {
+      ctx.shadowColor = C.red;
+      ctx.shadowBlur = 15;
+      ctx.fillStyle = C.red;
+      ctx.beginPath();
+      ctx.arc(tracerB.x, tracerB.y, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
+
+  let startTime = null;
+
+  function easeInOut(t) {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  }
+
+  function getSceneAlpha(sceneIndex, globalT) {
+    // Each scene: fade in over 0.8s, hold, fade out over 0.8s
+    const start = sceneIndex * SCENE_DURATION;
+    const end = start + SCENE_DURATION;
+    const fadeTime = 0.8;
+    if (globalT < start || globalT >= end) return 0;
+    const local = globalT - start;
+    if (local < fadeTime) return easeInOut(local / fadeTime);
+    if (local > SCENE_DURATION - fadeTime) return easeInOut((SCENE_DURATION - local) / fadeTime);
+    return 1;
+  }
+
+  function getSceneProgress(sceneIndex, globalT) {
+    const start = sceneIndex * SCENE_DURATION;
+    return Math.max(0, Math.min(1, (globalT - start) / SCENE_DURATION));
+  }
+
+  function render(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = (timestamp - startTime) / 1000;
+    const globalT = elapsed % TOTAL;
+
+    ctx.fillStyle = C.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Scene 1
+    const a1 = getSceneAlpha(0, globalT);
+    if (a1 > 0) drawScene1(getSceneProgress(0, globalT), a1);
+
+    // Scene 2
+    const a2 = getSceneAlpha(1, globalT);
+    if (a2 > 0) drawScene2(getSceneProgress(1, globalT), a2);
+
+    // Scene 3
+    const a3 = getSceneAlpha(2, globalT);
+    if (a3 > 0) drawScene3(getSceneProgress(2, globalT), a3);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 })();
 </script>
+
 </body>
 </html>
