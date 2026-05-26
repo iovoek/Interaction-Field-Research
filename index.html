@@ -39,302 +39,116 @@
     }
     .site-nav .logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
+      font-size: 0.68rem; color: var(--gold);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
-    .site-nav .nav-menu {
-      display: flex; align-items: center; gap: 2.2rem;
-      list-style: none;
-    }
+    .site-nav .nav-menu { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
     .site-nav .nav-menu > li > a {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--fg3);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-size: 0.62rem; color: var(--fg3);
+      letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
     }
     .site-nav .nav-menu > li > a:hover { color: var(--gold); }
     .site-nav .nav-menu > li > a.active { color: var(--gold); }
-
-    /* Dropdown */
     .dropdown { position: relative; }
     .dropdown-trigger { cursor: pointer; }
-    .dropdown-content {
-      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-      padding-top: 12px;
-      z-index: 1001;
-    }
-    .dropdown-content-inner {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
-      min-width: 290px; padding: 0.5rem 0;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    }
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 12px; z-index: 1001; }
+    .dropdown-content-inner { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); min-width: 290px; padding: 0.5rem 0; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
     .dropdown:hover .dropdown-content { display: block; }
-    .dropdown-content a {
-      display: block; padding: 0.6rem 1.2rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.63rem; color: var(--fg2);
-      letter-spacing: 0.06em;
-    }
+    .dropdown-content a { display: block; padding: 0.6rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; color: var(--fg2); letter-spacing: 0.06em; }
     .dropdown-content a:hover { color: var(--gold); background: var(--bg3); }
     .dropdown-content .dd-divider { height: 1px; background: var(--border); margin: 0.4rem 0; }
-
-    /* Mobile hamburger */
     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 0.5rem; }
     .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fg3); transition: all 0.3s; }
-    .mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(10,10,15,0.98); z-index: 2000;
-      flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem;
-      overflow-y: auto; padding: 3rem 1rem;
-    }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,15,0.98); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem; overflow-y: auto; padding: 3rem 1rem; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem; color: var(--fg2);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.6rem 2rem;
-    }
+    .mobile-menu a { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--fg2); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.6rem 2rem; }
     .mobile-menu a:hover { color: var(--gold); }
-    .mobile-menu .mm-label {
-      font-size: 0.55rem; color: var(--fg3);
-      letter-spacing: 0.15em; margin-top: 1rem;
-      border-top: 1px solid var(--border); padding-top: 1rem;
-    }
+    .mobile-menu .mm-label { font-size: 0.55rem; color: var(--fg3); letter-spacing: 0.15em; margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem; }
     .mobile-close { position: absolute; top: 1.2rem; right: 1.5rem; font-size: 1.5rem; color: var(--fg3); cursor: pointer; padding: 0.5rem; }
-
     @media (max-width: 768px) {
       .site-nav .nav-menu { display: none; }
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
-      .hero { min-height: 420px; }
-      .articles-section, .resources-section, .intro-section { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
 
     /* === HERO === */
-    .hero {
-      position: relative;
-      width: 100%;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      text-align: center;
-    }
-    #hero-canvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: block;
-      z-index: 0;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 8rem 2rem 5rem;
-    }
-    .hero-kicker {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: rgba(0,230,255,0.7);
-      letter-spacing: 0.15em; text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-family: 'Noto Serif', Georgia, serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 300; color: #f0eee8;
-      line-height: 1.1; margin-bottom: 1.5rem;
-      text-shadow: 0 0 40px rgba(0,0,0,0.8);
-    }
+    .hero { position: relative; width: 100%; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+    #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 8rem 2rem 5rem; }
+    .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(0,230,255,0.7); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: 'Noto Serif', Georgia, serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 300; color: #f0eee8; line-height: 1.1; margin-bottom: 1.5rem; text-shadow: 0 0 40px rgba(0,0,0,0.9); }
     .hero h1 em { font-style: italic; color: #00e6ff; }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(200,200,210,0.85);
-      line-height: 1.8; max-width: 600px; margin: 0 auto 2rem;
-      font-weight: 300;
-      text-shadow: 0 0 20px rgba(0,0,0,0.9);
-    }
-    .hero-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: rgba(150,148,145,0.7);
-      letter-spacing: 0.08em;
-    }
+    .hero-sub { font-size: 1.05rem; color: rgba(200,200,210,0.85); line-height: 1.8; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; text-shadow: 0 0 20px rgba(0,0,0,0.95); }
+    .hero-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(150,148,145,0.7); letter-spacing: 0.08em; }
+    .scene-label { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: rgba(0,200,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; white-space: nowrap; }
 
-    /* === SECTION DIVIDER === */
-    .section-divider {
-      max-width: 900px; margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .section-divider hr {
-      border: none; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-    }
-
-    /* === ARTICLES GRID === */
-    .articles-section {
-      max-width: 900px; margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-    .section-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: var(--teal);
-      letter-spacing: 0.15em; text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
-    .article-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1px;
-      background: var(--border2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .article-card {
-      display: flex; align-items: baseline; gap: 1.2rem;
-      padding: 1.3rem 1.6rem;
-      background: var(--bg);
-      transition: background 0.2s;
-    }
+    /* === CONTENT === */
+    .section-divider { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    .section-divider hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    .articles-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+    .section-title { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2.5rem; }
+    .article-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .article-card { display: flex; align-items: baseline; gap: 1.2rem; padding: 1.3rem 1.6rem; background: var(--bg); transition: background 0.2s; }
     .article-card:hover { background: var(--bg2); }
-    .article-card .card-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: var(--fg3);
-      letter-spacing: 0.08em;
-      min-width: 2rem;
-    }
+    .article-card .card-number { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--fg3); letter-spacing: 0.08em; min-width: 2rem; }
     .article-card .card-body { flex: 1; min-width: 0; }
-    .article-card .card-title {
-      font-size: 1rem; font-weight: 500; color: var(--fg);
-      margin-bottom: 0.3rem; line-height: 1.4;
-    }
-    .article-card .card-desc {
-      font-size: 0.85rem; color: var(--fg3); line-height: 1.6;
-    }
-    .article-card .card-arrow {
-      font-size: 0.9rem; color: var(--fg3);
-      transition: color 0.2s, transform 0.2s;
-      flex-shrink: 0;
-    }
+    .article-card .card-title { font-size: 1rem; font-weight: 500; color: var(--fg); margin-bottom: 0.3rem; line-height: 1.4; }
+    .article-card .card-desc { font-size: 0.85rem; color: var(--fg3); line-height: 1.6; }
+    .article-card .card-arrow { font-size: 0.9rem; color: var(--fg3); transition: color 0.2s, transform 0.2s; flex-shrink: 0; }
     .article-card:hover .card-arrow { color: var(--gold); transform: translateX(3px); }
     .article-card:hover .card-title { color: var(--gold); }
-
-    /* === QUICK INTRO === */
-    .intro-section {
-      max-width: 700px; margin: 0 auto;
-      padding: 3rem 2rem 4rem;
-    }
-    .intro-section p {
-      font-size: 1.02rem; color: var(--fg2); line-height: 1.8;
-      margin-bottom: 1.3rem;
-    }
+    .intro-section { max-width: 700px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+    .intro-section p { font-size: 1.02rem; color: var(--fg2); line-height: 1.8; margin-bottom: 1.3rem; }
     .intro-section p strong { color: var(--fg); }
-    .intro-cta {
-      display: inline-block; margin-top: 1rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; color: var(--gold);
-      letter-spacing: 0.08em; text-transform: uppercase;
-      border-bottom: 1px solid rgba(201,168,76,0.4);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
+    .intro-cta { display: inline-block; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.4); padding-bottom: 2px; transition: border-color 0.2s; }
     .intro-cta:hover { border-color: var(--gold); }
-
-    /* === RESOURCES === */
-    .resources-section {
-      max-width: 900px; margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-    .resource-card {
-      padding: 1.4rem 1.5rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color 0.2s, background 0.2s;
-    }
+    .resources-section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .resource-card { padding: 1.4rem 1.5rem; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.2s, background 0.2s; }
     .resource-card:hover { border-color: rgba(201,168,76,0.3); background: var(--bg3); }
-    .resource-card .rc-title {
-      font-size: 0.9rem; font-weight: 500; color: var(--fg);
-      margin-bottom: 0.4rem;
-    }
-    .resource-card .rc-desc {
-      font-size: 0.78rem; color: var(--fg3); line-height: 1.6;
-    }
+    .resource-card .rc-title { font-size: 0.9rem; font-weight: 500; color: var(--fg); margin-bottom: 0.4rem; }
+    .resource-card .rc-desc { font-size: 0.78rem; color: var(--fg3); line-height: 1.6; }
     .resource-card:hover .rc-title { color: var(--gold); }
-
-    /* === FOOTER === */
-    .site-footer {
-      max-width: 900px; margin: 0 auto;
-      padding: 2rem 2rem 3rem;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .site-footer .footer-left {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.58rem; color: var(--fg3);
-      letter-spacing: 0.08em;
-    }
-    .site-footer .footer-right {
-      display: flex; gap: 1.5rem;
-    }
-    .site-footer .footer-right a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.58rem; color: var(--fg3);
-      letter-spacing: 0.06em; text-transform: uppercase;
-    }
+    .site-footer { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .site-footer .footer-left { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--fg3); letter-spacing: 0.08em; }
+    .site-footer .footer-right { display: flex; gap: 1.5rem; }
+    .site-footer .footer-right a { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--fg3); letter-spacing: 0.06em; text-transform: uppercase; }
     .site-footer .footer-right a:hover { color: var(--gold); }
   </style>
 </head>
 <body>
 
-<!-- Navigation -->
 <nav class="site-nav">
   <a href="index.html" class="logo">Exchange Is the Equation</a>
   <ul class="nav-menu">
     <li><a href="index.html" class="active">Home</a></li>
     <li class="dropdown">
       <a href="#" class="dropdown-trigger">Articles &#9662;</a>
-      <div class="dropdown-content">
-        <div class="dropdown-content-inner">
-          <a href="article-0-introduction.html">0. What This Is</a>
-          <a href="article-1-origin.html">1. The Backwards Problem</a>
-          <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
-          <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
-          <a href="article-4-value.html">4. Value Is Not a Number</a>
-          <a href="article-5-math.html">5. Why Error Grows</a>
-          <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
-          <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
-          <a href="article-8-roadmap.html">8. What Comes Next</a>
-          <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
-          <div class="dd-divider"></div>
-          <a href="social-media.html">Social Media (Standalone)</a>
-          <a href="pharma.html">Pharma (Standalone)</a>
-        </div>
-      </div>
+      <div class="dropdown-content"><div class="dropdown-content-inner">
+        <a href="article-0-introduction.html">0. What This Is</a>
+        <a href="article-1-origin.html">1. The Backwards Problem</a>
+        <a href="article-2-framework.html">2. Measuring the Wrong Layer</a>
+        <a href="article-3-social-media.html">3. Burning the House for Kindling</a>
+        <a href="article-4-value.html">4. Value Is Not a Number</a>
+        <a href="article-5-math.html">5. Why Error Grows</a>
+        <a href="article-6-domains.html">6. The Same Mistake Everywhere</a>
+        <a href="article-7-falsifiability.html">7. How This Theory Could Be Wrong</a>
+        <a href="article-8-roadmap.html">8. What Comes Next</a>
+        <a href="article-9-pharma.html">9. The Drug Industry's 90% Problem</a>
+        <div class="dd-divider"></div>
+        <a href="social-media.html">Social Media (Standalone)</a>
+        <a href="pharma.html">Pharma (Standalone)</a>
+      </div></div>
     </li>
     <li class="dropdown">
       <a href="#" class="dropdown-trigger">Resources &#9662;</a>
-      <div class="dropdown-content">
-        <div class="dropdown-content-inner">
-          <a href="terms.html">Glossary of Terms</a>
-          <a href="citations.html">Citations</a>
-          <a href="full-paper.html">Full Paper (Long Form)</a>
-          <a href="strategic-report.html">Strategic Report</a>
-        </div>
-      </div>
+      <div class="dropdown-content"><div class="dropdown-content-inner">
+        <a href="terms.html">Glossary of Terms</a>
+        <a href="citations.html">Citations</a>
+        <a href="full-paper.html">Full Paper (Long Form)</a>
+        <a href="strategic-report.html">Strategic Report</a>
+      </div></div>
     </li>
   </ul>
   <div class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')">
@@ -342,7 +156,6 @@
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div id="mobile-menu" class="mobile-menu">
   <div class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</div>
   <a href="index.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
@@ -364,7 +177,6 @@
   <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
 </div>
 
-<!-- Hero -->
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-content">
@@ -373,11 +185,11 @@
     <p class="hero-sub">A structural insight about complex systems: the direction from which you analyze them determines whether they thrive or degrade. One framework. Nine domains. An ongoing investigation.</p>
     <p class="hero-meta">By Glen Brackmann with AI research assistance</p>
   </div>
+  <div class="scene-label" id="scene-label"></div>
 </section>
 
 <div class="section-divider"><hr></div>
 
-<!-- Quick Intro -->
 <section class="intro-section">
   <p>In most complex systems, we start from what is easy to measure and try to work backward toward what actually matters. Stock prices instead of trading activity. Engagement metrics instead of genuine connection. Molecular targets instead of living cell behavior.</p>
   <p>This seems intuitive. But in complex systems, it actively degrades the thing it is trying to measure. The errors compound. And the more complex the system, the worse it gets.</p>
@@ -388,88 +200,57 @@
 
 <div class="section-divider"><hr></div>
 
-<!-- Articles -->
 <section class="articles-section">
   <p class="section-title">The Article Series</p>
   <div class="article-grid">
     <a href="article-0-introduction.html" class="article-card">
       <span class="card-number">00</span>
-      <div class="card-body">
-        <div class="card-title">What This Is</div>
-        <div class="card-desc">An introduction to the project, its origins, its limitations, and what to expect.</div>
-      </div>
+      <div class="card-body"><div class="card-title">What This Is</div><div class="card-desc">An introduction to the project, its origins, its limitations, and what to expect.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-1-origin.html" class="article-card">
       <span class="card-number">01</span>
-      <div class="card-body">
-        <div class="card-title">The Backwards Problem</div>
-        <div class="card-desc">How the theory emerged from a trading card insight, and why the direction of analysis matters more than the quality of data.</div>
-      </div>
+      <div class="card-body"><div class="card-title">The Backwards Problem</div><div class="card-desc">How the theory emerged from a trading card insight, and why the direction of analysis matters more than the quality of data.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-2-framework.html" class="article-card">
       <span class="card-number">02</span>
-      <div class="card-body">
-        <div class="card-title">We're Measuring the Wrong Layer of Reality</div>
-        <div class="card-desc">The formal distinction between surface variables and deep structure, and why optimizing the wrong layer guarantees failure.</div>
-      </div>
+      <div class="card-body"><div class="card-title">We're Measuring the Wrong Layer of Reality</div><div class="card-desc">The formal distinction between surface variables and deep structure, and why optimizing the wrong layer guarantees failure.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-3-social-media.html" class="article-card">
       <span class="card-number">03</span>
-      <div class="card-body">
-        <div class="card-title">Burning the House Down for Kindling</div>
-        <div class="card-desc">A fully empirically anchored simulation showing how optimizing for engagement destroys long-term platform economics.</div>
-      </div>
+      <div class="card-body"><div class="card-title">Burning the House Down for Kindling</div><div class="card-desc">A fully empirically anchored simulation showing how optimizing for engagement destroys long-term platform economics.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-4-value.html" class="article-card">
       <span class="card-number">04</span>
-      <div class="card-body">
-        <div class="card-title">Value Is Not a Number</div>
-        <div class="card-desc">Why value is constituted by genuine transactions rather than merely reflected in prices.</div>
-      </div>
+      <div class="card-body"><div class="card-title">Value Is Not a Number</div><div class="card-desc">Why value is constituted by genuine transactions rather than merely reflected in prices.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-5-math.html" class="article-card">
       <span class="card-number">05</span>
-      <div class="card-body">
-        <div class="card-title">Why Error Grows</div>
-        <div class="card-desc">The formal mathematics. The Orientation Theorem, the proof, and the Monte Carlo validation.</div>
-      </div>
+      <div class="card-body"><div class="card-title">Why Error Grows</div><div class="card-desc">The formal mathematics. The Orientation Theorem, the proof, and the Monte Carlo validation.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-6-domains.html" class="article-card">
       <span class="card-number">06</span>
-      <div class="card-body">
-        <div class="card-title">The Same Mistake, Everywhere</div>
-        <div class="card-desc">Nine independent domains where the same structural pattern operates.</div>
-      </div>
+      <div class="card-body"><div class="card-title">The Same Mistake, Everywhere</div><div class="card-desc">Nine independent domains where the same structural pattern operates.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-7-falsifiability.html" class="article-card">
       <span class="card-number">07</span>
-      <div class="card-body">
-        <div class="card-title">How This Theory Could Be Wrong</div>
-        <div class="card-desc">The conditions under which the framework fails, the predictions that would falsify it, and the honest limitations.</div>
-      </div>
+      <div class="card-body"><div class="card-title">How This Theory Could Be Wrong</div><div class="card-desc">The conditions under which the framework fails, the predictions that would falsify it, and the honest limitations.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-8-roadmap.html" class="article-card">
       <span class="card-number">08</span>
-      <div class="card-body">
-        <div class="card-title">What Comes Next</div>
-        <div class="card-desc">The research roadmap. What domains are next, what experiments would test the predictions.</div>
-      </div>
+      <div class="card-body"><div class="card-title">What Comes Next</div><div class="card-desc">The research roadmap. What domains are next, what experiments would test the predictions.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
     <a href="article-9-pharma.html" class="article-card">
       <span class="card-number">09</span>
-      <div class="card-body">
-        <div class="card-title">The Drug Industry's 90% Problem</div>
-        <div class="card-desc">How orientation from molecular targets rather than phenotypic behavior may explain the pharmaceutical industry's 90% failure rate.</div>
-      </div>
+      <div class="card-body"><div class="card-title">The Drug Industry's 90% Problem</div><div class="card-desc">How orientation from molecular targets rather than phenotypic behavior may explain the pharmaceutical industry's 90% failure rate.</div></div>
       <span class="card-arrow">&rarr;</span>
     </a>
   </div>
@@ -477,38 +258,18 @@
 
 <div class="section-divider"><hr></div>
 
-<!-- Resources -->
 <section class="resources-section">
   <p class="section-title">Resources</p>
   <div class="resources-grid">
-    <a href="full-paper.html" class="resource-card">
-      <div class="rc-title">Full Paper</div>
-      <div class="rc-desc">The complete long-form research document with all proofs, derivations, and domain applications in one page.</div>
-    </a>
-    <a href="terms.html" class="resource-card">
-      <div class="rc-title">Glossary</div>
-      <div class="rc-desc">Definitions of all terms: Orientation Conjecture, Backwards Problem, Interaction Field, and more.</div>
-    </a>
-    <a href="citations.html" class="resource-card">
-      <div class="rc-title">Citations</div>
-      <div class="rc-desc">Complete bibliography of all sources cited across the article series.</div>
-    </a>
-    <a href="strategic-report.html" class="resource-card">
-      <div class="rc-title">Strategic Report</div>
-      <div class="rc-desc">A condensed strategic overview of the framework for organizational decision-making.</div>
-    </a>
-    <a href="social-media.html" class="resource-card">
-      <div class="rc-title">Social Media Deep Dive</div>
-      <div class="rc-desc">Standalone analysis with the v5 empirically anchored algorithm simulation.</div>
-    </a>
-    <a href="pharma.html" class="resource-card">
-      <div class="rc-title">Pharma Deep Dive</div>
-      <div class="rc-desc">Standalone analysis of the phenotypic vs. target-based drug discovery paradigm.</div>
-    </a>
+    <a href="full-paper.html" class="resource-card"><div class="rc-title">Full Paper</div><div class="rc-desc">The complete long-form research document with all proofs, derivations, and domain applications in one page.</div></a>
+    <a href="terms.html" class="resource-card"><div class="rc-title">Glossary</div><div class="rc-desc">Definitions of all terms: Orientation Conjecture, Backwards Problem, Interaction Field, and more.</div></a>
+    <a href="citations.html" class="resource-card"><div class="rc-title">Citations</div><div class="rc-desc">Complete bibliography of all sources cited across the article series.</div></a>
+    <a href="strategic-report.html" class="resource-card"><div class="rc-title">Strategic Report</div><div class="rc-desc">A condensed strategic overview of the framework for organizational decision-making.</div></a>
+    <a href="social-media.html" class="resource-card"><div class="rc-title">Social Media Deep Dive</div><div class="rc-desc">Standalone analysis with the v5 empirically anchored algorithm simulation.</div></a>
+    <a href="pharma.html" class="resource-card"><div class="rc-title">Pharma Deep Dive</div><div class="rc-desc">Standalone analysis of the phenotypic vs. target-based drug discovery paradigm.</div></a>
   </div>
 </section>
 
-<!-- Footer -->
 <footer class="site-footer">
   <div class="footer-left">2026 &middot; Glen Brackmann &middot; Independent Research</div>
   <div class="footer-right">
@@ -518,391 +279,776 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// Hero canvas: Three-scene theory visualization
-// Geometry Wars aesthetic: electric blues, magentas, neon on deep black
-// Scene 1: The Backwards Problem (error propagation from surface vs deep structure)
-// Scene 2: The Interaction Field (two fields merging, emergent structure at intersection)
-// Scene 3: The Bifurcation (ordered path splits into order vs entropy)
 (function() {
   const canvas = document.getElementById('hero-canvas');
+  const label = document.getElementById('scene-label');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
 
-  let W, H;
+  // Three.js setup
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  renderer.shadowMap.enabled = false;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  camera.position.set(0, 0, 18);
+
   function resize() {
-    W = canvas.width = canvas.parentElement.clientWidth;
-    H = canvas.height = canvas.parentElement.clientHeight;
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
   }
   resize();
   window.addEventListener('resize', resize);
 
-  // Color palette: Geometry Wars inspired
-  const C = {
-    bg: '#03030a',
-    cyan: '#00e5ff',
-    magenta: '#ff00cc',
-    green: '#00ff88',
-    orange: '#ff6600',
-    red: '#ff2244',
-    white: '#ffffff',
-    gridLine: 'rgba(0,180,255,0.06)',
-    gridLineBright: 'rgba(0,180,255,0.14)',
-  };
+  // Color helpers
+  function hex(h) { return new THREE.Color(h); }
+  const CYAN    = hex(0x00e5ff);
+  const MAGENTA = hex(0xff00cc);
+  const GREEN   = hex(0x00ff88);
+  const ORANGE  = hex(0xff6600);
+  const RED     = hex(0xff2244);
+  const WHITE   = hex(0xffffff);
+  const YELLOW  = hex(0xffee00);
+  const PURPLE  = hex(0x9900ff);
+  const BLUE    = hex(0x0044ff);
 
-  // Scene timing: each scene lasts 10 seconds, total loop = 30s
-  const SCENE_DURATION = 10;
-  const TOTAL = 30;
+  // Scene registry
+  const SCENE_DURATION = 9; // seconds each
+  const FADE = 0.9;         // fade in/out duration
+  const N_SCENES = 9;
+  const TOTAL = N_SCENES * SCENE_DURATION;
 
-  // ---- SCENE 1: The Backwards Problem ----
-  // A grid of nodes. Two waves propagate: one from surface (top) inward -- red/orange corruption.
-  // Then reset, one from deep structure (center) outward -- cyan/green coherence.
-  function drawScene1(progress, alpha) {
-    const cols = 12, rows = 8;
-    const cellW = W / (cols + 1), cellH = H / (rows + 1);
-    const phase = progress * 2; // 0..2: first half = backwards, second half = forwards
+  const sceneLabels = [
+    'I. The Backwards Problem',
+    'II. Error Accumulation',
+    'III. The Interaction Field',
+    'IV. Bifurcation',
+    'V. Surface vs. Deep Structure',
+    'VI. The Orientation Conjecture',
+    'VII. Compounding Coherence',
+    'VIII. Nine Domains',
+    'IX. The Equation',
+  ];
 
-    ctx.save();
-    ctx.globalAlpha = alpha;
+  // Utility: dispose group
+  function disposeGroup(g) {
+    g.traverse(obj => {
+      if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) {
+        if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+        else obj.material.dispose();
+      }
+    });
+  }
 
-    // Background grid
-    ctx.strokeStyle = C.gridLine;
-    ctx.lineWidth = 0.5;
-    for (let x = 0; x <= W; x += cellW) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  // Utility: line between two points
+  function makeLine(p1, p2, color, opacity=1) {
+    const geo = new THREE.BufferGeometry().setFromPoints([p1, p2]);
+    const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity });
+    return new THREE.Line(geo, mat);
+  }
+
+  // Utility: point cloud
+  function makePoints(positions, color, size=0.06) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    const mat = new THREE.PointsMaterial({ color, size, transparent: true, opacity: 1 });
+    return new THREE.Points(geo, mat);
+  }
+
+  // ---- SCENE BUILDERS ----
+  // Each returns { group, update(t, progress) } where t=elapsed seconds, progress=0..1
+
+  // Scene 1: The Backwards Problem
+  // A 3D lattice of nodes. A wave propagates from surface (top plane) downward.
+  // Nodes turn red/orange as the wave passes, showing error propagation.
+  // Then resets and wave propagates from center outward -- cyan coherence.
+  function buildScene1() {
+    const group = new THREE.Group();
+    const cols = 8, rows = 5, depth = 4;
+    const spacing = 2.2;
+    const nodes = [];
+    const meshes = [];
+
+    for (let z = 0; z < depth; z++) {
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = (c - (cols-1)/2) * spacing;
+          const y = (r - (rows-1)/2) * spacing;
+          const zp = (z - (depth-1)/2) * spacing;
+          const geo = new THREE.SphereGeometry(0.12, 8, 8);
+          const mat = new THREE.MeshBasicMaterial({ color: 0x112233 });
+          const mesh = new THREE.Mesh(geo, mat);
+          mesh.position.set(x, y, zp);
+          group.add(mesh);
+          nodes.push({ x, y, zp, r, c, z, mesh });
+          meshes.push(mesh);
+        }
+      }
     }
-    for (let y = 0; y <= H; y += cellH) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-    }
 
-    const backwards = phase < 1;
-    const t = backwards ? phase : phase - 1; // 0..1 within each half
+    // Grid lines connecting neighbors
+    const lineMat = new THREE.LineBasicMaterial({ color: 0x0a1a2a, transparent: true, opacity: 0.3 });
+    nodes.forEach(n => {
+      nodes.forEach(m => {
+        const dx = Math.abs(n.c - m.c), dy = Math.abs(n.r - m.r), dz = Math.abs(n.z - m.z);
+        if (dx + dy + dz === 1) {
+          const geo = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(n.x, n.y, n.zp),
+            new THREE.Vector3(m.x, m.y, m.zp)
+          ]);
+          group.add(new THREE.Line(geo, lineMat));
+        }
+      });
+    });
 
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const x = (c + 1) * cellW;
-        const y = (r + 1) * cellH;
+    function update(t, progress) {
+      const phase = progress * 2;
+      const backwards = phase < 1;
+      const tp = backwards ? phase : phase - 1;
 
-        let activation, color, glowColor;
+      group.rotation.y = t * 0.12;
+      group.rotation.x = Math.sin(t * 0.07) * 0.15;
 
+      nodes.forEach(n => {
+        let activation, col;
         if (backwards) {
-          // Wave from surface (top row) propagating downward -- backwards
-          const distFromTop = r / (rows - 1); // 0 at top, 1 at bottom
-          const waveFront = t * 1.4; // wave travels faster than 1 row/unit
-          const dist = distFromTop;
-          activation = Math.max(0, 1 - Math.abs(dist - waveFront) * 3);
-          // Error accumulates: nodes behind the wave are corrupted (orange/red)
-          const corrupted = dist < waveFront - 0.1 ? Math.min(1, (waveFront - 0.1 - dist) * 4) : 0;
-          const fresh = activation;
-          color = corrupted > 0.05
-            ? `rgba(${Math.round(255)},${Math.round(80 * (1-corrupted))},${Math.round(30 * (1-corrupted))},${0.5 + corrupted * 0.5})`
-            : `rgba(255,${Math.round(100 + 155 * fresh)},${Math.round(50 * fresh)},${fresh * 0.9})`;
-          glowColor = corrupted > 0.05 ? C.red : C.orange;
+          // Wave from top (max y) downward
+          const normY = (n.r) / (rows - 1); // 0=bottom, 1=top
+          const distFromTop = 1 - normY;
+          const waveFront = tp * 1.4;
+          activation = Math.max(0, 1 - Math.abs(distFromTop - waveFront) * 4);
+          const corrupted = distFromTop < waveFront - 0.15 ? Math.min(1, (waveFront - 0.15 - distFromTop) * 5) : 0;
+          if (corrupted > 0.05) {
+            col = new THREE.Color().lerpColors(ORANGE, RED, corrupted);
+          } else {
+            col = new THREE.Color().lerpColors(new THREE.Color(0x112233), ORANGE, activation);
+          }
         } else {
-          // Wave from deep structure (center) propagating outward -- correct orientation
-          const cx = (cols - 1) / 2, cy = (rows - 1) / 2;
-          const distFromCenter = Math.sqrt((c - cx) ** 2 + (r - cy) ** 2) / Math.sqrt(cx * cx + cy * cy);
-          const waveFront = t * 1.3;
-          activation = Math.max(0, 1 - Math.abs(distFromCenter - waveFront) * 3);
-          const coherent = distFromCenter < waveFront - 0.05 ? Math.min(1, (waveFront - 0.05 - distFromCenter) * 3) : 0;
-          color = `rgba(${Math.round(0 + 100 * activation)},${Math.round(200 + 55 * coherent)},${Math.round(200 + 55 * activation)},${0.4 + coherent * 0.6})`;
-          glowColor = C.cyan;
+          // Wave from center outward
+          const cx = (cols-1)/2, cy = (rows-1)/2, cz = (depth-1)/2;
+          const dist = Math.sqrt((n.c-cx)**2 + (n.r-cy)**2 + (n.z-cz)**2);
+          const maxDist = Math.sqrt(cx**2+cy**2+cz**2);
+          const normDist = dist / maxDist;
+          const waveFront = tp * 1.4;
+          activation = Math.max(0, 1 - Math.abs(normDist - waveFront) * 4);
+          const coherent = normDist < waveFront - 0.1 ? Math.min(1, (waveFront - 0.1 - normDist) * 4) : 0;
+          col = new THREE.Color().lerpColors(new THREE.Color(0x001122), CYAN, activation + coherent * 0.7);
         }
+        n.mesh.material.color.copy(col);
+        const s = 1 + activation * 1.5;
+        n.mesh.scale.setScalar(s);
+      });
+    }
 
-        const r2 = 3 + activation * 5;
-        if (activation > 0.05) {
-          ctx.shadowColor = glowColor;
-          ctx.shadowBlur = 12 + activation * 20;
+    return { group, update };
+  }
+
+  // Scene 2: Error Accumulation
+  // A single signal path. Two versions: one that drifts further from truth each step (red),
+  // one that self-corrects (cyan). Both start at same point. Shown as 3D spiraling paths.
+  function buildScene2() {
+    const group = new THREE.Group();
+    const steps = 120;
+    const errPts = [], corrPts = [];
+
+    for (let i = 0; i < steps; i++) {
+      const t2 = i / steps;
+      const angle = t2 * Math.PI * 6;
+      const r_err = 2 + t2 * 4; // error spiral expands
+      const r_corr = 2 + t2 * 0.3; // correction stays tight
+      errPts.push(new THREE.Vector3(
+        Math.cos(angle) * r_err,
+        t2 * 8 - 4,
+        Math.sin(angle) * r_err
+      ));
+      corrPts.push(new THREE.Vector3(
+        Math.cos(angle) * r_corr,
+        t2 * 8 - 4,
+        Math.sin(angle) * r_corr
+      ));
+    }
+
+    const errGeo = new THREE.BufferGeometry().setFromPoints(errPts);
+    const corrGeo = new THREE.BufferGeometry().setFromPoints(corrPts);
+    const errLine = new THREE.Line(errGeo, new THREE.LineBasicMaterial({ color: RED, transparent: true, opacity: 0.85 }));
+    const corrLine = new THREE.Line(corrGeo, new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.85 }));
+    group.add(errLine, corrLine);
+
+    // Tracers
+    const tracerGeo = new THREE.SphereGeometry(0.18, 8, 8);
+    const errTracer = new THREE.Mesh(tracerGeo, new THREE.MeshBasicMaterial({ color: RED }));
+    const corrTracer = new THREE.Mesh(tracerGeo.clone(), new THREE.MeshBasicMaterial({ color: CYAN }));
+    group.add(errTracer, corrTracer);
+
+    // Axis line (truth)
+    const axisGeo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(0, -4, 0), new THREE.Vector3(0, 4, 0)
+    ]);
+    group.add(new THREE.Line(axisGeo, new THREE.LineBasicMaterial({ color: 0x334455, transparent: true, opacity: 0.5 })));
+
+    function update(t, progress) {
+      group.rotation.y = t * 0.2;
+      const idx = Math.floor(progress * (steps - 1));
+      const ep = errPts[Math.min(idx, steps-1)];
+      const cp = corrPts[Math.min(idx, steps-1)];
+      errTracer.position.copy(ep);
+      corrTracer.position.copy(cp);
+      // Pulse tracers
+      const pulse = 1 + Math.sin(t * 4) * 0.3;
+      errTracer.scale.setScalar(pulse);
+      corrTracer.scale.setScalar(pulse);
+    }
+
+    return { group, update };
+  }
+
+  // Scene 3: The Interaction Field
+  // Two 3D lattice structures orbit a center. Where they overlap, emergent bright nodes appear.
+  // No swirling circle -- instead, emergent nodes crystallize at intersection points.
+  function buildScene3() {
+    const group = new THREE.Group();
+    const fieldA = new THREE.Group();
+    const fieldB = new THREE.Group();
+    const emergent = new THREE.Group();
+    group.add(fieldA, fieldB, emergent);
+
+    const N = 5;
+    const sp = 1.4;
+    const nodesA = [], nodesB = [];
+
+    for (let x = -N; x <= N; x++) {
+      for (let y = -N; y <= N; y++) {
+        for (let z = -N; z <= N; z++) {
+          const dist = Math.sqrt(x*x+y*y+z*z);
+          if (dist > N) continue;
+          const geo = new THREE.SphereGeometry(0.07, 6, 6);
+          const matA = new THREE.MeshBasicMaterial({ color: CYAN, transparent: true, opacity: 0.6 });
+          const matB = new THREE.MeshBasicMaterial({ color: MAGENTA, transparent: true, opacity: 0.6 });
+          const mA = new THREE.Mesh(geo, matA);
+          const mB = new THREE.Mesh(geo.clone(), matB);
+          mA.position.set(x*sp, y*sp, z*sp);
+          mB.position.set(x*sp, y*sp, z*sp);
+          fieldA.add(mA);
+          fieldB.add(mB);
+          nodesA.push(mA);
+          nodesB.push(mB);
+        }
+      }
+    }
+
+    // Emergent nodes (hidden initially)
+    const emNodes = [];
+    for (let i = 0; i < 40; i++) {
+      const geo = new THREE.SphereGeometry(0.15, 8, 8);
+      const mat = new THREE.MeshBasicMaterial({ color: WHITE, transparent: true, opacity: 0 });
+      const m = new THREE.Mesh(geo, mat);
+      // Random positions near center
+      m.position.set(
+        (Math.random()-0.5)*4,
+        (Math.random()-0.5)*4,
+        (Math.random()-0.5)*4
+      );
+      emergent.add(m);
+      emNodes.push(m);
+    }
+
+    function update(t, progress) {
+      // Fields approach, overlap, separate
+      const sep = 7 * (1 - Math.sin(progress * Math.PI));
+      fieldA.position.x = -sep;
+      fieldB.position.x = sep;
+
+      group.rotation.y = t * 0.15;
+      group.rotation.x = Math.sin(t * 0.08) * 0.2;
+
+      const overlap = Math.max(0, 1 - sep / 3.5);
+      emNodes.forEach((m, i) => {
+        m.material.opacity = overlap * (0.5 + 0.5 * Math.sin(t * 2 + i));
+        const pulse = 1 + overlap * Math.sin(t * 3 + i * 0.5) * 0.5;
+        m.scale.setScalar(pulse);
+      });
+
+      // Fade field nodes near overlap zone
+      nodesA.forEach(m => {
+        const worldX = m.position.x + fieldA.position.x;
+        const nearCenter = Math.max(0, 1 - Math.abs(worldX) / 3);
+        m.material.opacity = 0.4 + nearCenter * 0.4;
+      });
+      nodesB.forEach(m => {
+        const worldX = m.position.x + fieldB.position.x;
+        const nearCenter = Math.max(0, 1 - Math.abs(worldX) / 3);
+        m.material.opacity = 0.4 + nearCenter * 0.4;
+      });
+    }
+
+    return { group, update };
+  }
+
+  // Scene 4: Bifurcation
+  // A 3D decision surface. A single stream approaches a bifurcation point.
+  // Two branches: ordered helix expanding (cyan), chaotic collapsing (red).
+  // Particles flow along both paths.
+  function buildScene4() {
+    const group = new THREE.Group();
+    const steps = 100;
+
+    // Pre-split path
+    const prePts = [];
+    for (let i = 0; i < 30; i++) {
+      const t2 = i / 30;
+      prePts.push(new THREE.Vector3(-8 + t2 * 8, Math.sin(t2 * Math.PI * 2) * 0.5, 0));
+    }
+    group.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(prePts),
+      new THREE.LineBasicMaterial({ color: WHITE, transparent: true, opacity: 0.7 })
+    ));
+
+    // Branch A: ordered expanding helix
+    const branchA = [];
+    for (let i = 0; i < steps; i++) {
+      const t2 = i / steps;
+      const angle = t2 * Math.PI * 8;
+      const radius = 0.5 + t2 * 3.5;
+      branchA.push(new THREE.Vector3(t2 * 8, Math.cos(angle) * radius, Math.sin(angle) * radius));
+    }
+    group.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(branchA),
+      new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.9 })
+    ));
+
+    // Branch B: collapsing chaotic path
+    const branchB = [];
+    for (let i = 0; i < steps; i++) {
+      const t2 = i / steps;
+      const angle = t2 * Math.PI * 12;
+      const radius = 2.5 * (1 - t2 * 0.9);
+      const noise = (Math.sin(i * 7.3) + Math.cos(i * 3.1)) * t2 * 0.8;
+      branchB.push(new THREE.Vector3(t2 * 8, -Math.cos(angle) * radius + noise, Math.sin(angle) * radius * 0.5 + noise));
+    }
+    group.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(branchB),
+      new THREE.LineBasicMaterial({ color: RED, transparent: true, opacity: 0.85 })
+    ));
+
+    // Split point
+    const splitGeo = new THREE.SphereGeometry(0.25, 12, 12);
+    const splitMesh = new THREE.Mesh(splitGeo, new THREE.MeshBasicMaterial({ color: WHITE }));
+    group.add(splitMesh);
+
+    // Particles on branches
+    const pA = [], pB = [];
+    for (let i = 0; i < 5; i++) {
+      const gA = new THREE.SphereGeometry(0.12, 6, 6);
+      const gB = new THREE.SphereGeometry(0.10, 6, 6);
+      const mA = new THREE.Mesh(gA, new THREE.MeshBasicMaterial({ color: CYAN }));
+      const mB = new THREE.Mesh(gB, new THREE.MeshBasicMaterial({ color: RED }));
+      group.add(mA, mB);
+      pA.push(mA);
+      pB.push(mB);
+    }
+
+    function update(t, progress) {
+      group.rotation.y = Math.sin(t * 0.1) * 0.4;
+      group.rotation.x = Math.sin(t * 0.07) * 0.2;
+
+      const pulse = 1 + Math.sin(t * 3) * 0.3;
+      splitMesh.scale.setScalar(pulse);
+
+      pA.forEach((p, i) => {
+        const idx = Math.floor(((t * 0.15 + i * 0.2) % 1) * (steps - 1));
+        p.position.copy(branchA[idx]);
+      });
+      pB.forEach((p, i) => {
+        const idx = Math.floor(((t * 0.12 + i * 0.2) % 1) * (steps - 1));
+        p.position.copy(branchB[idx]);
+      });
+    }
+
+    return { group, update };
+  }
+
+  // Scene 5: Surface vs. Deep Structure
+  // A layered sphere: outer shell (surface) is dim/noisy, inner core is bright/ordered.
+  // Rays probe from outside inward -- wrong direction shows noise, right direction shows signal.
+  function buildScene5() {
+    const group = new THREE.Group();
+
+    // Outer shell: icosphere, dim
+    const outerGeo = new THREE.IcosahedronGeometry(5, 2);
+    const outerMat = new THREE.MeshBasicMaterial({ color: 0x220011, wireframe: true, transparent: true, opacity: 0.25 });
+    group.add(new THREE.Mesh(outerGeo, outerMat));
+
+    // Mid shell
+    const midGeo = new THREE.IcosahedronGeometry(3.2, 2);
+    const midMat = new THREE.MeshBasicMaterial({ color: 0x001133, wireframe: true, transparent: true, opacity: 0.3 });
+    group.add(new THREE.Mesh(midGeo, midMat));
+
+    // Inner core: bright, ordered
+    const coreGeo = new THREE.IcosahedronGeometry(1.5, 3);
+    const coreMat = new THREE.MeshBasicMaterial({ color: CYAN, wireframe: true, transparent: true, opacity: 0.9 });
+    group.add(new THREE.Mesh(coreGeo, coreMat));
+
+    // Probe rays: 8 rays from outside
+    const rays = [];
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const start = new THREE.Vector3(Math.cos(angle) * 6, Math.sin(angle) * 6, 0);
+      const end = new THREE.Vector3(0, 0, 0);
+      const geo = new THREE.BufferGeometry().setFromPoints([start, end]);
+      const mat = new THREE.LineBasicMaterial({ color: i < 4 ? RED : CYAN, transparent: true, opacity: 0 });
+      const line = new THREE.Line(geo, mat);
+      group.add(line);
+      rays.push({ line, mat, isBackwards: i < 4 });
+    }
+
+    function update(t, progress) {
+      group.rotation.y = t * 0.18;
+      group.rotation.x = t * 0.07;
+
+      // Pulse core
+      const pulse = 1 + Math.sin(t * 2) * 0.08;
+      coreGeo.dispose();
+      // Just animate opacity
+      coreMat.opacity = 0.7 + Math.sin(t * 2) * 0.2;
+
+      // Rays: backwards probes fade in first half, forward probes in second half
+      rays.forEach((r, i) => {
+        if (r.isBackwards) {
+          r.mat.opacity = progress < 0.5 ? Math.sin(progress * Math.PI * 2) * 0.7 : 0;
         } else {
-          ctx.shadowBlur = 0;
+          r.mat.opacity = progress > 0.5 ? Math.sin((progress - 0.5) * Math.PI * 2) * 0.8 : 0;
         }
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(x, y, r2, 0, Math.PI * 2);
-        ctx.fill();
+      });
+    }
 
-        // Connection lines to neighbors
-        if (c < cols - 1 && activation > 0.1) {
-          const nx = (c + 2) * cellW;
-          ctx.strokeStyle = backwards
-            ? `rgba(255,80,30,${activation * 0.4})`
-            : `rgba(0,230,255,${activation * 0.4})`;
-          ctx.lineWidth = activation * 1.5;
-          ctx.shadowBlur = 0;
-          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(nx, y); ctx.stroke();
-        }
-        if (r < rows - 1 && activation > 0.1) {
-          const ny = (r + 2) * cellH;
-          ctx.strokeStyle = backwards
-            ? `rgba(255,80,30,${activation * 0.4})`
-            : `rgba(0,230,255,${activation * 0.4})`;
-          ctx.lineWidth = activation * 1.5;
-          ctx.shadowBlur = 0;
-          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, ny); ctx.stroke();
+    return { group, update };
+  }
+
+  // Scene 6: The Orientation Conjecture
+  // A single vector field shown as a 3D grid of arrows.
+  // Half the arrows point inward (wrong orientation, red).
+  // They flip to outward (correct orientation, cyan) in a wave.
+  function buildScene6() {
+    const group = new THREE.Group();
+    const N = 4;
+    const sp = 2.5;
+    const arrows = [];
+
+    for (let x = -N; x <= N; x += 2) {
+      for (let y = -N; y <= N; y += 2) {
+        for (let z = -N; z <= N; z += 2) {
+          // Arrow: a line + cone
+          const origin = new THREE.Vector3(x*sp*0.5, y*sp*0.5, z*sp*0.5);
+          const dir = origin.clone().normalize();
+
+          const arrowGroup = new THREE.Group();
+          arrowGroup.position.copy(origin);
+
+          const shaftGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.8, 6);
+          const headGeo = new THREE.ConeGeometry(0.12, 0.3, 6);
+          const mat = new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.8 });
+
+          const shaft = new THREE.Mesh(shaftGeo, mat);
+          const head = new THREE.Mesh(headGeo, mat.clone());
+          head.position.y = 0.55;
+          arrowGroup.add(shaft, head);
+
+          // Orient arrow to point inward initially
+          arrowGroup.quaternion.setFromUnitVectors(
+            new THREE.Vector3(0, 1, 0),
+            dir.clone().negate()
+          );
+
+          group.add(arrowGroup);
+          arrows.push({ arrowGroup, dir, mat, headMat: head.material, flipped: false });
         }
       }
     }
 
-    ctx.shadowBlur = 0;
-    ctx.restore();
-  }
+    function update(t, progress) {
+      group.rotation.y = t * 0.13;
+      group.rotation.x = Math.sin(t * 0.09) * 0.2;
 
-  // ---- SCENE 2: The Interaction Field ----
-  // Two distinct field structures (hexagonal lattices) drift toward each other.
-  // At intersection, emergent bright nodes appear that neither field had alone.
-  function drawScene2(progress, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
+      // Wave of flipping from center outward
+      arrows.forEach((a, i) => {
+        const dist = a.arrowGroup.position.length();
+        const maxDist = N * sp * 0.5 * Math.sqrt(3);
+        const normDist = dist / maxDist;
+        const flipProgress = Math.max(0, Math.min(1, (progress - normDist * 0.5) / 0.3));
 
-    // Background grid
-    ctx.strokeStyle = C.gridLine;
-    ctx.lineWidth = 0.5;
-    const gs = 40;
-    for (let x = 0; x < W; x += gs) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-    }
-    for (let y = 0; y < H; y += gs) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-    }
-
-    // Two fields approach each other, meet, then separate
-    // progress 0..1: approach (0..0.4), overlap (0.4..0.6), separate (0.6..1)
-    const approach = Math.min(1, progress / 0.4);
-    const overlap = progress >= 0.4 && progress <= 0.6 ? (progress - 0.4) / 0.2 : (progress > 0.6 ? 1 - (progress - 0.6) / 0.4 : 0);
-    const maxSep = W * 0.28;
-    const sep = maxSep * (1 - approach * 0.85);
-
-    const cx = W / 2, cy = H / 2;
-    const fieldRadius = Math.min(W, H) * 0.28;
-    const nodeSpacing = 38;
-
-    function drawField(ox, oy, color, glowColor, emergentBoost) {
-      const rows2 = Math.ceil(fieldRadius * 2 / nodeSpacing);
-      for (let ri = -rows2; ri <= rows2; ri++) {
-        for (let ci = -rows2; ci <= rows2; ci++) {
-          const nx = ox + ci * nodeSpacing + (ri % 2 === 0 ? 0 : nodeSpacing / 2);
-          const ny = oy + ri * nodeSpacing * 0.866;
-          const dist = Math.sqrt((nx - ox) ** 2 + (ny - oy) ** 2);
-          if (dist > fieldRadius) continue;
-          const edgeFade = Math.max(0, 1 - dist / fieldRadius);
-          const boost = emergentBoost * edgeFade;
-          const r2 = 2.5 + boost * 5;
-          ctx.shadowColor = glowColor;
-          ctx.shadowBlur = 6 + boost * 18;
-          ctx.fillStyle = color;
-          ctx.globalAlpha = alpha * (0.35 + edgeFade * 0.5 + boost * 0.5);
-          ctx.beginPath();
-          ctx.arc(nx, ny, r2, 0, Math.PI * 2);
-          ctx.fill();
+        if (flipProgress > 0) {
+          // Flip orientation
+          a.arrowGroup.quaternion.setFromUnitVectors(
+            new THREE.Vector3(0, 1, 0),
+            a.dir.clone().lerp(a.dir.clone().negate(), flipProgress).normalize()
+          );
+          const col = new THREE.Color().lerpColors(RED, CYAN, flipProgress);
+          a.mat.color.copy(col);
+          a.headMat.color.copy(col);
         }
+      });
+    }
+
+    return { group, update };
+  }
+
+  // Scene 7: Compounding Coherence
+  // A Fibonacci spiral / golden ratio structure in 3D.
+  // Points appear one by one, each connecting to prior points.
+  // The structure self-organizes into a recognizable mathematical form.
+  function buildScene7() {
+    const group = new THREE.Group();
+    const N = 200;
+    const phi = (1 + Math.sqrt(5)) / 2;
+    const goldenAngle = Math.PI * 2 / (phi * phi);
+
+    const pts = [];
+    for (let i = 0; i < N; i++) {
+      const t2 = i / N;
+      const angle = i * goldenAngle;
+      const r = Math.sqrt(i) * 0.35;
+      const z = (t2 - 0.5) * 10;
+      pts.push(new THREE.Vector3(Math.cos(angle) * r, z, Math.sin(angle) * r));
+    }
+
+    // All points as a point cloud, revealed progressively
+    const positions = new Float32Array(N * 3);
+    pts.forEach((p, i) => { positions[i*3]=p.x; positions[i*3+1]=p.y; positions[i*3+2]=p.z; });
+    const ptGeo = new THREE.BufferGeometry();
+    ptGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const ptMat = new THREE.PointsMaterial({ color: CYAN, size: 0.15, transparent: true, opacity: 0.9 });
+    const ptCloud = new THREE.Points(ptGeo, ptMat);
+    group.add(ptCloud);
+
+    // Connection lines between adjacent points
+    const linePts = [];
+    for (let i = 1; i < N; i++) {
+      linePts.push(pts[i-1], pts[i]);
+    }
+    const lineGeo = new THREE.BufferGeometry().setFromPoints(linePts);
+    const lineMat = new THREE.LineBasicMaterial({ color: GREEN, transparent: true, opacity: 0.4 });
+    const lines = new THREE.LineSegments(lineGeo, lineMat);
+    group.add(lines);
+
+    // Tracer sphere
+    const tracerMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(0.2, 8, 8),
+      new THREE.MeshBasicMaterial({ color: WHITE })
+    );
+    group.add(tracerMesh);
+
+    function update(t, progress) {
+      group.rotation.y = t * 0.22;
+      group.rotation.x = Math.sin(t * 0.1) * 0.25;
+
+      // Reveal points progressively
+      const revealed = Math.floor(progress * N);
+      ptMat.opacity = 0.9;
+
+      // Move tracer to current front
+      if (revealed < N) {
+        tracerMesh.position.copy(pts[revealed]);
+        const pulse = 1 + Math.sin(t * 5) * 0.3;
+        tracerMesh.scale.setScalar(pulse);
+      }
+
+      // Fade in lines progressively
+      lineMat.opacity = progress * 0.5;
+    }
+
+    return { group, update };
+  }
+
+  // Scene 8: Nine Domains
+  // Nine glowing nodes arranged in a 3D formation (3x3 grid in space).
+  // Each node pulses. Connection lines appear between them showing the unified field.
+  function buildScene8() {
+    const group = new THREE.Group();
+    const nodeColors = [CYAN, MAGENTA, GREEN, ORANGE, YELLOW, PURPLE, BLUE, RED, WHITE];
+    const positions = [
+      [-4, 4, 0], [0, 4, 0], [4, 4, 0],
+      [-4, 0, 0], [0, 0, 0], [4, 0, 0],
+      [-4,-4, 0], [0,-4, 0], [4,-4, 0],
+    ];
+
+    const nodes = [];
+    positions.forEach((pos, i) => {
+      const geo = new THREE.SphereGeometry(0.35, 12, 12);
+      const mat = new THREE.MeshBasicMaterial({ color: nodeColors[i], transparent: true, opacity: 0.9 });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set(...pos);
+      group.add(mesh);
+      nodes.push(mesh);
+    });
+
+    // Connection lines between all pairs
+    const connLines = [];
+    for (let i = 0; i < 9; i++) {
+      for (let j = i+1; j < 9; j++) {
+        const geo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(...positions[i]),
+          new THREE.Vector3(...positions[j])
+        ]);
+        const mat = new THREE.LineBasicMaterial({
+          color: nodeColors[i].clone().lerp(nodeColors[j], 0.5),
+          transparent: true, opacity: 0
+        });
+        const line = new THREE.Line(geo, mat);
+        group.add(line);
+        connLines.push(mat);
       }
     }
 
-    // Field A: cyan/blue, left side
-    drawField(cx - sep, cy, 'rgba(0,200,255,0.9)', C.cyan, 0);
-    // Field B: magenta/pink, right side
-    drawField(cx + sep, cy, 'rgba(255,0,200,0.9)', C.magenta, 0);
+    function update(t, progress) {
+      group.rotation.y = t * 0.14;
+      group.rotation.x = Math.sin(t * 0.08) * 0.3;
 
-    // Emergent intersection zone
-    if (overlap > 0.01) {
-      const interR = fieldRadius * 0.5 * overlap;
-      const steps = 60;
-      for (let i = 0; i < steps; i++) {
-        const angle = (i / steps) * Math.PI * 2;
-        const r3 = interR * (0.3 + Math.random() * 0.7);
-        const ex = cx + Math.cos(angle) * r3;
-        const ey = cy + Math.sin(angle) * r3;
-        const brightness = overlap * (0.6 + Math.random() * 0.4);
-        ctx.shadowColor = '#ffffff';
-        ctx.shadowBlur = 20 * brightness;
-        ctx.fillStyle = `rgba(255,255,255,${brightness * 0.9})`;
-        ctx.globalAlpha = alpha * brightness;
-        ctx.beginPath();
-        ctx.arc(ex, ey, 2 + brightness * 4, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      // Emergent ring
-      ctx.globalAlpha = alpha * overlap * 0.6;
-      ctx.strokeStyle = 'rgba(255,255,255,0.8)';
-      ctx.lineWidth = 1.5;
-      ctx.shadowColor = '#ffffff';
-      ctx.shadowBlur = 15;
-      ctx.beginPath();
-      ctx.arc(cx, cy, interR, 0, Math.PI * 2);
-      ctx.stroke();
+      nodes.forEach((n, i) => {
+        const pulse = 1 + Math.sin(t * 2 + i * 0.7) * 0.25;
+        n.scale.setScalar(pulse);
+      });
+
+      // Connections appear progressively
+      connLines.forEach((mat, i) => {
+        mat.opacity = Math.min(progress * 2, 1) * 0.35;
+      });
     }
 
-    ctx.shadowBlur = 0;
-    ctx.restore();
+    return { group, update };
   }
 
-  // ---- SCENE 3: The Bifurcation ----
-  // A single ordered helix path splits into two: one expands (cyan, ordered), one collapses (red, chaotic)
-  function drawScene3(progress, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
+  // Scene 9: The Equation
+  // A torus knot -- the mathematical structure of interwoven fields.
+  // Clean, precise, beautiful. Rotates slowly. Particles flow along the surface.
+  function buildScene9() {
+    const group = new THREE.Group();
 
-    // Background grid -- perspective-style
-    ctx.strokeStyle = C.gridLine;
-    ctx.lineWidth = 0.5;
-    const vanishX = W / 2, vanishY = H * 0.38;
-    const gridLines = 14;
-    for (let i = 0; i <= gridLines; i++) {
-      const x = (i / gridLines) * W;
-      ctx.beginPath(); ctx.moveTo(x, H); ctx.lineTo(vanishX, vanishY); ctx.stroke();
-    }
-    for (let j = 1; j <= 8; j++) {
-      const t2 = j / 8;
-      const y = vanishY + (H - vanishY) * t2;
-      const xLeft = vanishX - (vanishX) * t2;
-      const xRight = vanishX + (W - vanishX) * t2;
-      ctx.beginPath(); ctx.moveTo(xLeft, y); ctx.lineTo(xRight, y); ctx.stroke();
-    }
+    const knotGeo = new THREE.TorusKnotGeometry(4, 0.35, 200, 16, 3, 5);
+    const knotMat = new THREE.MeshBasicMaterial({ color: CYAN, wireframe: true, transparent: true, opacity: 0.7 });
+    const knot = new THREE.Mesh(knotGeo, knotMat);
+    group.add(knot);
 
-    const splitX = W * 0.42;
-    const splitY = H * 0.52;
-    const trailLen = 120;
+    // Inner torus knot
+    const innerGeo = new THREE.TorusKnotGeometry(2.5, 0.15, 150, 12, 2, 3);
+    const innerMat = new THREE.MeshBasicMaterial({ color: MAGENTA, wireframe: true, transparent: true, opacity: 0.5 });
+    group.add(new THREE.Mesh(innerGeo, innerMat));
 
-    // Pre-split: single ordered helix approaching the split point
-    const preSplitPoints = [];
-    const preSplitCount = 60;
-    for (let i = 0; i < preSplitCount; i++) {
-      const t2 = i / preSplitCount;
-      const x = W * 0.1 + t2 * (splitX - W * 0.1);
-      const y = splitY + Math.sin(t2 * Math.PI * 3 + progress * Math.PI * 2) * 18 * (1 - t2 * 0.5);
-      preSplitPoints.push({ x, y, t: t2 });
+    // Orbiting particles
+    const particles = [];
+    for (let i = 0; i < 12; i++) {
+      const geo = new THREE.SphereGeometry(0.12, 6, 6);
+      const mat = new THREE.MeshBasicMaterial({ color: i % 2 === 0 ? CYAN : MAGENTA });
+      const mesh = new THREE.Mesh(geo, mat);
+      group.add(mesh);
+      particles.push({ mesh, offset: i / 12 });
     }
 
-    // Draw pre-split path
-    ctx.lineWidth = 2;
-    ctx.shadowColor = C.cyan;
-    ctx.shadowBlur = 8;
-    for (let i = 1; i < preSplitPoints.length; i++) {
-      const a = preSplitPoints[i - 1], b = preSplitPoints[i];
-      const fade = i / preSplitPoints.length;
-      ctx.strokeStyle = `rgba(0,220,255,${fade * 0.8})`;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    // Sample points on the torus knot path
+    const knotPts = [];
+    const p = 3, q = 5;
+    for (let i = 0; i < 300; i++) {
+      const t2 = (i / 300) * Math.PI * 2;
+      const r = 4 + Math.cos(q * t2) * 0.35;
+      knotPts.push(new THREE.Vector3(
+        r * Math.cos(p * t2),
+        r * Math.sin(p * t2),
+        -Math.sin(q * t2) * 0.35
+      ));
     }
 
-    // Split point glow
-    ctx.shadowColor = '#ffffff';
-    ctx.shadowBlur = 25;
-    ctx.fillStyle = 'rgba(255,255,255,0.95)';
-    ctx.beginPath();
-    ctx.arc(splitX, splitY, 5, 0, Math.PI * 2);
-    ctx.fill();
+    function update(t, progress) {
+      knot.rotation.y = t * 0.25;
+      knot.rotation.x = t * 0.13;
+      group.rotation.z = t * 0.06;
 
-    // Post-split branch A: ordered expansion (cyan, helix growing wider)
-    const branchAPoints = [];
-    const branchCount = 80;
-    for (let i = 0; i < branchCount; i++) {
-      const t2 = i / branchCount;
-      const x = splitX + t2 * (W * 0.5);
-      const amplitude = 15 + t2 * 60; // grows wider
-      const y = splitY - t2 * H * 0.22 + Math.sin(t2 * Math.PI * 4 + progress * Math.PI * 2) * amplitude;
-      branchAPoints.push({ x, y, t: t2 });
+      particles.forEach((p2, i) => {
+        const idx = Math.floor(((t * 0.08 + p2.offset) % 1) * knotPts.length);
+        p2.mesh.position.copy(knotPts[idx]);
+        const pulse = 1 + Math.sin(t * 4 + i) * 0.3;
+        p2.mesh.scale.setScalar(pulse);
+      });
     }
 
-    ctx.lineWidth = 2;
-    ctx.shadowColor = C.cyan;
-    ctx.shadowBlur = 10;
-    for (let i = 1; i < branchAPoints.length; i++) {
-      const a = branchAPoints[i - 1], b = branchAPoints[i];
-      const fade = i / branchAPoints.length;
-      ctx.strokeStyle = `rgba(0,230,255,${fade * 0.9})`;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-    }
-
-    // Tracer on branch A
-    const tracerA = branchAPoints[Math.floor(((progress * 0.7) % 1) * (branchCount - 1))];
-    if (tracerA) {
-      ctx.shadowColor = C.cyan;
-      ctx.shadowBlur = 20;
-      ctx.fillStyle = C.cyan;
-      ctx.beginPath();
-      ctx.arc(tracerA.x, tracerA.y, 5, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Post-split branch B: chaotic collapse (red/orange, amplitude shrinks, noise increases)
-    const branchBPoints = [];
-    for (let i = 0; i < branchCount; i++) {
-      const t2 = i / branchCount;
-      const x = splitX + t2 * (W * 0.5);
-      const amplitude = 15 * (1 - t2 * 0.85); // shrinks toward zero
-      const noise = t2 * 12 * (Math.sin(i * 7.3 + progress * 11) + Math.cos(i * 3.7 + progress * 7));
-      const y = splitY + t2 * H * 0.22 + Math.sin(t2 * Math.PI * 6 + progress * Math.PI * 3) * amplitude + noise;
-      branchBPoints.push({ x, y, t: t2 });
-    }
-
-    ctx.lineWidth = 1.5;
-    ctx.shadowColor = C.red;
-    ctx.shadowBlur = 8;
-    for (let i = 1; i < branchBPoints.length; i++) {
-      const a = branchBPoints[i - 1], b = branchBPoints[i];
-      const fade = (1 - i / branchBPoints.length) * 0.8 + 0.2;
-      ctx.strokeStyle = `rgba(255,${Math.round(40 + 60 * (1 - i/branchBPoints.length))},30,${fade * 0.85})`;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-    }
-
-    // Tracer on branch B
-    const tracerB = branchBPoints[Math.floor(((progress * 0.7 + 0.5) % 1) * (branchCount - 1))];
-    if (tracerB) {
-      ctx.shadowColor = C.red;
-      ctx.shadowBlur = 15;
-      ctx.fillStyle = C.red;
-      ctx.beginPath();
-      ctx.arc(tracerB.x, tracerB.y, 4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    ctx.shadowBlur = 0;
-    ctx.restore();
+    return { group, update };
   }
+
+  // Build all scenes
+  const builders = [
+    buildScene1, buildScene2, buildScene3, buildScene4, buildScene5,
+    buildScene6, buildScene7, buildScene8, buildScene9
+  ];
+  const scenes = builders.map(b => b());
+
+  // Add all groups to main scene (hidden initially)
+  scenes.forEach(s => {
+    s.group.visible = false;
+    scene.add(s.group);
+  });
+
+  // Ambient light
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
   let startTime = null;
+  let currentSceneIdx = -1;
 
   function easeInOut(t) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    return t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
   }
 
-  function getSceneAlpha(sceneIndex, globalT) {
-    // Each scene: fade in over 0.8s, hold, fade out over 0.8s
-    const start = sceneIndex * SCENE_DURATION;
+  function getAlpha(sceneIdx, globalT) {
+    const start = sceneIdx * SCENE_DURATION;
     const end = start + SCENE_DURATION;
-    const fadeTime = 0.8;
     if (globalT < start || globalT >= end) return 0;
     const local = globalT - start;
-    if (local < fadeTime) return easeInOut(local / fadeTime);
-    if (local > SCENE_DURATION - fadeTime) return easeInOut((SCENE_DURATION - local) / fadeTime);
+    if (local < FADE) return easeInOut(local / FADE);
+    if (local > SCENE_DURATION - FADE) return easeInOut((SCENE_DURATION - local) / FADE);
     return 1;
-  }
-
-  function getSceneProgress(sceneIndex, globalT) {
-    const start = sceneIndex * SCENE_DURATION;
-    return Math.max(0, Math.min(1, (globalT - start) / SCENE_DURATION));
   }
 
   function render(timestamp) {
     if (!startTime) startTime = timestamp;
     const elapsed = (timestamp - startTime) / 1000;
     const globalT = elapsed % TOTAL;
+    const sceneIdx = Math.floor(globalT / SCENE_DURATION);
 
-    ctx.fillStyle = C.bg;
-    ctx.fillRect(0, 0, W, H);
+    // Update label
+    if (sceneIdx !== currentSceneIdx) {
+      currentSceneIdx = sceneIdx;
+      if (label) label.textContent = sceneLabels[sceneIdx] || '';
+    }
 
-    // Scene 1
-    const a1 = getSceneAlpha(0, globalT);
-    if (a1 > 0) drawScene1(getSceneProgress(0, globalT), a1);
+    // Update camera gentle drift
+    camera.position.x = Math.sin(elapsed * 0.05) * 1.5;
+    camera.position.y = Math.cos(elapsed * 0.04) * 1;
+    camera.lookAt(0, 0, 0);
 
-    // Scene 2
-    const a2 = getSceneAlpha(1, globalT);
-    if (a2 > 0) drawScene2(getSceneProgress(1, globalT), a2);
+    // Update each scene
+    scenes.forEach((s, i) => {
+      const alpha = getAlpha(i, globalT);
+      const progress = Math.max(0, Math.min(1, (globalT - i * SCENE_DURATION) / SCENE_DURATION));
+      s.group.visible = alpha > 0.01;
+      if (s.group.visible) {
+        s.update(elapsed, progress);
+        // Apply alpha to all materials in group
+        s.group.traverse(obj => {
+          if (obj.material) {
+            const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach(m => {
+              if (m.transparent) m.opacity = Math.min(m.opacity, alpha);
+            });
+          }
+        });
+      }
+    });
 
-    // Scene 3
-    const a3 = getSceneAlpha(2, globalT);
-    if (a3 > 0) drawScene3(getSceneProgress(2, globalT), a3);
-
+    renderer.render(scene, camera);
     requestAnimationFrame(render);
   }
 
