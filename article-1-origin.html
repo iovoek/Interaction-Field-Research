@@ -149,6 +149,12 @@
       50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
     }
     .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
+  
+    .series-nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .series-nav-top a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .series-nav-top a:hover { color: var(--gold2); }
+    .series-nav-top .next { text-align: right; }
+
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -222,7 +228,12 @@
   <p class="article-number">Article 1 of 9</p>
   <h1>The <em>Backwards</em> Problem</h1>
   <p class="subtitle">Most complex systems fail not because of bad data, bad models, or bad intentions. They fail because they are oriented backwards. They start from the surface and try to work inward, when the only reliable direction is the other way around.</p>
-  <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+  
+  <div class="series-nav-top">
+    <a href="article-0-introduction.html">&larr; What This Is</a>
+    <a href="article-2-framework.html" class="next">We're Measuring the Wrong Layer &rarr;</a>
+  </div>
+<p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
 
 <div class="art-viz-frame">
   <div class="art-viz-inner">

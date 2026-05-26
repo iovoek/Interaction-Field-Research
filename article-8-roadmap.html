@@ -205,6 +205,12 @@
       letter-spacing: 0.03em;
     }
 
+  
+    .series-nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .series-nav-top a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .series-nav-top a:hover { color: var(--gold2); }
+    .series-nav-top .next { text-align: right; }
+
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -282,7 +288,12 @@
   <p class="article-number">Article 8 of 8</p>
   <h1>What Comes <em>Next</em></h1>
   <p class="subtitle">The open questions, the next empirical tests, the academic pathway, and the real-world applications. Where this research goes from here.</p>
-  <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+  
+  <div class="series-nav-top">
+    <a href="article-7-falsifiability.html">&larr; Is This Falsifiable?</a>
+    <a href="article-9-pharma.html" class="next">Pharma and the 90% Failure Rate &rarr;</a>
+  </div>
+<p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
 
 <div class="art-viz-frame">
   <div class="art-viz-inner">
