@@ -141,6 +141,25 @@
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
     }
+
+    /* === ARTICLE ANIMATION === */
+    .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
+    .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
+      transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em;
+      text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+    /* ghost equation overlay */
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; }
+    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
+                          to   { opacity: 0.28; transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -210,6 +229,154 @@
   <h1>Value Is Not a Number. <em>It Is a Process.</em></h1>
   <p class="subtitle">The difference between asking price, appraised value, and exchange-discoverable value. Why value becomes visible through genuine exchange, and what that means for every market.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+<div class="art-viz-frame">
+  <div class="art-viz-inner">
+    <canvas id="art4-canvas"></canvas>
+    <div class="art-viz-label">Value crystallizes at genuine transaction intersections</div>
+    <div class="art-eq-ghost">V = lim_{n→∞} Σ T(xᵢ,xⱼ)  ·  ρ(xᵢ,xⱼ)</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('art4-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  camera.position.set(0, 3, 16);
+
+  const N = 12;
+  const fieldNodes = [];
+  const transactions = [];
+
+  // Create field nodes in a 3D grid-ish arrangement
+  for (let i = 0; i < N; i++) {
+    const angle = (i / N) * Math.PI * 2;
+    const r = 4 + Math.sin(i * 1.3) * 1.5;
+    const y = (Math.random() - 0.5) * 4;
+    const pos = new THREE.Vector3(Math.cos(angle) * r, y, Math.sin(angle) * r);
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.18, 10, 10),
+      new THREE.MeshBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.7 })
+    );
+    m.position.copy(pos);
+    m.userData = { pos, active: true, lastTx: 0 };
+    scene.add(m);
+    fieldNodes.push(m);
+  }
+
+  // Value crystals (tetrahedra) at intersection points
+  const crystals = [];
+  for (let i = 0; i < 8; i++) {
+    const c = new THREE.Mesh(
+      new THREE.TetrahedronGeometry(0.28, 0),
+      new THREE.MeshBasicMaterial({ color: 0xc9a84c, transparent: true, opacity: 0 })
+    );
+    c.position.set((Math.random()-0.5)*6, (Math.random()-0.5)*3, (Math.random()-0.5)*6);
+    scene.add(c);
+    crystals.push(c);
+  }
+
+  // Transaction lines (animated particles along edges)
+  const txLines = [];
+  for (let i = 0; i < N; i++) {
+    for (let j = i + 1; j < N; j++) {
+      if (Math.random() < 0.35) {
+        const mat = new THREE.LineBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.15 });
+        const line = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([fieldNodes[i].userData.pos, fieldNodes[j].userData.pos]),
+          mat
+        );
+        scene.add(line);
+        txLines.push({ line, mat, from: i, to: j });
+      }
+    }
+  }
+
+  // Transaction particles
+  const txParticles = [];
+  for (let k = 0; k < 20; k++) {
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.1, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0 })
+    );
+    const fromIdx = Math.floor(Math.random() * N);
+    let toIdx = Math.floor(Math.random() * N);
+    while (toIdx === fromIdx) toIdx = Math.floor(Math.random() * N);
+    m.userData = { fromIdx, toIdx, phase: Math.random() };
+    scene.add(m);
+    txParticles.push(m);
+  }
+
+  // Ghost price tag (subtle HTML overlay handled via canvas text)
+  // We'll simulate it as a fading plane
+  const ghostGeo = new THREE.PlaneGeometry(2, 0.6);
+  const ghostMat = new THREE.MeshBasicMaterial({ color: 0xff4444, transparent: true, opacity: 0, side: THREE.DoubleSide });
+  const ghost = new THREE.Mesh(ghostGeo, ghostMat);
+  ghost.position.set(3, 2, 0);
+  scene.add(ghost);
+
+  function tick(t) {
+    scene.rotation.y = t * 0.1;
+
+    // Animate transaction particles
+    txParticles.forEach((m) => {
+      const p = ((t * 0.22 + m.userData.phase) % 1);
+      const from = fieldNodes[m.userData.fromIdx].userData.pos;
+      const to = fieldNodes[m.userData.toIdx].userData.pos;
+      m.position.lerpVectors(from, to, p);
+      m.material.opacity = Math.sin(p * Math.PI) * 0.9;
+    });
+
+    // Crystals pulse
+    crystals.forEach((c, i) => {
+      const p = (t * 0.15 + i * 0.12) % 1;
+      c.material.opacity = Math.sin(p * Math.PI) * 0.7;
+      c.rotation.y = t * 0.5 + i;
+      c.rotation.x = t * 0.3 + i * 0.5;
+      c.scale.setScalar(0.5 + Math.sin(p * Math.PI) * 0.8);
+    });
+
+    // Field node pulse
+    fieldNodes.forEach((m, i) => {
+      m.material.opacity = 0.5 + 0.4 * Math.sin(t * 1.5 + i * 0.7);
+    });
+
+    // Ghost price tag fades in and out
+    ghost.material.opacity = Math.max(0, Math.sin(t * 0.3) * 0.12);
+    ghost.rotation.y = t * 0.2;
+
+    camera.position.x = Math.sin(t * 0.06) * 3;
+    camera.position.y = 3 + Math.sin(t * 0.04) * 1;
+    camera.lookAt(0, 0, 0);
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = (ts - startTime) / 1000;
+    tick(t);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 
   <p>Ask someone what a house is worth. They will tell you a number. Ask them how they got that number. They will tell you about comparable sales, about what similar houses sold for recently, about what the Zestimate says, about what the appraiser concluded. Every answer is a reference to something else. No one can tell you, from first principles, what the house is worth. They can only tell you what other people have paid for similar things.</p>
 

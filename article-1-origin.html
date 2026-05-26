@@ -157,6 +157,25 @@
       .site-nav { padding: 1rem 1.5rem; }
       .comparison-grid { grid-template-columns: 1fr; }
     }
+
+    /* === ARTICLE ANIMATION === */
+    .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
+    .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
+      transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em;
+      text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+    /* ghost equation overlay */
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; }
+    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
+                          to   { opacity: 0.28; transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -226,6 +245,139 @@
   <h1>The <em>Backwards</em> Problem</h1>
   <p class="subtitle">Most complex systems fail not because of bad data, bad models, or bad intentions. They fail because they are oriented backwards. They start from the surface and try to work inward, when the only reliable direction is the other way around.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+<div class="art-viz-frame">
+  <div class="art-viz-inner">
+    <canvas id="art1-canvas"></canvas>
+    <div class="art-viz-label">Surface-in (red) vs. core-out (cyan) particle streams</div>
+    <div class="art-eq-ghost">ε_surface > ε_structure  as  n → ∞</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('art1-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  camera.position.set(0, 0, 16);
+  const CYAN = new THREE.Color(0x00e6ff);
+  const RED = new THREE.Color(0xff4444);
+
+  // Core sphere
+  const core = new THREE.Mesh(
+    new THREE.SphereGeometry(0.8, 20, 20),
+    new THREE.MeshBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.25 })
+  );
+  scene.add(core);
+  const coreRing = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.SphereGeometry(0.82, 12, 8)),
+    new THREE.LineBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.6 })
+  );
+  scene.add(coreRing);
+
+  // Surface sphere (outer)
+  const surf = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.SphereGeometry(5, 14, 10)),
+    new THREE.LineBasicMaterial({ color: 0x334455, transparent: true, opacity: 0.25 })
+  );
+  scene.add(surf);
+
+  // Build particle streams
+  // Cyan: core-out (ordered helical paths expanding outward)
+  const cyanParticles = [];
+  const N_CYAN = 40;
+  for (let i = 0; i < N_CYAN; i++) {
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.09, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.85 })
+    );
+    scene.add(m);
+    cyanParticles.push({ mesh: m, phase: i / N_CYAN, arm: i % 4 });
+  }
+
+  // Red: surface-in (chaotic inward spirals)
+  const redParticles = [];
+  const N_RED = 40;
+  for (let i = 0; i < N_RED; i++) {
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.08, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xff4444, transparent: true, opacity: 0.75 })
+    );
+    scene.add(m);
+    redParticles.push({ mesh: m, phase: i / N_RED, arm: i % 5 });
+  }
+
+  // Star field
+  const sg = new THREE.BufferGeometry();
+  const sp = [];
+  for (let i = 0; i < 200; i++) sp.push((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
+  sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3));
+  scene.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0x223344, size: 0.07 })));
+
+  function tick(t) {
+    core.rotation.y = t * 0.2;
+    surf.rotation.y = -t * 0.05;
+
+    // Cyan particles: start near core, spiral outward cleanly
+    cyanParticles.forEach(({ mesh, phase, arm }) => {
+      const p = ((t * 0.18 + phase) % 1);
+      const r = 0.8 + p * 4.5;
+      const baseAngle = (arm / 4) * Math.PI * 2;
+      const angle = baseAngle + p * Math.PI * 6;
+      const tilt = arm * 0.4;
+      mesh.position.set(
+        Math.cos(angle) * r,
+        Math.sin(angle * 0.5 + tilt) * r * 0.35,
+        Math.sin(angle) * r
+      );
+      mesh.material.opacity = 0.3 + 0.7 * Math.sin(p * Math.PI);
+    });
+
+    // Red particles: start at surface, spiral inward chaotically, never reach core
+    redParticles.forEach(({ mesh, phase, arm }) => {
+      const p = ((t * 0.14 + phase) % 1);
+      const r = 5 - p * 3.5 + Math.sin(p * 20 + arm) * 0.5; // chaotic wobble
+      const baseAngle = (arm / 5) * Math.PI * 2 + Math.PI * 0.3;
+      const angle = baseAngle + p * Math.PI * 8 + Math.sin(p * 15) * 0.8;
+      mesh.position.set(
+        Math.cos(angle) * r,
+        Math.sin(p * 5 + arm) * r * 0.4 + Math.cos(p * 11) * 0.3,
+        Math.sin(angle) * r
+      );
+      mesh.material.opacity = 0.2 + 0.6 * Math.sin(p * Math.PI);
+    });
+
+    camera.position.x = Math.sin(t * 0.06) * 3;
+    camera.position.y = Math.sin(t * 0.04) * 2;
+    camera.lookAt(0, 0, 0);
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = (ts - startTime) / 1000;
+    tick(t);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 
   <p>This research started with a text message. Glen Brackmann's father texted him suggesting that the trading card arbitrage agent Glen was building could be expanded to other domains. The word "arbitrage" was used loosely. The suggestion was casual. But the response it prompted was not.</p>
 

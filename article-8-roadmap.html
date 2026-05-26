@@ -145,6 +145,24 @@
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
     }
+
+    /* === ARTICLE ANIMATION === */
+    .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
+    .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
+      transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em;
+      text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; }
+    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
+                          to   { opacity: 0.28; transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -214,6 +232,156 @@
   <h1>What Comes <em>Next</em></h1>
   <p class="subtitle">The open questions, the next empirical tests, the academic pathway, and the real-world applications. Where this research goes from here.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+<div class="art-viz-frame">
+  <div class="art-viz-inner">
+    <canvas id="art8-canvas"></canvas>
+    <div class="art-viz-label">Research frontier: expanding helix · branch points = new domains</div>
+    <div class="art-eq-ghost">R(t) = R₀ · e^{λt}  ·  B(t) = ⌊t/τ⌋ new branches</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('art8-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  camera.position.set(0, 6, 18);
+
+  const STEPS = 300;
+  const helixPts = [];
+  for (let i = 0; i <= STEPS; i++) {
+    const s = (i / STEPS) * Math.PI * 12;
+    const r = 0.3 + (i / STEPS) * 6;
+    helixPts.push(new THREE.Vector3(
+      Math.cos(s) * r,
+      (i / STEPS) * 6 - 3,
+      Math.sin(s) * r
+    ));
+  }
+
+  const helixLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(helixPts),
+    new THREE.LineBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.6 })
+  );
+  scene.add(helixLine);
+
+  // Branch points along the helix
+  const branchPoints = [];
+  const branchColors = [0xffd700, 0xff8c42, 0x7b68ee, 0x4ecdc4, 0xff6b6b, 0x98fb98, 0xc9a84c, 0x2a9d8f];
+  for (let b = 0; b < 8; b++) {
+    const idx = Math.floor((b + 1) * STEPS / 9);
+    const pos = helixPts[idx].clone();
+    const m = new THREE.Mesh(
+      new THREE.OctahedronGeometry(0.22, 0),
+      new THREE.MeshBasicMaterial({ color: branchColors[b], transparent: true, opacity: 0.85 })
+    );
+    m.position.copy(pos);
+    scene.add(m);
+    branchPoints.push({ mesh: m, idx, pos });
+
+    // Small branch line
+    const branchDir = new THREE.Vector3(
+      Math.cos(b * 1.2) * 1.5,
+      0.5,
+      Math.sin(b * 1.2) * 1.5
+    );
+    const branchEnd = pos.clone().add(branchDir);
+    const bmat = new THREE.LineBasicMaterial({ color: branchColors[b], transparent: true, opacity: 0.4 });
+    scene.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([pos, branchEnd]),
+      bmat
+    ));
+
+    // Question mark placeholder (small sphere with different color)
+    const qm = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0x334455, transparent: true, opacity: 0.6 })
+    );
+    qm.position.copy(branchEnd);
+    scene.add(qm);
+  }
+
+  // Frontier glow (at the tip of the helix)
+  const frontierMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.3, 12, 12),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 })
+  );
+  frontierMesh.position.copy(helixPts[STEPS]);
+  scene.add(frontierMesh);
+
+  // Particle flowing along helix
+  const helixParticles = [];
+  for (let i = 0; i < 8; i++) {
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.1, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0 })
+    );
+    m.userData = { phase: i / 8 };
+    scene.add(m);
+    helixParticles.push(m);
+  }
+
+  // Star field
+  const sg = new THREE.BufferGeometry();
+  const sp = [];
+  for (let i = 0; i < 200; i++) sp.push((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
+  sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3));
+  scene.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0x1a2233, size: 0.07 })));
+
+  function tick(t) {
+    scene.rotation.y = t * 0.09;
+
+    // Frontier pulse
+    const fp = 1 + 0.4 * Math.sin(t * 3);
+    frontierMesh.scale.setScalar(fp);
+    frontierMesh.material.opacity = 0.6 + 0.4 * Math.sin(t * 2);
+
+    // Branch points pulse
+    branchPoints.forEach(({ mesh }, i) => {
+      mesh.rotation.y = t * 0.5 + i;
+      mesh.material.opacity = 0.6 + 0.4 * Math.sin(t * 1.5 + i * 0.8);
+    });
+
+    // Helix particles
+    helixParticles.forEach((m) => {
+      const p = ((t * 0.1 + m.userData.phase) % 1);
+      const idx = Math.min(Math.floor(p * STEPS), STEPS - 1);
+      m.position.copy(helixPts[idx]);
+      m.material.opacity = Math.sin(p * Math.PI) * 0.9;
+    });
+
+    camera.position.x = Math.sin(t * 0.06) * 4;
+    camera.position.y = 6 + Math.sin(t * 0.04) * 2;
+    camera.lookAt(0, 0, 0);
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = (ts - startTime) / 1000;
+    tick(t);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 
   <p>This series began with a text message about trading cards. It ends with a framework that applies to pharmaceutical R&D, social media algorithms, urban planning, education, supply chains, venture capital, medicine, and real estate. The theory is not finished. It is a living research program. This article describes where it goes from here.</p>
 

@@ -142,6 +142,24 @@
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
     }
+
+    /* === ARTICLE ANIMATION === */
+    .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
+    .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
+      transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em;
+      text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; }
+    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
+                          to   { opacity: 0.28; transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -211,6 +229,167 @@
   <h1>The Same Mistake <em>Everywhere</em></h1>
   <p class="subtitle">Trading cards, drug discovery, venture capital, urban planning, education, supply chains, social media, medicine, real estate. Nine domains. One structural error.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+<div class="art-viz-frame">
+  <div class="art-viz-inner">
+    <canvas id="art6-canvas"></canvas>
+    <div class="art-viz-label">Nine domain constellation · one structural error · one framework</div>
+    <div class="art-eq-ghost">F(D₁,...,D₉) = ∀Dᵢ: orient(Dᵢ) = surface → fail</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('art6-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  camera.position.set(0, 2, 18);
+
+  const DOMAINS = [
+    { name: 'Trading Cards', color: 0xffd700 },
+    { name: 'Drug Discovery', color: 0x00e6ff },
+    { name: 'Venture Capital', color: 0x7b68ee },
+    { name: 'Urban Planning', color: 0x2a9d8f },
+    { name: 'Education', color: 0xff8c42 },
+    { name: 'Supply Chains', color: 0x4ecdc4 },
+    { name: 'Social Media', color: 0xff6b6b },
+    { name: 'Medicine', color: 0x98fb98 },
+    { name: 'Real Estate', color: 0xc9a84c },
+  ];
+
+  const N = DOMAINS.length;
+  const orbMeshes = [];
+  const connLines = [];
+  const orbPositions = [];
+
+  // Central node
+  const centralMesh = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.6, 1),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 })
+  );
+  scene.add(centralMesh);
+
+  // Domain orbs in a 3D arrangement (two rings + top/bottom)
+  for (let i = 0; i < N; i++) {
+    const angle = (i / N) * Math.PI * 2;
+    const ring = i < 6 ? 0 : 1;
+    const r = ring === 0 ? 7 : 5;
+    const yOff = ring === 0 ? Math.sin(angle * 2) * 1.5 : (i % 2 === 0 ? 3.5 : -3.5);
+    const pos = new THREE.Vector3(
+      Math.cos(angle) * r,
+      yOff,
+      Math.sin(angle) * r
+    );
+    orbPositions.push(pos);
+
+    const orb = new THREE.Mesh(
+      new THREE.SphereGeometry(0.35, 14, 14),
+      new THREE.MeshBasicMaterial({ color: DOMAINS[i].color, transparent: true, opacity: 0.8 })
+    );
+    orb.position.copy(pos);
+    scene.add(orb);
+    orbMeshes.push(orb);
+
+    // Line from center to orb
+    const mat = new THREE.LineBasicMaterial({ color: DOMAINS[i].color, transparent: true, opacity: 0.3 });
+    const line = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), pos]),
+      mat
+    );
+    scene.add(line);
+    connLines.push({ line, mat, idx: i });
+  }
+
+  // Cross-domain connections (a few)
+  const crossPairs = [[0,3],[1,6],[2,7],[4,8],[0,5]];
+  const crossLines = [];
+  crossPairs.forEach(([a, b]) => {
+    const mat = new THREE.LineBasicMaterial({ color: 0x334455, transparent: true, opacity: 0.15 });
+    const line = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([orbPositions[a], orbPositions[b]]),
+      mat
+    );
+    scene.add(line);
+    crossLines.push({ line, mat });
+  });
+
+  // Particles flowing from orbs to center
+  const flowParticles = [];
+  for (let i = 0; i < N * 2; i++) {
+    const orbIdx = i % N;
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.08, 5, 5),
+      new THREE.MeshBasicMaterial({ color: DOMAINS[orbIdx].color, transparent: true, opacity: 0 })
+    );
+    m.userData = { orbIdx, phase: i / (N * 2) };
+    scene.add(m);
+    flowParticles.push(m);
+  }
+
+  // Star field
+  const sg = new THREE.BufferGeometry();
+  const sp = [];
+  for (let i = 0; i < 250; i++) sp.push((Math.random()-0.5)*60,(Math.random()-0.5)*60,(Math.random()-0.5)*60);
+  sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3));
+  scene.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0x1a2233, size: 0.07 })));
+
+  function tick(t) {
+    scene.rotation.y = t * 0.07;
+
+    centralMesh.rotation.y = t * 0.4;
+    centralMesh.rotation.x = t * 0.2;
+    const centralPulse = 1 + 0.25 * Math.sin(t * 2);
+    centralMesh.scale.setScalar(centralPulse);
+
+    orbMeshes.forEach((orb, i) => {
+      orb.material.opacity = 0.6 + 0.35 * Math.sin(t * 1.5 + i * 0.7);
+      orb.scale.setScalar(0.8 + 0.3 * Math.sin(t * 1.2 + i * 0.5));
+    });
+
+    connLines.forEach(({ mat, idx }) => {
+      mat.opacity = 0.2 + 0.25 * Math.sin(t * 1.8 + idx * 0.8);
+    });
+
+    flowParticles.forEach((m) => {
+      const { orbIdx, phase } = m.userData;
+      const p = ((t * 0.2 + phase) % 1);
+      const from = orbPositions[orbIdx];
+      const to = new THREE.Vector3(0, 0, 0);
+      m.position.lerpVectors(from, to, p);
+      m.material.opacity = Math.sin(p * Math.PI) * 0.8;
+    });
+
+    camera.position.x = Math.sin(t * 0.05) * 3;
+    camera.position.y = 2 + Math.sin(t * 0.04) * 1.5;
+    camera.lookAt(0, 0, 0);
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = (ts - startTime) / 1000;
+    tick(t);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 
   <p>The most striking thing about the <a href="terms.html#backwards-problem" class="term-link">Backwards Problem</a> is not that it exists. It is that it exists in the same form, with the same mathematical structure, in every complex domain we have examined. The surface variable changes. The deep structure changes. The specific failure mode changes. But the underlying error, starting from the wrong end and compounding inference mistakes, is identical.</p>
 

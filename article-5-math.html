@@ -143,6 +143,24 @@
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
     }
+
+    /* === ARTICLE ANIMATION === */
+    .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
+    .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
+      transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em;
+      text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; }
+    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
+                          to   { opacity: 0.28; transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -212,6 +230,147 @@
   <h1>Why Error Grows When You Start From the <em>Wrong End</em></h1>
   <p class="subtitle">The formal mathematics behind the Backwards Problem: why surface-first analysis is guaranteed to compound error, and how structure-first analysis bounds it.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+<div class="art-viz-frame">
+  <div class="art-viz-inner">
+    <canvas id="art5-canvas"></canvas>
+    <div class="art-viz-label">Orientation Theorem: surface-first error (red) diverges · structure-first (cyan) stays bounded</div>
+    <div class="art-eq-ghost">E_surface(n) ~ e^{αn}  >>  E_structure(n) ~ n^β</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('art5-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  camera.position.set(6, 5, 14);
+  camera.lookAt(0, 0, 0);
+
+  // Build two error surface curves in 3D
+  // X axis = system complexity (0..10)
+  // Y axis = accumulated error
+  // Z axis = slight spread for 3D effect
+
+  const STEPS = 80;
+  const surfaceFirstPts = [];
+  const structureFirstPts = [];
+
+  for (let i = 0; i <= STEPS; i++) {
+    const x = (i / STEPS) * 10 - 5;
+    const complexity = i / STEPS;
+    // Surface-first: exponential error growth
+    const ySurf = Math.exp(complexity * 3) * 0.3 - 0.3;
+    // Structure-first: bounded, sub-linear
+    const yStruct = complexity * 1.5;
+    surfaceFirstPts.push(new THREE.Vector3(x, ySurf, 0));
+    structureFirstPts.push(new THREE.Vector3(x, yStruct, 0));
+  }
+
+  const surfLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(surfaceFirstPts),
+    new THREE.LineBasicMaterial({ color: 0xff4444, transparent: true, opacity: 0.9 })
+  );
+  const structLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(structureFirstPts),
+    new THREE.LineBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0.9 })
+  );
+  scene.add(surfLine, structLine);
+
+  // Axis lines
+  const axismat = new THREE.LineBasicMaterial({ color: 0x334455, transparent: true, opacity: 0.5 });
+  scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-5, 0, 0), new THREE.Vector3(5, 0, 0)
+  ]), axismat));
+  scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-5, 0, 0), new THREE.Vector3(-5, 8, 0)
+  ]), axismat));
+
+  // Particles walking both paths
+  const surfParticles = [];
+  const structParticles = [];
+  for (let i = 0; i < 6; i++) {
+    const ms = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xff4444 })
+    );
+    const mc = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0x00e6ff })
+    );
+    scene.add(ms, mc);
+    surfParticles.push({ mesh: ms, phase: i / 6 });
+    structParticles.push({ mesh: mc, phase: i / 6 });
+  }
+
+  // Gap fill planes (show divergence)
+  const gapGeo = new THREE.BufferGeometry();
+  const gapVerts = [];
+  for (let i = 0; i < STEPS; i++) {
+    gapVerts.push(...surfaceFirstPts[i].toArray(), ...structureFirstPts[i].toArray(), ...surfaceFirstPts[i+1].toArray());
+    gapVerts.push(...structureFirstPts[i].toArray(), ...structureFirstPts[i+1].toArray(), ...surfaceFirstPts[i+1].toArray());
+  }
+  gapGeo.setAttribute('position', new THREE.Float32BufferAttribute(gapVerts, 3));
+  const gapMesh = new THREE.Mesh(gapGeo, new THREE.MeshBasicMaterial({
+    color: 0xff2200, transparent: true, opacity: 0.04, side: THREE.DoubleSide
+  }));
+  scene.add(gapMesh);
+
+  // Grid
+  const gridHelper = new THREE.GridHelper(12, 12, 0x1a2233, 0x1a2233);
+  gridHelper.position.y = -0.3;
+  scene.add(gridHelper);
+
+  function tick(t) {
+    scene.rotation.y = Math.sin(t * 0.08) * 0.3;
+
+    surfParticles.forEach(({ mesh, phase }) => {
+      const p = ((t * 0.12 + phase) % 1);
+      const idx = Math.min(Math.floor(p * STEPS), STEPS - 1);
+      mesh.position.copy(surfaceFirstPts[idx]);
+      mesh.position.z = Math.sin(t * 2 + phase * 10) * 0.3;
+      mesh.material.opacity = 0.5 + 0.5 * Math.sin(p * Math.PI);
+    });
+
+    structParticles.forEach(({ mesh, phase }) => {
+      const p = ((t * 0.12 + phase) % 1);
+      const idx = Math.min(Math.floor(p * STEPS), STEPS - 1);
+      mesh.position.copy(structureFirstPts[idx]);
+      mesh.position.z = Math.sin(t * 1.5 + phase * 10) * 0.2;
+      mesh.material.opacity = 0.5 + 0.5 * Math.sin(p * Math.PI);
+    });
+
+    camera.position.x = 6 + Math.sin(t * 0.06) * 2;
+    camera.position.y = 5 + Math.sin(t * 0.04) * 1;
+    camera.lookAt(0, 2, 0);
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = (ts - startTime) / 1000;
+    tick(t);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 
   <p>The previous articles have described the Backwards Problem in conceptual terms. This article makes it precise. The claim is not that surface-first analysis is usually worse, or that structure-first analysis tends to be better. The claim is that the error differential is mathematically determined, that it grows with system complexity, and that it can be calculated exactly for any system where the assumptions hold.</p>
 

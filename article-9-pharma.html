@@ -169,6 +169,24 @@
       .hamburger { display: flex; }
       .site-nav { padding: 1rem 1.5rem; }
     }
+
+    /* === ARTICLE ANIMATION === */
+    .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
+    .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
+      transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em;
+      text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; }
+    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
+                          to   { opacity: 0.28; transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -238,6 +256,178 @@
   <h1>The Drug Industry's <em>90% Problem</em></h1>
   <p class="subtitle">The pharmaceutical industry spends $2.5 billion to bring a single drug to market. Nine out of ten fail in clinical trials. This is not bad luck, and it is not greed. It is a structural consequence of analyzing disease from the wrong direction.</p>
   <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
+
+<div class="art-viz-frame">
+  <div class="art-viz-inner">
+    <canvas id="art9-canvas"></canvas>
+    <div class="art-viz-label">Molecular target (surface-in, red) fails · phenotypic network (cyan) succeeds</div>
+    <div class="art-eq-ghost">P(success | target) = 0.10  vs  P(success | phenotype) >> 0.10</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('art9-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x03030a, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  camera.position.set(0, 2, 16);
+
+  const PERIOD = 10;
+
+  // Central molecular target node
+  const targetMesh = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(1.0, 1),
+    new THREE.MeshBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.8 })
+  );
+  scene.add(targetMesh);
+  const targetEdges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.02, 1)),
+    new THREE.LineBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.5 })
+  );
+  scene.add(targetEdges);
+
+  // Surface-in probes (red arrows converging on target from outside)
+  const N_PROBES = 8;
+  const probeLines = [];
+  const probeParticles = [];
+  for (let i = 0; i < N_PROBES; i++) {
+    const angle = (i / N_PROBES) * Math.PI * 2;
+    const r = 6;
+    const from = new THREE.Vector3(Math.cos(angle) * r, Math.sin(angle * 0.5) * 2, Math.sin(angle) * r);
+    const mat = new THREE.LineBasicMaterial({ color: 0xff4444, transparent: true, opacity: 0 });
+    const line = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([from, new THREE.Vector3(0,0,0)]),
+      mat
+    );
+    scene.add(line);
+    probeLines.push({ line, mat, from });
+
+    const pm = new THREE.Mesh(
+      new THREE.SphereGeometry(0.1, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xff4444, transparent: true, opacity: 0 })
+    );
+    pm.userData = { from, phase: i / N_PROBES };
+    scene.add(pm);
+    probeParticles.push(pm);
+  }
+
+  // Phenotypic network (cyan web of interconnected nodes)
+  const N_PHENO = 16;
+  const phenoNodes = [];
+  const phenoLines = [];
+  for (let i = 0; i < N_PHENO; i++) {
+    const angle = (i / N_PHENO) * Math.PI * 2;
+    const r = 4 + Math.sin(i * 1.7) * 1.5;
+    const y = Math.cos(i * 0.8) * 2;
+    const pos = new THREE.Vector3(Math.cos(angle) * r, y, Math.sin(angle) * r);
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.15, 8, 8),
+      new THREE.MeshBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0 })
+    );
+    m.position.copy(pos);
+    m.userData = { pos };
+    scene.add(m);
+    phenoNodes.push(m);
+  }
+  // Connect phenotypic nodes in a web
+  for (let i = 0; i < N_PHENO; i++) {
+    for (let j = i + 1; j < N_PHENO; j++) {
+      if (phenoNodes[i].userData.pos.distanceTo(phenoNodes[j].userData.pos) < 4) {
+        const mat = new THREE.LineBasicMaterial({ color: 0x00e6ff, transparent: true, opacity: 0 });
+        const line = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([phenoNodes[i].userData.pos, phenoNodes[j].userData.pos]),
+          mat
+        );
+        scene.add(line);
+        phenoLines.push({ line, mat });
+      }
+    }
+  }
+
+  // Failure flash
+  const failFlash = new THREE.Mesh(
+    new THREE.SphereGeometry(1.5, 12, 12),
+    new THREE.MeshBasicMaterial({ color: 0xff2200, transparent: true, opacity: 0, side: THREE.DoubleSide })
+  );
+  scene.add(failFlash);
+
+  // Star field
+  const sg = new THREE.BufferGeometry();
+  const sp = [];
+  for (let i = 0; i < 200; i++) sp.push((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
+  sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3));
+  scene.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0x1a2233, size: 0.07 })));
+
+  function tick(t) {
+    const phase = (t % PERIOD) / PERIOD;
+    scene.rotation.y = t * 0.07;
+    targetMesh.rotation.y = t * 0.3;
+    targetEdges.rotation.y = t * 0.3;
+
+    // Phase 0-0.45: surface-in approach (red probes converge, fail)
+    // Phase 0.45-0.55: failure flash
+    // Phase 0.55-1.0: phenotypic network lights up (success)
+
+    const surfacePhase = phase < 0.45 ? phase / 0.45 : 0;
+    const failPhase = phase >= 0.45 && phase < 0.55 ? (phase - 0.45) / 0.1 : 0;
+    const phenoPhase = phase >= 0.55 ? (phase - 0.55) / 0.45 : 0;
+
+    // Surface-in probes
+    probeLines.forEach(({ mat }) => {
+      mat.opacity = surfacePhase * 0.5;
+    });
+    probeParticles.forEach((m) => {
+      const p = ((t * 0.15 + m.userData.phase) % 1) * surfacePhase;
+      m.position.lerpVectors(m.userData.from, new THREE.Vector3(0,0,0), p);
+      m.material.opacity = surfacePhase * Math.sin(p * Math.PI) * 0.8;
+    });
+
+    // Failure flash
+    failFlash.material.opacity = failPhase * 0.3 * Math.sin(failPhase * Math.PI);
+
+    // Phenotypic network
+    phenoNodes.forEach((m, i) => {
+      m.material.opacity = phenoPhase * (0.5 + 0.4 * Math.sin(t * 2 + i * 0.7));
+      m.scale.setScalar(0.5 + phenoPhase * 0.8);
+    });
+    phenoLines.forEach(({ mat }) => {
+      mat.opacity = phenoPhase * 0.3;
+    });
+
+    // Target color: gold when healthy, red when being probed incorrectly
+    targetMesh.material.color.setHex(surfacePhase > 0.5 ? 0xff4444 : phenoPhase > 0.3 ? 0x00e6ff : 0xffd700);
+
+    camera.position.x = Math.sin(t * 0.06) * 3;
+    camera.position.y = 2 + Math.sin(t * 0.04) * 1.5;
+    camera.lookAt(0, 0, 0);
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = (ts - startTime) / 1000;
+    tick(t);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 
   <p>If you wanted to design a system that maximized the amount of money spent on drug development while minimizing the number of drugs that actually worked, you would build something that looks almost exactly like the current pharmaceutical R&amp;D pipeline. You would start with a single molecular target, build a compound to hit that target, test the compound in simplified cell cultures and animal models, and then spend a billion dollars finding out whether it works in actual human beings. It usually does not.</p>
 
