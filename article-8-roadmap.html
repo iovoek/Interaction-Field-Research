@@ -182,7 +182,31 @@
       50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
     }
     .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
+  
+    .art-viz-secondary {
+      width: 100%;
+      margin: 2rem 0 2.5rem;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: #050508;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+    .art-viz-secondary canvas {
+      display: block;
+      width: 100%;
+    }
+    .art-viz-secondary-label {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      padding: 0.4rem 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      letter-spacing: 0.03em;
+    }
+
   </style>
+  <script src="shader-gradient.js"></script>
 </head>
 <body>
 <nav class="site-nav">
@@ -245,7 +269,15 @@
   <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
   <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
 </div>
-<main>
+<main style="position:relative;">
+  <canvas
+      data-shader-gradient
+      data-c1="#06060f"
+      data-c2="#081a18"
+      data-c3="#03030a"
+      data-speed="0.06"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"
+    ></canvas>
   <p class="article-series">The Backwards Problem &mdash; Article Series</p>
   <p class="article-number">Article 8 of 8</p>
   <h1>What Comes <em>Next</em></h1>
@@ -407,6 +439,55 @@
   <div class="rule"></div>
 
   <h2>The <em>Next Empirical Tests</em></h2>
+<div class="art-viz-secondary">
+  <canvas id="art8b-canvas"></canvas>
+  <div class="art-viz-secondary-label">Research timeline  ·  Published  ·  In progress  ·  Frontier</div>
+</div>
+<script>
+
+(function(){
+  var c=document.getElementById('art8b-canvas');
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var W,H;
+  function resize(){W=c.width=c.parentElement.clientWidth;H=c.height=Math.round(W*0.22);}
+  resize();
+  window.addEventListener('resize',resize);
+  var milestones=[
+    {label:'Art. 0',done:true},{label:'Art. 1',done:true},
+    {label:'Art. 2',done:false},{label:'Art. 3',done:false},
+    {label:'Art. 4',done:false},{label:'Art. 5',done:false},
+    {label:'Art. 6',done:false},{label:'Art. 7',done:false},
+    {label:'Art. 8',done:false},{label:'Art. 9',done:false},
+    {label:'Paper',done:false},{label:'Review',done:false},
+  ];
+  var t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);ctx.fillStyle='#050508';ctx.fillRect(0,0,W,H);
+    var pad=24;var n=milestones.length;var step=(W-pad*2)/(n-1);var cy=H/2-8;
+    ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.stroke();
+    milestones.forEach(function(m,i){
+      var x=pad+i*step;
+      var pulse=m.done?1:0.7+0.3*Math.sin(t*1.5+i*0.8);
+      ctx.beginPath();ctx.arc(x,cy,m.done?6:4,0,Math.PI*2);
+      ctx.fillStyle=m.done?'rgba(0,210,200,'+pulse+')':'rgba(255,255,255,'+(pulse*0.3)+')';
+      ctx.fill();
+      if(m.done){
+        ctx.strokeStyle='rgba(0,210,200,0.4)';ctx.lineWidth=1;
+        ctx.beginPath();ctx.arc(x,cy,10,0,Math.PI*2);ctx.stroke();
+      }
+      ctx.font='9px monospace';
+      ctx.fillStyle=m.done?'rgba(0,210,200,0.9)':'rgba(255,255,255,0.35)';
+      ctx.textAlign='center';ctx.fillText(m.label,x,cy+22);
+    });
+    ctx.textAlign='left';t+=0.015;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+</script>
+
 
   <p>The most important next step is moving from theoretical predictions to empirical tests with real data. Here are the five tests in order of feasibility and impact:</p>
 
@@ -506,5 +587,7 @@
   </div>
 </main>
   <script src="scroll-fx.js"></script>
+  <script src="liquid-glass.js"></script>
+  <script src="particle-field.js"></script>
 </body>
 </html>

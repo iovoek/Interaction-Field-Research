@@ -179,7 +179,31 @@
       50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
     }
     .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
+  
+    .art-viz-secondary {
+      width: 100%;
+      margin: 2rem 0 2.5rem;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: #050508;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+    .art-viz-secondary canvas {
+      display: block;
+      width: 100%;
+    }
+    .art-viz-secondary-label {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      padding: 0.4rem 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      letter-spacing: 0.03em;
+    }
+
   </style>
+  <script src="shader-gradient.js"></script>
 </head>
 <body>
 <nav class="site-nav">
@@ -242,7 +266,15 @@
   <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
   <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
 </div>
-<main>
+<main style="position:relative;">
+  <canvas
+      data-shader-gradient
+      data-c1="#06060f"
+      data-c2="#081a18"
+      data-c3="#03030a"
+      data-speed="0.06"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"
+    ></canvas>
   <p class="article-series">The Backwards Problem &mdash; Article Series</p>
   <p class="article-number">Article 6 of 8</p>
   <h1>The Same Mistake <em>Everywhere</em></h1>
@@ -491,6 +523,59 @@
   <div class="rule"></div>
 
   <h2>The <em>Pattern</em></h2>
+<div class="art-viz-secondary">
+  <canvas id="art6b-canvas"></canvas>
+  <div class="art-viz-secondary-label">Surface-first orientation failure rate across nine domains</div>
+</div>
+<script>
+
+(function(){
+  var c=document.getElementById('art6b-canvas');
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var W,H;
+  function resize(){W=c.width=c.parentElement.clientWidth;H=c.height=Math.round(W*0.32);}
+  resize();
+  window.addEventListener('resize',resize);
+  var domains=[
+    {name:'Pharma',rate:0.90,color:'rgba(255,80,60,0.85)'},
+    {name:'VC',rate:0.80,color:'rgba(255,100,40,0.85)'},
+    {name:'Social',rate:0.75,color:'rgba(255,130,30,0.85)'},
+    {name:'Trading',rate:0.70,color:'rgba(255,160,20,0.85)'},
+    {name:'Pyramids',rate:0.65,color:'rgba(200,180,40,0.85)'},
+    {name:'Urban',rate:0.60,color:'rgba(150,200,60,0.85)'},
+    {name:'Climate',rate:0.55,color:'rgba(80,210,120,0.85)'},
+    {name:'Immune',rate:0.50,color:'rgba(40,210,180,0.85)'},
+    {name:'Econ',rate:0.45,color:'rgba(0,200,220,0.85)'},
+  ];
+  var t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);ctx.fillStyle='#050508';ctx.fillRect(0,0,W,H);
+    var pad=40;
+    var barW=(W-pad*2)/domains.length-4;
+    domains.forEach(function(d,i){
+      var x=pad+i*(barW+4);
+      var maxH=H-pad*2;
+      var pulse=0.92+0.08*Math.sin(t*1.2+i*0.5);
+      var bh=d.rate*maxH*pulse;
+      var y=H-pad-bh;
+      ctx.fillStyle=d.color;ctx.fillRect(x,y,barW,bh);
+      ctx.font='9px monospace';ctx.fillStyle='rgba(255,255,255,0.5)';
+      ctx.fillText(d.name,x,H-pad+12);
+      ctx.fillStyle='rgba(255,255,255,0.7)';
+      ctx.fillText(Math.round(d.rate*100)+'%',x,y-4);
+    });
+    ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+    ctx.font='10px monospace';ctx.fillStyle='rgba(255,255,255,0.35)';
+    ctx.fillText('surface-first failure rate by domain',pad,pad-8);
+    t+=0.015;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+</script>
+
 
   <p>Across all nine domains, the same pattern holds. The surface variable is easy to measure, shows up first, and is tempting to optimize for. The deep structure is harder to measure, requires genuine exchange to observe, and is the actual source of value. Optimizing for the surface variable instead of the deep structure produces compounding error, wasted resources, and systems that fail in predictable ways.</p>
 
@@ -504,5 +589,7 @@
   </div>
 </main>
   <script src="scroll-fx.js"></script>
+  <script src="liquid-glass.js"></script>
+  <script src="particle-field.js"></script>
 </body>
 </html>

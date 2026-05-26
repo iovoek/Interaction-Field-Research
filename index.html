@@ -88,7 +88,8 @@
     }
 
     /* === HERO === */
-    .hero { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; background: var(--bg); padding-top: 5rem; padding-bottom: 0; }
+    .hero {
+  position: relative; overflow: hidden; position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; background: var(--bg); padding-top: 5rem; padding-bottom: 0; }
     .hero-content { position: relative; z-index: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 0 2rem 3rem; }
     .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(0,230,255,0.7); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; }
     .hero h1 { font-family: 'Noto Serif', Georgia, serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 300; color: #f0eee8; line-height: 1.1; margin-bottom: 1.5rem; }
@@ -151,6 +152,7 @@
     .site-footer .footer-right a { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--fg3); letter-spacing: 0.06em; text-transform: uppercase; }
     .site-footer .footer-right a:hover { color: var(--gold); }
   </style>
+  <script src="shader-gradient.js"></script>
 </head>
 <body>
 
@@ -213,6 +215,14 @@
 </div>
 
 <section class="hero">
+  <canvas
+      data-shader-gradient
+      data-c1="#07071a"
+      data-c2="#0a2420"
+      data-c3="#03030a"
+      data-speed="0.08"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"
+    ></canvas>
   <div class="hero-content">
     <p class="hero-kicker">Independent Research / Complex Systems / 2026</p>
     <h1>Exchange <em>Is</em> the Equation</h1>
@@ -1096,5 +1106,7 @@
 </script>
 
   <script src="scroll-fx.js"></script>
+  <script src="liquid-glass.js"></script>
+  <script src="particle-field.js"></script>
 </body>
 </html>
