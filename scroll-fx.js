@@ -16,34 +16,34 @@
   // ─── CSS injection ────────────────────────────────────────────────────────
   const style = document.createElement('style');
   style.textContent = `
-    /* Base reveal state */
+    /* Base reveal state — content always visible, animation is additive */
     .reveal,
     .reveal-left,
     .reveal-scale {
-      opacity: 0;
+      opacity: 1;
       will-change: opacity, transform;
       transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .reveal {
-      transform: translateY(28px);
+      transform: translateY(0);
       transition: opacity 0.75s, transform 0.75s;
     }
 
     .reveal-left {
-      transform: translateX(-32px);
+      transform: translateX(0);
       transition: opacity 0.7s, transform 0.7s;
     }
 
     .reveal-scale {
-      transform: scale(0.96);
+      transform: scale(1);
       transition: opacity 0.8s, transform 0.8s;
     }
 
     /* Stagger children */
     .reveal-stagger > * {
-      opacity: 0;
-      transform: translateY(22px);
+      opacity: 1;
+      transform: translateY(0);
       will-change: opacity, transform;
       transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                   transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
