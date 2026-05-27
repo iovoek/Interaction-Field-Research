@@ -172,10 +172,7 @@
 
     /* === ARTICLE ANIMATION === */
     .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
-    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
-      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
-      border-radius: 6px; overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7; border-radius: 6px; }
     .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
     .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
       transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
@@ -183,8 +180,8 @@
       text-transform: uppercase; white-space: nowrap; pointer-events: none; }
     .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
       font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
-      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
-      animation: eq-drift 8s ease-in-out infinite alternate; }
+      color: rgba(0,230,255,0.5); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; text-shadow: 0 0 10px rgba(0,200,255,0.3); }
     @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
                           to   { opacity: 0.28; transform: translateY(-4px); } }
   
@@ -199,14 +196,6 @@
     .subtitle        { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.35s both; }
     .byline          { animation: art-hero-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.48s both; }
     .art-viz-frame   { animation: art-hero-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.6s both; }
-
-    /* Animated glow on art-viz-inner */
-    @keyframes art-border-glow {
-      0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
-      50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
-    }
-    .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
-  
     .art-viz-secondary {
       width: 100%;
       margin: 2rem 0 2.5rem;
@@ -235,6 +224,35 @@
     .series-nav-top a:hover { color: var(--gold2); }
     .series-nav-top .next { text-align: right; }
 
+  
+    /* === INLINE VIZ (floating transparent 3D) === */
+    .inline-viz {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin: 3rem 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .inline-viz canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .inline-viz-eq {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(0,230,255,0.55);
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,200,255,0.3);
+    }
+    @media (max-width: 600px) {
+      .inline-viz { height: 160px; }
+    }
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -330,9 +348,8 @@
 (function(){
   const canvas = document.getElementById('art9-canvas');
   if (!canvas) return;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x03030a, 1);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
   function resize() {
@@ -494,9 +511,15 @@
 
   <p>The 90% clinical trial failure rate is one of the most cited statistics in medicine. It is usually framed as a problem of complexity, of risk, of the inherent difficulty of biology. These framings are not wrong. But they are incomplete. The <a href="terms.html#backwards-problem" class="term-link">Backwards Problem</a> framework offers a more precise diagnosis: the pharmaceutical industry is analyzing disease from the surface inward, and the 90% failure rate is the mathematically predictable consequence of that misorientation.</p>
 
+<div class="inline-viz" data-scene="error-growth" data-eq="σ_k = σ₀ · √k  (target-based)  |  σ_k = σ₀ / √n  (phenotypic)"></div>
+
+
   <div class="rule"></div>
 
   <h2>The <em>Numbers First</em></h2>
+
+<div class="inline-viz" data-scene="torus-equation" data-eq="r(t) = (R + r·cos(qt))[cos(pt), sin(pt), sin(qt)/R]" style="height:280px"></div>
+
 
   <div class="stat-grid">
     <div class="stat-cell">
@@ -625,6 +648,8 @@
 
   <p>This is what phenotypic screening does, implicitly, when it works. It observes complex biological systems and identifies compounds that shift the system's behavior at the level where the disease actually lives. The mechanism of action is secondary. The system-level effect is primary. This is the correct orientation: deep structure first, surface mechanism second.</p>
 
+<div class="inline-viz" data-scene="field-lines" data-eq="F(x) = Σ wᵢⱼ · δ(xᵢ, xⱼ)"></div>
+
   <div class="rule"></div>
 
   <h2>The <em>Human Cost</em></h2>
@@ -694,6 +719,7 @@
         <a href="article-1-origin.html" class="next">Start from the beginning &rarr;</a>
   </div>
 </main>
+  <script src="inline-viz.js"></script>
   <script src="scroll-fx.js"></script>
   <script src="liquid-glass.js"></script>
   <script src="particle-field.js"></script>

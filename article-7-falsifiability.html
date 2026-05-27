@@ -143,10 +143,7 @@
 
     /* === ARTICLE ANIMATION === */
     .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
-    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
-      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
-      border-radius: 6px; overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7; border-radius: 6px; }
     .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
     .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
       transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
@@ -154,8 +151,8 @@
       text-transform: uppercase; white-space: nowrap; pointer-events: none; }
     .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
       font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
-      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
-      animation: eq-drift 8s ease-in-out infinite alternate; }
+      color: rgba(0,230,255,0.5); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; text-shadow: 0 0 10px rgba(0,200,255,0.3); }
     @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
                           to   { opacity: 0.28; transform: translateY(-4px); } }
   
@@ -170,14 +167,6 @@
     .subtitle        { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.35s both; }
     .byline          { animation: art-hero-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.48s both; }
     .art-viz-frame   { animation: art-hero-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.6s both; }
-
-    /* Animated glow on art-viz-inner */
-    @keyframes art-border-glow {
-      0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
-      50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
-    }
-    .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
-  
     .art-viz-secondary {
       width: 100%;
       margin: 2rem 0 2.5rem;
@@ -206,6 +195,35 @@
     .series-nav-top a:hover { color: var(--gold2); }
     .series-nav-top .next { text-align: right; }
 
+  
+    /* === INLINE VIZ (floating transparent 3D) === */
+    .inline-viz {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin: 3rem 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .inline-viz canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .inline-viz-eq {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(0,230,255,0.55);
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,200,255,0.3);
+    }
+    @media (max-width: 600px) {
+      .inline-viz { height: 160px; }
+    }
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -301,9 +319,8 @@
 (function(){
   const canvas = document.getElementById('art7-canvas');
   if (!canvas) return;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x03030a, 1);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
   function resize() {
@@ -439,6 +456,9 @@
 
   <h2>The Three <em>Core Assumptions</em></h2>
 
+<div class="inline-viz" data-scene="bifurcation-tree" data-eq="x_{n+1} = r · x_n(1 - x_n)"></div>
+
+
   <p>The Orientation Theorem is proved under three assumptions. If any of these assumptions fails in a specific domain, the theorem does not apply to that domain.</p>
 
   <p><strong>A1: Independence.</strong> Transaction errors are independent of each other. If this fails, the sqrt(k) error growth formula changes. In markets with correlated errors (herding, cascades, contagion), the error may grow faster than sqrt(k). The theory would still hold directionally, but the quantitative predictions would be wrong.</p>
@@ -521,6 +541,8 @@
 
   <p>The social media application faces a specific challenge that deserves its own discussion. Goodhart's Law states: when a measure becomes a target, it ceases to be a good measure. This applies directly to the proposed connection-based optimization. If platforms start optimizing for reciprocity index, conversation depth, and trust formation rate, bad actors will learn to fake these metrics. Coordinated inauthentic behavior, harassment disguised as conversation, and extremist communities that form genuine trust among members could all game connection metrics as easily as they game engagement metrics.</p>
 
+<div class="inline-viz" data-scene="fibonacci-coherence" data-eq="θ_n = n · 2π/φ²  |  r_n = √n"></div>
+
   <p>This is a real limitation. It does not falsify the theory, but it means that any implementation of connection-based optimization must be adversarially robust from the start. Single-metric optimization is always gameable. The solution is layered measurement, adversarial testing, and continuous recalibration. This is harder than optimizing for a single engagement metric, but it is the correct problem to be solving.</p>
 
   <div class="rule"></div>
@@ -540,6 +562,7 @@
     <a href="article-8-roadmap.html" class="next">Next: What Comes Next &rarr;</a>
   </div>
 </main>
+  <script src="inline-viz.js"></script>
   <script src="scroll-fx.js"></script>
   <script src="liquid-glass.js"></script>
   <script src="particle-field.js"></script>

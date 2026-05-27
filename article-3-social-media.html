@@ -192,10 +192,7 @@
 
     /* === ARTICLE ANIMATION === */
     .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
-    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
-      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
-      border-radius: 6px; overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7; border-radius: 6px; }
     .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
     .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
       transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
@@ -204,8 +201,8 @@
     /* ghost equation overlay */
     .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
       font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
-      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
-      animation: eq-drift 8s ease-in-out infinite alternate; }
+      color: rgba(0,230,255,0.5); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; text-shadow: 0 0 10px rgba(0,200,255,0.3); }
     @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
                           to   { opacity: 0.28; transform: translateY(-4px); } }
   
@@ -220,14 +217,6 @@
     .subtitle        { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.35s both; }
     .byline          { animation: art-hero-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.48s both; }
     .art-viz-frame   { animation: art-hero-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.6s both; }
-
-    /* Animated glow on art-viz-inner */
-    @keyframes art-border-glow {
-      0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
-      50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
-    }
-    .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
-  
     .art-viz-secondary {
       width: 100%;
       margin: 2rem 0 2.5rem;
@@ -256,6 +245,35 @@
     .series-nav-top a:hover { color: var(--gold2); }
     .series-nav-top .next { text-align: right; }
 
+  
+    /* === INLINE VIZ (floating transparent 3D) === */
+    .inline-viz {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin: 3rem 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .inline-viz canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .inline-viz-eq {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(0,230,255,0.55);
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,200,255,0.3);
+    }
+    @media (max-width: 600px) {
+      .inline-viz { height: 160px; }
+    }
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -351,9 +369,8 @@
 (function(){
   const canvas = document.getElementById('art3-canvas');
   if (!canvas) return;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x03030a, 1);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
   function resize() {
@@ -485,6 +502,9 @@
 
   <h2>What the Algorithm <em>Actually Does</em></h2>
 
+<div class="inline-viz" data-scene="bifurcation-tree" data-eq="x_{n+1} = r · x_n(1 - x_n)"></div>
+
+
   <p>To understand the problem, you need to understand what the algorithm is actually optimizing for. Not what the platforms say it is optimizing for. What it actually does.</p>
 
   <p>Every major social media platform uses a variant of the same basic ranking function. Content is scored on a combination of predicted engagement signals: clicks, likes, shares, comments, watch time, reactions. The content with the highest predicted engagement score gets shown to the most people. The content with the lowest predicted engagement score gets buried.</p>
@@ -494,6 +514,8 @@
   <p>A 2021 study by Smitha Milli et al., published in PNAS Nexus, found that engagement-optimized algorithms systematically make users worse off on their own stated preferences. Users report wanting content that informs them, connects them to people they care about, and helps them make better decisions. The algorithm gives them content that triggers emotional reactions, because emotional reactions generate clicks. The gap between what users say they want and what the algorithm delivers is not a bug. It is a structural consequence of optimizing for the wrong variable.</p>
 
   <p>Germano et al. (2019) formalized this in a model showing that engagement amplification is not a byproduct of the algorithm but its core mechanism. The algorithm does not accidentally promote outrage. It is designed, at a structural level, to do exactly that, because outrage is the most reliable predictor of engagement, and engagement is what the algorithm is told to maximize.</p>
+
+<div class="inline-viz" data-scene="wave-interference" data-eq="ψ(x,t) = A·sin(kx - ωt) + B·sin(kx + ωt)"></div>
 
   <p class="pull-quote">The algorithm is not finding what people want. It is finding what <em>triggers a reaction</em>. These are not the same thing. The entire failure of the social media ecosystem lives in that gap.</p>
 
@@ -1066,6 +1088,7 @@
     <a href="article-4-value.html" class="next">Next: Value Is Not a Number &rarr;</a>
   </div>
 </main>
+  <script src="inline-viz.js"></script>
   <script src="scroll-fx.js"></script>
   <script src="liquid-glass.js"></script>
   <script src="particle-field.js"></script>

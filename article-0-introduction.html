@@ -154,10 +154,7 @@
 
     /* === ARTICLE ANIMATION === */
     .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
-    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7;
-      background: #03030a; border: 1px solid rgba(0,200,255,0.14);
-      border-radius: 6px; overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7; border-radius: 6px; }
     .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
     .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%;
       transform: translateX(-50%); font-family: 'JetBrains Mono', monospace;
@@ -166,8 +163,8 @@
     /* ghost equation overlay */
     .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem;
       font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
-      color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none;
-      animation: eq-drift 8s ease-in-out infinite alternate; }
+      color: rgba(0,230,255,0.5); letter-spacing: 0.04em; pointer-events: none;
+      animation: eq-drift 8s ease-in-out infinite alternate; text-shadow: 0 0 10px rgba(0,200,255,0.3); }
     @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); }
                           to   { opacity: 0.28; transform: translateY(-4px); } }
   
@@ -182,19 +179,40 @@
     .subtitle        { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.35s both; }
     .byline          { animation: art-hero-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.48s both; }
     .art-viz-frame   { animation: art-hero-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.6s both; }
-
-    /* Animated glow on art-viz-inner */
-    @keyframes art-border-glow {
-      0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
-      50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
-    }
-    .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
-  
     .series-nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
     .series-nav-top a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .series-nav-top a:hover { color: var(--gold2); }
     .series-nav-top .next { text-align: right; }
 
+  
+    /* === INLINE VIZ (floating transparent 3D) === */
+    .inline-viz {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin: 3rem 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .inline-viz canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .inline-viz-eq {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(0,230,255,0.55);
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,200,255,0.3);
+    }
+    @media (max-width: 600px) {
+      .inline-viz { height: 160px; }
+    }
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -290,9 +308,8 @@
 (function(){
   const canvas = document.getElementById('art0-canvas');
   if (!canvas) return;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x03030a, 1);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
   function resize() {
@@ -435,6 +452,8 @@
 
   <p>The work here is ongoing. It gets revised, extended, and sometimes corrected in real time. When we find errors, we fix them and document the fix. When we find limitations, we say so. The site is a living document.</p>
 
+<div class="inline-viz" data-scene="field-lines" data-eq="F(x) = Σ wᵢⱼ · δ(xᵢ, xⱼ)"></div>
+
   <p>What follows is an explanation of the project: what it claims, where it came from, and what to expect from the series.</p>
 
   <div class="rule"></div>
@@ -448,6 +467,8 @@
   <p>The alternative is to start from the deep structure, the actual pattern of genuine interactions within a system, and let the surface metrics be an output rather than an input. This is not a new idea in any single field. Complexity economists have been saying it for decades. So have systems biologists, urban theorists, and market microstructure researchers. What none of them have done, as far as we can find, is connect these observations into a single formal framework and show that the same mathematical structure governs all of them.</p>
 
   <p>That is what this project attempts.</p>
+
+<div class="inline-viz" data-scene="lattice-propagation" data-eq="E(k) = E₀ · √k"></div>
 
   <div class="pull-quote">The pieces are already here. They are scattered across trading theory, drug discovery, information theory, urban planning, ecology, AI architecture, and half a dozen other fields. The only thing missing is the connection between them. <em>That connection is what we are building.</em></div>
 
@@ -614,6 +635,7 @@
     <a href="article-1-origin.html" class="next">Next: The Backwards Problem &rarr;</a>
   </div>
 </main>
+  <script src="inline-viz.js"></script>
   <script src="scroll-fx.js"></script>
   <script src="liquid-glass.js"></script>
   <script src="particle-field.js"></script>

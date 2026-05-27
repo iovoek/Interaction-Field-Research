@@ -132,11 +132,11 @@
     }
     /* Article Animation */
     .art-viz-frame { width: 100%; margin: 2.5rem 0 3rem; }
-    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7; background: #03030a; border: 1px solid rgba(0,200,255,0.14); border-radius: 6px; overflow: hidden; box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
+    .art-viz-inner { position: relative; width: 100%; aspect-ratio: 16 / 7; border-radius: 6px; }
     .art-viz-inner canvas { display: block; width: 100%; height: 100%; }
     .art-viz-label { position: absolute; bottom: 0.7rem; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; color: rgba(0,200,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; pointer-events: none; }
-    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: rgba(0,200,255,0.18); letter-spacing: 0.04em; pointer-events: none; animation: eq-drift 8s ease-in-out infinite alternate; }
-    @keyframes eq-drift { from { opacity: 0.12; transform: translateY(0); } to { opacity: 0.28; transform: translateY(-4px); } }
+    .art-eq-ghost { position: absolute; top: 0.8rem; right: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(0,230,255,0.5); letter-spacing: 0.06em; pointer-events: none; animation: eq-drift 8s ease-in-out infinite alternate; text-shadow: 0 0 10px rgba(0,200,255,0.3); }
+    @keyframes eq-drift { from { opacity: 0.35; transform: translateY(0); } to { opacity: 0.65; transform: translateY(-4px); } }
     @keyframes art-hero-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     .article-series { animation: art-hero-up 0.7s cubic-bezier(0.25,0.46,0.45,0.94) 0.05s both; }
     .article-number  { animation: art-hero-up 0.7s cubic-bezier(0.25,0.46,0.45,0.94) 0.12s both; }
@@ -144,17 +144,40 @@
     .subtitle        { animation: art-hero-up 0.9s cubic-bezier(0.25,0.46,0.45,0.94) 0.35s both; }
     .byline          { animation: art-hero-up 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.48s both; }
     .art-viz-frame   { animation: art-hero-up 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.6s both; }
-    @keyframes art-border-glow {
-      0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.05), 0 16px 48px rgba(0,0,0,0.55); }
-      50%       { box-shadow: 0 0 60px rgba(0,200,255,0.12), 0 16px 48px rgba(0,0,0,0.55); }
-    }
-    .art-viz-inner { animation: art-border-glow 7s ease-in-out infinite; }
-  
     .series-nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
     .series-nav-top a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .series-nav-top a:hover { color: var(--gold2); }
     .series-nav-top .next { text-align: right; }
 
+  
+    /* === INLINE VIZ (floating transparent 3D) === */
+    .inline-viz {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin: 3rem 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .inline-viz canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .inline-viz-eq {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(0,230,255,0.55);
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,200,255,0.3);
+    }
+    @media (max-width: 600px) {
+      .inline-viz { height: 160px; }
+    }
   </style>
   <script src="shader-gradient.js"></script>
 </head>
@@ -246,9 +269,8 @@
 (function(){
   const canvas = document.getElementById('art1-canvas');
   if (!canvas) return;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x03030a, 1);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
   function resize() {
@@ -269,10 +291,10 @@
   sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
   scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x223344,size:0.07})));
   function tick(t){
-    core.rotation.y=t*0.2;
-    cyanP.forEach(({mesh,phase,arm})=>{const p=((t*0.18+phase)%1),r=0.8+p*4.5,ba=(arm/4)*Math.PI*2,a=ba+p*Math.PI*6;mesh.position.set(Math.cos(a)*r,Math.sin(a*0.5+arm*0.4)*r*0.35,Math.sin(a)*r);mesh.material.opacity=0.3+0.7*Math.sin(p*Math.PI);});
-    redP.forEach(({mesh,phase,arm})=>{const p=((t*0.14+phase)%1),r=5-p*3.5+Math.sin(p*20+arm)*0.5,ba=(arm/5)*Math.PI*2+Math.PI*0.3,a=ba+p*Math.PI*8+Math.sin(p*15)*0.8;mesh.position.set(Math.cos(a)*r,Math.sin(p*5+arm)*r*0.4+Math.cos(p*11)*0.3,Math.sin(a)*r);mesh.material.opacity=0.2+0.6*Math.sin(p*Math.PI);});
-    camera.position.x=Math.sin(t*0.06)*3; camera.position.y=Math.sin(t*0.04)*2; camera.lookAt(0,0,0);
+    core.rotation.y=t*0.07;
+    cyanP.forEach(({mesh,phase,arm})=>{const p=((t*0.09+phase)%1),r=0.8+p*4.5,ba=(arm/4)*Math.PI*2,a=ba+p*Math.PI*6;mesh.position.set(Math.cos(a)*r,Math.sin(a*0.5+arm*0.4)*r*0.35,Math.sin(a)*r);mesh.material.opacity=0.3+0.7*Math.sin(p*Math.PI);});
+    redP.forEach(({mesh,phase,arm})=>{const p=((t*0.07+phase)%1),r=5-p*3.5+Math.sin(p*20+arm)*0.5,ba=(arm/5)*Math.PI*2+Math.PI*0.3,a=ba+p*Math.PI*8+Math.sin(p*15)*0.8;mesh.position.set(Math.cos(a)*r,Math.sin(p*5+arm)*r*0.4+Math.cos(p*11)*0.3,Math.sin(a)*r);mesh.material.opacity=0.2+0.6*Math.sin(p*Math.PI);});
+    camera.position.x=Math.sin(t*0.04)*2.5; camera.position.y=Math.sin(t*0.03)*1.5; camera.lookAt(0,0,0);
   }
   let st=null;
   function loop(ts){if(!st)st=ts;tick((ts-st)/1000);renderer.render(scene,camera);requestAnimationFrame(loop);}
@@ -318,6 +340,9 @@
   <div class="rule"></div>
 
   <h2>The <em>Mathematical Consequence</em></h2>
+
+<div class="inline-viz" data-scene="error-growth" data-eq="σ_k = σ₀ · √k  (backwards)  |  σ_k = σ₀ / √n  (forwards)"></div>
+
 
   <p>If value is constituted by genuine transactions rather than merely reflected in prices, then the direction from which you analyze a market determines whether your analysis converges toward truth or diverges away from it.</p>
 
@@ -398,6 +423,9 @@
 
   <p>In the trading card market, analyzing from the surface inward means starting from the listed price, the asking price, the sentiment indicator, and trying to infer true value by adding inference steps. Every inference step adds error. The more steps you take, the more wrong you are. The error function takes the same mathematical form: uncertainty grows as you move further from the genuine transaction record.</p>
 
+<div class="inline-viz" data-scene="bifurcation-tree" data-eq="x_{n+1} = r · x_n(1 - x_n)"></div>
+
+
   <p>Analyzing from the deep structure outward means starting from the genuine transaction record, the actual completed sales, the real interaction field, and letting the price be an output of that analysis. Uncertainty decreases as 1/sqrt(n) with the number of genuine transactions. The deep structure is the fixed reference point. The surface price is what emerges from it.</p>
 
   <div class="math-box">
@@ -418,6 +446,9 @@
   <p>The pattern that connects the pyramid and the trading card market is not a coincidence. It is an instance of a general structural problem that appears across complex systems whenever the analysis is oriented from the surface inward rather than from the deep structure outward.</p>
 
   <p>I call this the Backwards Problem. The formal definition is this: a system exhibits the Backwards Problem when its analytical framework is oriented from surface variables toward deep structure, rather than from deep structure toward surface variables, and when this orientation causes measurement error to compound rather than diminish as the analysis proceeds.</p>
+
+<div class="inline-viz" data-scene="orientation-flip" data-eq="O ∈ {-1, +1}  |  E(O) = E₀ · e^{-λ·O}"></div>
+
 
   <p>The Backwards Problem is not a data quality problem. It is not a modeling problem. It is an orientation problem. You can have perfect data and a perfect model and still produce systematically wrong outputs if the model is oriented backwards. The error is structural, not empirical.</p>
 
@@ -482,6 +513,7 @@
     <a href="article-2-framework.html" class="next">Next: We're Measuring the Wrong Layer of Reality &rarr;</a>
   </div>
 </main>
+  <script src="inline-viz.js"></script>
   <script src="scroll-fx.js"></script>
   <script src="liquid-glass.js"></script>
   <script src="particle-field.js"></script>
