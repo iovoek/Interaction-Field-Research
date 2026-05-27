@@ -198,12 +198,14 @@
     .series-nav-top .next { text-align: right; }
 
   
+  
+  
     /* === INLINE VIZ (floating transparent 3D) === */
     .inline-viz {
       position: relative;
       width: 100%;
-      height: 220px;
-      margin: 3rem 0;
+      height: 200px;
+      margin: 2rem 0 0;
       pointer-events: none;
       overflow: visible;
     }
@@ -214,17 +216,31 @@
     }
     .inline-viz-eq {
       position: absolute;
-      bottom: 0.6rem;
+      bottom: 0.5rem;
       right: 1rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      color: rgba(0,230,255,0.55);
+      font-size: 0.58rem;
+      color: rgba(0,230,255,0.5);
       letter-spacing: 0.06em;
       pointer-events: none;
       text-shadow: 0 0 8px rgba(0,200,255,0.3);
     }
+    .viz-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(184,180,169,0.5);
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin: 0 0 2.5rem;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    .viz-caption strong {
+      color: rgba(0,230,255,0.6);
+      font-weight: 500;
+    }
     @media (max-width: 600px) {
-      .inline-viz { height: 160px; }
+      .inline-viz { height: 150px; }
     }
   </style>
   <script src="shader-gradient.js"></script>
@@ -468,7 +484,6 @@
 })();
 </script>
 
-
   <p>The most striking thing about the <a href="terms.html#backwards-problem" class="term-link">Backwards Problem</a> is not that it exists. It is that it exists in the same form, with the same mathematical structure, in every complex domain we have examined. The surface variable changes. The deep structure changes. The specific failure mode changes. But the underlying error, starting from the wrong end and compounding inference mistakes, is identical.</p>
 
   <p>This article surveys all nine domains. Each entry names the surface variable being misused, the deep structure being ignored, and the specific failure that results. For the two most urgent domains, social media and pharmaceutical R&D, full deep-dive articles are available.</p>
@@ -551,8 +566,6 @@
 
   <h2>The <em>Pattern</em></h2>
 
-<div class="inline-viz" data-scene="lattice-propagation" data-eq="E(k) = E₀ · √k"></div>
-
 <div class="art-viz-secondary">
   <canvas id="art6b-canvas"></canvas>
   <div class="art-viz-secondary-label">Surface-first orientation failure rate across nine domains</div>
@@ -606,12 +619,15 @@
 
 </script>
 
-
   <p>Across all nine domains, the same pattern holds. The surface variable is easy to measure, shows up first, and is tempting to optimize for. The deep structure is harder to measure, requires genuine exchange to observe, and is the actual source of value. Optimizing for the surface variable instead of the deep structure produces compounding error, wasted resources, and systems that fail in predictable ways.</p>
 
-<div class="inline-viz" data-scene="transaction-density" data-eq="ρ(x) = Σᵢⱼ δ(x - xᵢⱼ) · wᵢⱼ"></div>
+<div class="inline-viz" data-scene="lattice-propagation" data-eq="E(k) = E₀ · √k"></div>
+<p class="viz-caption"><strong>Lattice Propagation:</strong> The same error propagation pattern across all nine domains: each node in this lattice represents a domain. The red wave shows how the Backwards Problem spreads through a system when analysis starts from surface variables. The pattern is identical whether the domain is pharmaceutical R&D, social media, urban planning, or trading card markets. The mathematical structure does not change.</p>
 
   <p>The fact that this pattern appears in nine independent domains, derived from the same mathematical structure, is the strongest evidence for the theory's generality. It is not a coincidence. It is a structural feature of how complex systems work.</p>
+
+<div class="inline-viz" data-scene="transaction-density" data-eq="ρ(x) = Σᵢⱼ δ(x - xᵢⱼ) · wᵢⱼ"></div>
+<p class="viz-caption"><strong>Transaction Density:</strong> Transaction density across domains: in every domain covered in this article, the deep structure is a version of this density field. In pharma, the nodes are biological system states and the transactions are phenotypic responses. In urban planning, the nodes are city blocks and the transactions are genuine human interactions. The surface variable (drug target, zoning map) is downstream of this field.</p>
 
   <p>The next article asks the most important question in science: how could this theory be wrong?</p>
 

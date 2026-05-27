@@ -201,12 +201,14 @@
     .series-nav-top .next { text-align: right; }
 
   
+  
+  
     /* === INLINE VIZ (floating transparent 3D) === */
     .inline-viz {
       position: relative;
       width: 100%;
-      height: 220px;
-      margin: 3rem 0;
+      height: 200px;
+      margin: 2rem 0 0;
       pointer-events: none;
       overflow: visible;
     }
@@ -217,17 +219,31 @@
     }
     .inline-viz-eq {
       position: absolute;
-      bottom: 0.6rem;
+      bottom: 0.5rem;
       right: 1rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      color: rgba(0,230,255,0.55);
+      font-size: 0.58rem;
+      color: rgba(0,230,255,0.5);
       letter-spacing: 0.06em;
       pointer-events: none;
       text-shadow: 0 0 8px rgba(0,200,255,0.3);
     }
+    .viz-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(184,180,169,0.5);
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin: 0 0 2.5rem;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    .viz-caption strong {
+      color: rgba(0,230,255,0.6);
+      font-weight: 500;
+    }
     @media (max-width: 600px) {
-      .inline-viz { height: 160px; }
+      .inline-viz { height: 150px; }
     }
   </style>
   <script src="shader-gradient.js"></script>
@@ -460,14 +476,11 @@
 })();
 </script>
 
-
   <p>This series began with a text message about trading cards. It ends with a framework that applies to pharmaceutical R&D, social media algorithms, urban planning, education, supply chains, venture capital, medicine, and real estate. The theory is not finished. It is a living research program. This article describes where it goes from here.</p>
 
   <div class="rule"></div>
 
   <h2>The <em>Next Empirical Tests</em></h2>
-
-<div class="inline-viz" data-scene="fibonacci-coherence" data-eq="θ_n = n · 2π/φ²  |  r_n = √n"></div>
 
 <div class="art-viz-secondary">
   <canvas id="art8b-canvas"></canvas>
@@ -518,7 +531,6 @@
 
 </script>
 
-
   <p>The most important next step is moving from theoretical predictions to empirical tests with real data. Here are the five tests in order of feasibility and impact:</p>
 
   <div class="next-step">
@@ -552,7 +564,8 @@
 
   <p>The formal proof, the Monte Carlo validation, and the empirical tests already completed are at a level where a 10-page paper could be submitted to a complexity science or systems theory journal. The most appropriate venues are:</p>
 
-<div class="inline-viz" data-scene="wave-interference" data-eq="ψ(x,t) = A·sin(kx - ωt) + B·sin(kx + ωt)"></div>
+<div class="inline-viz" data-scene="fibonacci-coherence" data-eq="θ_n = n · 2π/φ²  |  r_n = √n"></div>
+<p class="viz-caption"><strong>Fibonacci Coherence:</strong> Research trajectory as a Fibonacci spiral: each point represents a completed research step, and the spiral's structure emerges from the golden angle θ_n = n·2π/φ². This models the research roadmap: each new domain application is a new point on the spiral, and the overall structure becomes visible only after enough points have been placed. The roadmap described in this article follows this pattern.</p>
 
   <p><strong>Journal of Complex Systems</strong> -- The natural home for a paper that applies the same mathematical structure across multiple domains. The audience is complexity scientists who will appreciate the structural correspondence argument.</p>
 
@@ -561,6 +574,9 @@
   <p><strong>PLOS ONE</strong> -- Open access, broad scope, rigorous peer review. The empirical tests would be the primary contribution here.</p>
 
   <p>The paper would need to do three things: state the formal theorem with full proof, present the Monte Carlo validation, and present at least one empirical test with real data. The forex spread test is the most feasible first empirical contribution.</p>
+
+<div class="inline-viz" data-scene="wave-interference" data-eq="ψ(x,t) = A·sin(kx - ωt) + B·sin(kx + ωt)"></div>
+<p class="viz-caption"><strong>Wave Interference:</strong> Constructive interference between theory and empirical data: the cyan wave is the theoretical prediction, the magenta wave is the empirical measurement. Where they align (constructive interference, white peaks), the theory is confirmed. Where they diverge (destructive interference, cancellation), the theory needs revision. The research roadmap is designed to produce as many interference tests as possible.</p>
 
   <div class="rule"></div>
 
