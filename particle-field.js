@@ -59,7 +59,7 @@
     window.addEventListener('resize', resize);
 
     // ── Particle field ──────────────────────────────────────────────────────────
-    const COUNT = 1800;
+    const COUNT = 1100;
     const positions = new Float32Array(COUNT * 3);
     const colors = new Float32Array(COUNT * 3);
     const sizes = new Float32Array(COUNT);
@@ -72,11 +72,25 @@
       positions[i * 3 + 1] = (Math.random() - 0.5) * 30;
       positions[i * 3 + 2] = Math.sin(theta) * r * 0.4 + (Math.random() - 0.5) * 20;
 
-      // Color: mix between deep teal and faint cyan
+      // Color: teal, cyan, turquoise, and occasional pink
       const t = Math.random();
-      colors[i * 3]     = 0.0 + t * 0.05;
-      colors[i * 3 + 1] = 0.25 + t * 0.55;
-      colors[i * 3 + 2] = 0.35 + t * 0.55;
+      const colorType = Math.random();
+      if (colorType < 0.55) {
+        // Teal/cyan
+        colors[i * 3]     = 0.0 + t * 0.05;
+        colors[i * 3 + 1] = 0.28 + t * 0.55;
+        colors[i * 3 + 2] = 0.38 + t * 0.52;
+      } else if (colorType < 0.82) {
+        // Bright turquoise
+        colors[i * 3]     = 0.0 + t * 0.1;
+        colors[i * 3 + 1] = 0.55 + t * 0.35;
+        colors[i * 3 + 2] = 0.55 + t * 0.35;
+      } else {
+        // Soft pink/magenta accent
+        colors[i * 3]     = 0.55 + t * 0.35;
+        colors[i * 3 + 1] = 0.05 + t * 0.15;
+        colors[i * 3 + 2] = 0.35 + t * 0.35;
+      }
 
       sizes[i] = 0.5 + Math.random() * 1.5;
     }
@@ -103,8 +117,8 @@
     // We draw a sparse set of lines between close particles for the "network" look
     const linePositions = [];
     const lineColors = [];
-    const threshold = 8;
-    const maxLines = 300;
+    const threshold = 10;
+    const maxLines = 500;
     let lineCount = 0;
 
     for (let i = 0; i < COUNT && lineCount < maxLines; i++) {
@@ -118,8 +132,16 @@
             positions[i*3], positions[i*3+1], positions[i*3+2],
             positions[j*3], positions[j*3+1], positions[j*3+2]
           );
-          const alpha = 1 - dist / threshold;
-          lineColors.push(0, 0.3 * alpha, 0.4 * alpha, 0, 0.3 * alpha, 0.4 * alpha);
+          const alpha = (1 - dist / threshold) * 0.9;
+          // Line color matches the particle color type -- mostly teal, some turquoise, rare pink
+          const lc = Math.random();
+          if (lc < 0.7) {
+            lineColors.push(0, 0.45 * alpha, 0.55 * alpha, 0, 0.45 * alpha, 0.55 * alpha);
+          } else if (lc < 0.9) {
+            lineColors.push(0, 0.65 * alpha, 0.65 * alpha, 0, 0.65 * alpha, 0.65 * alpha);
+          } else {
+            lineColors.push(0.55 * alpha, 0.05 * alpha, 0.4 * alpha, 0.55 * alpha, 0.05 * alpha, 0.4 * alpha);
+          }
           lineCount++;
         }
       }
@@ -132,7 +154,7 @@
       const lineMat = new THREE.LineBasicMaterial({
         vertexColors: true,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.45,
         blending: THREE.AdditiveBlending,
         depthWrite: false
       });

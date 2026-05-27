@@ -60,7 +60,6 @@
       z-index: 1000;
       transition: width 0.1s linear;
     }
-    @media (max-width: 768px) {
     /* Hero */
     .hero {
       min-height: 100vh;
@@ -68,10 +67,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      padding: 8rem 2rem 4rem;
+      padding: 8rem 4rem 4rem;
       max-width: 900px;
       margin: 0 auto;
       position: relative;
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 8rem 2rem 4rem; }
     }
     .hero::before {
       content: '';
