@@ -160,9 +160,7 @@
     // Comparison grid cells
     document.querySelectorAll('.comparison-cell').forEach(el => el.classList.add('glass-fx'));
 
-    // Series nav
-    const seriesNav = document.querySelector('.series-nav');
-    if (seriesNav) seriesNav.classList.add('glass-fx');
+    // Series nav -- intentionally no glass box applied, keep clean text-only style
   }
 
   // ─── Liquid Ripple on Hover ──────────────────────────────────────────────────

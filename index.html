@@ -114,7 +114,7 @@
       50%       { box-shadow: 0 0 80px rgba(0,200,255,0.14), 0 20px 60px rgba(0,0,0,0.6); }
     }
     .viz-frame-inner { animation: border-glow 6s ease-in-out infinite; }
-    .viz-frame { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .viz-frame { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 2rem 3rem; }
     .viz-frame-inner { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #050508; border: 1px solid rgba(0,200,255,0.18); border-radius: 8px; overflow: hidden; box-shadow: 0 0 60px rgba(0,200,255,0.07), 0 20px 60px rgba(0,0,0,0.6); }
     #hero-canvas { display: block; width: 100%; height: 100%; }
     .scene-label { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: rgba(0,200,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; white-space: nowrap; }
@@ -139,6 +139,16 @@
     .intro-section p strong { color: var(--fg); }
     .intro-cta { display: inline-block; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.4); padding-bottom: 2px; transition: border-color 0.2s; }
     .intro-cta:hover { border-color: var(--gold); }
+    .pull-quote { margin: 2.5rem 0; padding: 1.4rem 1.8rem; border-left: 3px solid var(--teal); background: rgba(42,157,143,0.06); border-radius: 0 var(--radius) var(--radius) 0; }
+    .pull-quote p { font-family: 'Noto Serif', Georgia, serif; font-size: 1.08rem; font-style: italic; color: var(--fg); line-height: 1.75; margin: 0; }
+    .pull-quote cite { display: block; margin-top: 0.6rem; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--fg3); letter-spacing: 0.08em; text-transform: uppercase; font-style: normal; }
+    .domain-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.8rem 0; }
+    .domain-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.7rem; border: 1px solid rgba(42,157,143,0.3); border-radius: 3px; background: rgba(42,157,143,0.05); }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2.5rem 0; }
+    .stat-item { text-align: center; padding: 1.2rem 1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); }
+    .stat-item .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; color: var(--gold); display: block; margin-bottom: 0.3rem; }
+    .stat-item .stat-label { font-size: 0.75rem; color: var(--fg3); line-height: 1.4; }
+    @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
     .resources-section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
     .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
     .resource-card { padding: 1.4rem 1.5rem; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.2s, background 0.2s; }
@@ -242,8 +252,38 @@
 <section class="intro-section">
   <p>In most complex systems, we start from what is easy to measure and try to work backward toward what actually matters. Stock prices instead of trading activity. Engagement metrics instead of genuine connection. Molecular targets instead of living cell behavior.</p>
   <p>This seems intuitive. But in complex systems, it actively degrades the thing it is trying to measure. The errors compound. And the more complex the system, the worse it gets.</p>
-  <p>This project explores the alternative: <strong>start from the deep structure</strong>, the actual pattern of genuine interactions, and let surface metrics be outputs rather than inputs. Researchers across many fields have been saying versions of this for decades. What none of them have done is connect these observations into a single formal framework.</p>
-  <p>That is what we are building here.</p>
+
+  <div class="pull-quote">
+    <p>The direction from which you enter a complex system is not a methodological preference. It is the variable that determines whether your model converges toward truth or diverges away from it.</p>
+    <cite>Glen Brackmann &mdash; Article 2: Measuring the Wrong Layer</cite>
+  </div>
+
+  <p>This project explores the alternative: <strong>start from the exchange itself</strong> &mdash; the actual pattern of genuine interactions flowing between nodes in the system &mdash; and let surface metrics be outputs rather than inputs. Researchers across many fields have been saying versions of this for decades. What none of them have done is connect these observations into a single formal framework.</p>
+
+  <p>The core claim is this: when you orient your analysis from the <strong>interaction field</strong> outward, the system's behavior becomes legible. When you orient it from surface metrics inward, you introduce a structural error that compounds at every step. The more complex the system, the faster it compounds.</p>
+
+  <div class="stat-row">
+    <div class="stat-item"><span class="stat-num">9</span><span class="stat-label">independent domains examined</span></div>
+    <div class="stat-item"><span class="stat-num">10</span><span class="stat-label">articles in the series</span></div>
+    <div class="stat-item"><span class="stat-num">90%</span><span class="stat-label">pharma failure rate the framework may explain</span></div>
+  </div>
+
+  <p>The nine domains covered in this research share a single structural pattern: each has developed a dominant methodology that measures outputs and works backward, rather than measuring the exchange field directly. Finance, social media, drug discovery, education, urban planning, ecology, organizational behavior, language models, and trading card markets &mdash; the same mistake, operating at different speeds.</p>
+
+  <div class="domain-pills">
+    <span class="domain-pill">Finance</span>
+    <span class="domain-pill">Social Media</span>
+    <span class="domain-pill">Drug Discovery</span>
+    <span class="domain-pill">Education</span>
+    <span class="domain-pill">Urban Planning</span>
+    <span class="domain-pill">Ecology</span>
+    <span class="domain-pill">Organizations</span>
+    <span class="domain-pill">Language Models</span>
+    <span class="domain-pill">Trading Markets</span>
+  </div>
+
+  <p>This is independent research. It is not affiliated with any institution. The methodology is transparent, the sources are cited, and the framework is designed to be falsifiable. If you find a domain where the orientation conjecture does not hold, that is the most valuable thing you could contribute.</p>
+
   <a href="article-0-introduction.html" class="intro-cta">Read the full introduction &rarr;</a>
 </section>
 
