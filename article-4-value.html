@@ -46,7 +46,7 @@
     th { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
     td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border2); color: var(--fg2); vertical-align: top; }
     tr:last-child td { border-bottom: none; }
-    .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; width: 100%; }
     .series-nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .series-nav a:hover { color: var(--gold2); }
     .series-nav .next { text-align: right; }
@@ -272,6 +272,10 @@
   <a href="full-paper.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Full Paper</a>
   <a href="strategic-report.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Strategic Report</a>
 </div>
+<div class="series-nav-top" style="max-width:780px;margin:0 auto;padding:1.5rem 2rem;position:relative;z-index:10;">
+    <a href="article-3-social-media.html">&larr; Social Media and the Engagement Trap</a>
+    <a href="article-5-math.html" class="next">The Math Behind the Orientation Theorem &rarr;</a>
+  </div>
 <main style="position:relative;">
   <canvas
       data-shader-gradient
@@ -281,15 +285,10 @@
       data-speed="0.06"
       style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"
     ></canvas>
-  <p class="article-series">The Backwards Problem &mdash; Article Series</p>
+<p class="article-series">The Backwards Problem &mdash; Article Series</p>
   <p class="article-number">Article 4 of 8</p>
   <h1>Value Is Not a Number. <em>It Is a Process.</em></h1>
   <p class="subtitle">The difference between asking price, appraised value, and exchange-discoverable value. Why value becomes visible through genuine exchange, and what that means for every market.</p>
-  
-  <div class="series-nav-top">
-    <a href="article-3-social-media.html">&larr; Social Media and the Engagement Trap</a>
-    <a href="article-5-math.html" class="next">The Math Behind the Orientation Theorem &rarr;</a>
-  </div>
 <p class="byline">By Glen Brackmann with AI research assistance &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Exchange Is the Equation</p>
 
 <div class="art-viz-frame">
