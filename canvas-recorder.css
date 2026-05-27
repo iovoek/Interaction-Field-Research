@@ -1,0 +1,58 @@
+/**
+ * canvas-recorder.css
+ * Styles for the hover-reveal record button added by canvas-recorder.js.
+ * TO REMOVE: delete this <link> tag and the canvas-recorder.js <script> tag.
+ */
+
+.rec-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  background: rgba(10, 10, 15, 0.82);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 4px;
+  color: rgba(201, 168, 76, 0.85);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Show on hover over the parent container */
+.art-viz-inner:hover .rec-btn,
+.art-viz-secondary:hover .rec-btn,
+.inline-viz:hover .rec-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rec-btn:hover {
+  border-color: rgba(201, 168, 76, 0.75);
+  color: rgba(201, 168, 76, 1);
+  background: rgba(10, 10, 15, 0.92);
+}
+
+/* Recording state -- red pulse */
+.rec-btn--recording {
+  opacity: 1 !important;
+  pointer-events: none;
+  border-color: rgba(224, 112, 112, 0.7) !important;
+  color: rgba(224, 112, 112, 0.95) !important;
+  animation: rec-pulse 1s ease-in-out infinite;
+}
+
+@keyframes rec-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224, 112, 112, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(224, 112, 112, 0.2); }
+}
